@@ -16,6 +16,7 @@ import dribbbleLogo from "@/assets/logos/dribbble.png";
 import healthtalkLogo from "@/assets/logos/healthtalk-ai.png";
 import hexaradLogo from "@/assets/logos/hexarad.png";
 import hippLogo from "@/assets/logos/hipp.png";
+import augintelLogo from "@/assets/logos/augintel.png";
 
 const testimonials = [
   {
@@ -66,6 +67,7 @@ const companyLogos = [
   { name: "HealthTalk AI", logo: healthtalkLogo },
   { name: "Hexarad", logo: hexaradLogo },
   { name: "Hipp", logo: hippLogo },
+  { name: "Augintel", logo: augintelLogo },
 ];
 
 export const TestimonialsSection = () => {
@@ -91,13 +93,13 @@ export const TestimonialsSection = () => {
           </p>
         </motion.div>
 
-        {/* Company Logos */}
+        {/* Company Logos - Two rows */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="flex flex-wrap items-center justify-center gap-8 lg:gap-12 mb-16"
+          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-8 gap-y-6 lg:gap-x-12 lg:gap-y-8 items-center justify-items-center max-w-4xl mx-auto mb-16"
         >
           {companyLogos.map((company) => (
             <div
@@ -107,7 +109,7 @@ export const TestimonialsSection = () => {
               <img
                 src={company.logo}
                 alt={company.name}
-                className="h-6 lg:h-8 w-auto object-contain"
+                className="h-5 lg:h-7 w-auto object-contain max-w-[100px] lg:max-w-[120px]"
               />
             </div>
           ))}
