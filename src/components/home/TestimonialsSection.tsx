@@ -6,6 +6,17 @@ import zackImg from "@/assets/testimonials/zack.png";
 import emilyImg from "@/assets/testimonials/emily.png";
 import joshImg from "@/assets/testimonials/josh.png";
 
+import nolsLogo from "@/assets/logos/nols.png";
+import pivotalLogo from "@/assets/logos/pivotal.png";
+import shopifyLogo from "@/assets/logos/shopify.png";
+import vizientLogo from "@/assets/logos/vizient.png";
+import vmwareLogo from "@/assets/logos/vmware.png";
+import cheggLogo from "@/assets/logos/chegg.png";
+import dribbbleLogo from "@/assets/logos/dribbble.png";
+import healthtalkLogo from "@/assets/logos/healthtalk-ai.png";
+import hexaradLogo from "@/assets/logos/hexarad.png";
+import hippLogo from "@/assets/logos/hipp.png";
+
 const testimonials = [
   {
     id: 1,
@@ -44,11 +55,17 @@ const testimonials = [
   },
 ];
 
-// Placeholder company logos - will be replaced with actual logos
 const companyLogos = [
-  { name: "Shopify", logo: "Shopify" },
-  { name: "Dribbble", logo: "Dribbble" },
-  { name: "PayPal", logo: "PayPal" },
+  { name: "Shopify", logo: shopifyLogo },
+  { name: "Dribbble", logo: dribbbleLogo },
+  { name: "VMware", logo: vmwareLogo },
+  { name: "Pivotal", logo: pivotalLogo },
+  { name: "Chegg", logo: cheggLogo },
+  { name: "Vizient", logo: vizientLogo },
+  { name: "NOLS", logo: nolsLogo },
+  { name: "HealthTalk AI", logo: healthtalkLogo },
+  { name: "Hexarad", logo: hexaradLogo },
+  { name: "Hipp", logo: hippLogo },
 ];
 
 export const TestimonialsSection = () => {
@@ -80,14 +97,18 @@ export const TestimonialsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="flex flex-wrap items-center justify-center gap-8 lg:gap-16 mb-16"
+          className="flex flex-wrap items-center justify-center gap-8 lg:gap-12 mb-16"
         >
           {companyLogos.map((company) => (
             <div
               key={company.name}
-              className="text-xl lg:text-2xl font-bold text-muted-foreground/40 hover:text-muted-foreground/70 transition-colors"
+              className="opacity-40 hover:opacity-70 transition-opacity grayscale"
             >
-              {company.logo}
+              <img
+                src={company.logo}
+                alt={company.name}
+                className="h-6 lg:h-8 w-auto object-contain"
+              />
             </div>
           ))}
         </motion.div>
