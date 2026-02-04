@@ -92,32 +92,10 @@ export const TestimonialsSection = () => {
             I've had the privilege of working with incredible teams across industries.
           </p>
         </motion.div>
-
-        {/* Company Logos - Two rows */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-8 gap-y-6 lg:gap-x-12 lg:gap-y-8 items-center justify-items-center max-w-4xl mx-auto mb-16"
-        >
-          {companyLogos.map((company) => (
-            <div
-              key={company.name}
-              className="opacity-40 hover:opacity-70 transition-opacity grayscale"
-            >
-              <img
-                src={company.logo}
-                alt={company.name}
-                className="h-5 lg:h-7 w-auto object-contain max-w-[100px] lg:max-w-[120px]"
-              />
-            </div>
-          ))}
-        </motion.div>
       </div>
 
       {/* Auto-scrolling Testimonial Carousel */}
-      <div className="relative w-full">
+      <div className="relative w-full mb-16">
         <div className="flex animate-scroll-left gap-6 w-max">
           {duplicatedTestimonials.map((testimonial, index) => (
             <div
@@ -145,6 +123,30 @@ export const TestimonialsSection = () => {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Company Logos - Two rows */}
+      <div className="container mx-auto px-6 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-8 gap-y-6 lg:gap-x-12 lg:gap-y-8 items-center justify-items-center max-w-4xl mx-auto"
+        >
+          {companyLogos.map((company) => (
+            <div
+              key={company.name}
+              className="opacity-40 hover:opacity-70 transition-opacity grayscale"
+            >
+              <img
+                src={company.logo}
+                alt={company.name}
+                className="h-5 lg:h-7 w-auto object-contain max-w-[100px] lg:max-w-[120px]"
+              />
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
