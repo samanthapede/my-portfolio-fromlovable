@@ -57,17 +57,17 @@ const testimonials = [
 ];
 
 const companyLogos = [
-  { name: "Shopify", logo: shopifyLogo },
-  { name: "Dribbble", logo: dribbbleLogo },
-  { name: "VMware", logo: vmwareLogo },
-  { name: "Pivotal", logo: pivotalLogo },
-  { name: "Chegg", logo: cheggLogo },
-  { name: "Vizient", logo: vizientLogo },
-  { name: "NOLS", logo: nolsLogo },
-  { name: "HealthTalk AI", logo: healthtalkLogo },
-  { name: "Hexarad", logo: hexaradLogo },
-  { name: "Hipp", logo: hippLogo },
-  { name: "Augintel", logo: augintelLogo },
+  { name: "Shopify", logo: shopifyLogo, size: "h-5 lg:h-7" },
+  { name: "Dribbble", logo: dribbbleLogo, size: "h-7 lg:h-9" },
+  { name: "VMware", logo: vmwareLogo, size: "h-6 lg:h-8" },
+  { name: "Pivotal", logo: pivotalLogo, size: "h-6 lg:h-8" },
+  { name: "Chegg", logo: cheggLogo, size: "h-5 lg:h-7" },
+  { name: "Vizient", logo: vizientLogo, size: "h-5 lg:h-7" },
+  { name: "NOLS", logo: nolsLogo, size: "h-8 lg:h-10" },
+  { name: "HealthTalk AI", logo: healthtalkLogo, size: "h-5 lg:h-7" },
+  { name: "Hexarad", logo: hexaradLogo, size: "h-5 lg:h-7" },
+  { name: "Hipp", logo: hippLogo, size: "h-5 lg:h-7" },
+  { name: "Augintel", logo: augintelLogo, size: "h-5 lg:h-7" },
 ];
 
 export const TestimonialsSection = () => {
@@ -142,7 +142,7 @@ export const TestimonialsSection = () => {
               <img
                 src={company.logo}
                 alt={company.name}
-                className="h-5 lg:h-7 w-auto object-contain max-w-[100px] lg:max-w-[120px]"
+                className={`${company.size} w-auto object-contain max-w-[120px] lg:max-w-[140px]`}
               />
             </div>
           ))}
