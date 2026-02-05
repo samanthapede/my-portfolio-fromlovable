@@ -43,9 +43,6 @@ const About = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
               About
             </h1>
-            <p className="text-xl lg:text-2xl text-muted-foreground">
-              Staff-level Product Designer
-            </p>
           </motion.div>
 
           {/* Bio Section with Photo Collage */}
