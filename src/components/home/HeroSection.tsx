@@ -33,17 +33,6 @@ export const HeroSection = () => {
             <span className="gradient-text">users love</span>
           </motion.h1>
 
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg lg:text-xl text-muted-foreground max-w-2xl mb-10"
-          >
-            Staff-level product designer with over a decade of experience leading UX, 
-            UI, and research across fast-moving teams.
-          </motion.p>
-
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
