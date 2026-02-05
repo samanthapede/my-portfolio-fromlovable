@@ -29,7 +29,7 @@ const testimonials = [{
   image: cassiaImg
 }, {
   id: 3,
-  quote: "I can't say enough good things about Sam. Not only is she a seriously talented and professional UX designer and researcher, but she's just a tremendous joy to be around and work with. She radiates empathy for users' experiences and she truly cares about her work. I hope that my path crosses with Sam's in the future. I'd gladly welcome the opportunity to work with her again.",
+  quote: <><strong>I can't say enough good things about Sam.</strong> Not only is she a seriously talented and professional UX designer and researcher, but she's just a tremendous joy to be around and work with. She radiates empathy for users' experiences and she truly cares about her work. I hope that my path crosses with Sam's in the future. I'd gladly welcome the opportunity to work with her again.</>,
   author: "Zack Onisko",
   role: "Former CEO at Dribbble",
   image: zackImg
