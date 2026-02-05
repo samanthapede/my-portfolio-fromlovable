@@ -39,10 +39,10 @@ export const SpecialtiesSection = () => {
         }} transition={{
           duration: 0.6
         }}>
-            <h3 className="text-2xl font-medium text-[#2E4150] mb-4">
+            <h3 className="font-medium text-[#2E4150] mb-4 text-xl">
               Specialties
             </h3>
-            <h2 className="text-3xl xl:text-5xl font-bold mb-6 leading-[1.9] lg:text-3xl">
+            <h2 className="text-3xl xl:text-5xl font-bold mb-6 leading-[1.9] py-[80px] lg:text-4xl pt-[60px] pb-[40px]">
               Bringing your best ideas to life to{" "}
               <TooltipProvider delayDuration={200}>
                 <Tooltip>
@@ -73,7 +73,7 @@ export const SpecialtiesSection = () => {
             </h2>
 
             {/* Specialty Pills */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-[10px]">
               {specialties.map((specialty, index) => <motion.span key={specialty} initial={{
               opacity: 0,
               scale: 0.9
