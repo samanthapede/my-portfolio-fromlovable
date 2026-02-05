@@ -73,7 +73,7 @@ export const SpecialtiesSection = () => {
             }} transition={{
               duration: 0.3,
               delay: index * 0.05
-            }} className="px-4 py-2 bg-card border border-border rounded-full text-sm font-medium hover:border-primary hover:text-primary transition-colors cursor-default">
+            }} className="px-4 py-2 bg-card border border-border rounded-full text-sm font-medium cursor-default">
                   {specialty}
                 </motion.span>)}
             </div>
