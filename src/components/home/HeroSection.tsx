@@ -8,7 +8,7 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-4xl"
         >
           {/* Greeting */}
           <motion.p
@@ -38,7 +38,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
+            className="text-lg lg:text-xl text-muted-foreground max-w-2xl mb-10"
           >
             Staff-level product designer with over a decade of experience leading UX, 
             UI, and research across fast-moving teams.
@@ -49,7 +49,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex flex-col sm:flex-row items-start gap-4"
           >
             <a
               href="#contact"
@@ -71,7 +71,7 @@ export const HeroSection = () => {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="gradient-line h-1 max-w-lg mx-auto mt-16 rounded-full origin-left"
+          className="gradient-line h-1 max-w-lg mt-16 rounded-full origin-left"
         />
       </div>
     </section>
