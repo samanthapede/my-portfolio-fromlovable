@@ -16,6 +16,15 @@ export const SpecialtiesSection = () => {
   return (
     <section className="py-16 lg:py-24 bg-secondary/30">
       <div className="container mx-auto px-6 lg:px-12">
+        <motion.h3
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-8 lg:mb-12"
+        >
+          Specialties
+        </motion.h3>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image */}
           <motion.div
@@ -47,7 +56,31 @@ export const SpecialtiesSection = () => {
           >
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6">
               Bringing your best ideas to life to{" "}
-              <span className="gradient-text">level up your business</span>
+              <span className="relative inline-block pb-4">
+                <span className="text-[#4A56D4]">level up your business</span>
+                <svg
+                  className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
+                  viewBox="0 0 200 16"
+                  preserveAspectRatio="none"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 10C15 8 30 12 50 9C70 6 90 13 110 10C130 7 150 14 170 10C185 7 200 11 200 11"
+                    stroke="url(#gradient-specialties)"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <defs>
+                    <linearGradient id="gradient-specialties" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#4B1B9E" />
+                      <stop offset="50%" stopColor="#4E8DD3" />
+                      <stop offset="100%" stopColor="#14E3F4" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </span>
             </h2>
             
             <p className="text-lg text-muted-foreground mb-8">
