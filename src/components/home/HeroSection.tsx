@@ -69,7 +69,7 @@ export const HeroSection = () => {
                 </TooltipTrigger>
                 <TooltipContent 
                   side="bottom" 
-                  className="max-w-sm bg-gradient-to-r from-[#4B1B9E] via-[#4E8DD3] to-[#14E3F4] text-white border-none rounded-2xl px-5 py-4 text-base font-medium shadow-2xl"
+                  className="max-w-sm bg-gradient-to-r from-[#4A56D4] to-[#262D6E] text-white border-none rounded-2xl px-5 py-4 text-base font-medium shadow-2xl"
                 >
                   <p className="leading-relaxed">
                     ✨ I win by helping you win. I love to collaborate with you and your team, learn from your users, while keeping business objectives at the forefront to get to the right solution...faster. 🚀
@@ -113,7 +113,7 @@ export const HeroSection = () => {
                 </TooltipTrigger>
                 <TooltipContent 
                   side="bottom" 
-                  className="max-w-sm bg-gradient-to-r from-[#4B1B9E] via-[#4E8DD3] to-[#14E3F4] text-white border-none rounded-2xl px-5 py-4 text-base font-medium shadow-2xl"
+                  className="max-w-sm bg-gradient-to-r from-[#4A56D4] to-[#262D6E] text-white border-none rounded-2xl px-5 py-4 text-base font-medium shadow-2xl"
                 >
                   <p className="leading-relaxed">
                     💜 Designing great experiences for your users is just good business. Too many businesses think they know what their users want but miss out on gaining loyalty because they don't actually build well for their users. Let me help you win. 🏆
