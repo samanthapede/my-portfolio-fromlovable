@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 export const HeroSection = () => {
-  return <section className="min-h-[80vh] flex items-center justify-center py-16 lg:py-24 border-solid border-secondary-foreground rounded-none border-0">
+  return <section className="min-h-[80vh] py-16 lg:py-24 border-solid border-secondary-foreground rounded-none border-0 flex items-center justify-center">
       <div className="container mx-auto px-6 lg:px-12">
         <motion.div initial={{
         opacity: 0,
