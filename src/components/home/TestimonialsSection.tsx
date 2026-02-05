@@ -35,7 +35,7 @@ const testimonials = [{
   image: zackImg
 }, {
   id: 4,
-  quote: "Sam is a self-starter with great instincts for what is needed to move a decision forward. Her pace, fast problem solving, and breadth of problem solving is extraordinary. She has a bias to ship and get things done, balancing long-term goals with respect for timelines, while always maintaining the high quality bar we set at Shopify. I would jump at any opportunity to work with her again!",
+  quote: <>Sam is a self-starter with great instincts for what is needed to move a decision forward. <strong>Her pace, fast problem solving, and breadth of problem solving is extraordinary.</strong> She has a bias to ship and get things done, balancing long-term goals with respect for timelines, while always maintaining the high quality bar we set at Shopify. I would jump at any opportunity to work with her again!</>,
   author: "Emily Rucker",
   role: "Senior UX Manager at Shopify",
   image: emilyImg
