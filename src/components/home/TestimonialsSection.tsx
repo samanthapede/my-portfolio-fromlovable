@@ -17,7 +17,7 @@ import hippLogo from "@/assets/logos/hipp.png";
 import augintelLogo from "@/assets/logos/augintel.png";
 const testimonials = [{
   id: 1,
-  quote: "Sam has a rare ability to make the complex simple and the difficult seem effortless. I've had the privilege of working with her on some of the most challenging and ambiguous projects of my career, and one quality stands out above all: Sam embraces complexity and ambiguity, consistently delivering high-quality solutions at an impressive speed—all while keeping the team and stakeholders fully aligned and informed.",
+  quote: <><strong>Sam has a rare ability to make the complex simple and the difficult seem effortless.</strong> I've had the privilege of working with her on <strong>some of the most challenging and ambiguous projects of my career,</strong> and one quality stands out above all: Sam embraces complexity and ambiguity, consistently delivering high-quality solutions at an impressive speed—all while keeping the team and stakeholders fully aligned and informed.</>,
   author: "Víctor Niharra Fe",
   role: "Leading Product at Shopify",
   image: victorImg
