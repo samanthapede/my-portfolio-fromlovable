@@ -1,13 +1,22 @@
-import { motion } from "framer-motion";
+// Project images for the carousel
+import chatbot from "@/assets/projects/chatbot.png";
+import columnPicker from "@/assets/projects/column-picker.png";
+import dashboardMetrics from "@/assets/projects/dashboard-metrics.png";
+import fulfillableAdmin from "@/assets/projects/fulfillable-admin.png";
+import fulfillableStorefront from "@/assets/projects/fulfillable-storefront.png";
+import sellFromIncoming from "@/assets/projects/sell-from-incoming.png";
+import uiUplift from "@/assets/projects/ui-uplift.png";
+import unavailable from "@/assets/projects/unavailable.png";
 
-// Placeholder project images for the carousel
 const projectImages = [
-  { id: 1, color: "from-gradient-purple to-gradient-blue", label: "Batching Orders" },
-  { id: 2, color: "from-gradient-blue to-gradient-cyan", label: "Sellable Quantities" },
-  { id: 3, color: "from-gradient-cyan to-gradient-purple", label: "Inventory Mgmt" },
-  { id: 4, color: "from-gradient-purple to-gradient-blue", label: "Project 4" },
-  { id: 5, color: "from-gradient-blue to-gradient-cyan", label: "Project 5" },
-  { id: 6, color: "from-gradient-cyan to-gradient-purple", label: "Project 6" },
+  { id: 1, src: chatbot, alt: "Chatbot" },
+  { id: 2, src: columnPicker, alt: "Column Picker" },
+  { id: 3, src: dashboardMetrics, alt: "Dashboard Metrics" },
+  { id: 4, src: fulfillableAdmin, alt: "Fulfillable Admin" },
+  { id: 5, src: fulfillableStorefront, alt: "Fulfillable Storefront" },
+  { id: 6, src: sellFromIncoming, alt: "Sell from Incoming" },
+  { id: 7, src: uiUplift, alt: "UI Uplift" },
+  { id: 8, src: unavailable, alt: "Unavailable Inventory" },
 ];
 
 export const ProjectCarousel = () => {
@@ -24,11 +33,13 @@ export const ProjectCarousel = () => {
           {allImages.map((img, index) => (
             <div
               key={`top-${index}`}
-              className={`flex-shrink-0 w-64 h-48 lg:w-80 lg:h-56 rounded-xl bg-gradient-to-br ${img.color} flex items-center justify-center shadow-lg`}
+              className="flex-shrink-0 w-64 h-auto lg:w-80 rounded-xl overflow-hidden shadow-lg"
             >
-              <span className="text-primary-foreground font-medium text-lg">
-                {img.label}
-              </span>
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="w-full h-full object-cover"
+              />
             </div>
           ))}
         </div>
