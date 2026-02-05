@@ -31,7 +31,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[4] mb-8"
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[5] mb-8"
           >
             Fractional{" "}
             <TooltipProvider delayDuration={200}>
@@ -44,7 +44,7 @@ export const HeroSection = () => {
                       design partner
                     </span>
                     <svg
-                      className="absolute -bottom-3 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
+                      className="absolute -bottom-6 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
                       viewBox="0 0 200 16"
                       preserveAspectRatio="none"
                       fill="none"
@@ -89,7 +89,7 @@ export const HeroSection = () => {
                       users love
                     </span>
                     <svg
-                      className="absolute -bottom-3 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
+                      className="absolute -bottom-6 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
                       viewBox="0 0 200 16"
                       preserveAspectRatio="none"
                       fill="none"
