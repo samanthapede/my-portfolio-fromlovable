@@ -45,7 +45,7 @@ export const SpecialtiesSection = () => {
               Bringing your best ideas to life to{" "}
               <span className="relative inline">
                 <span className="text-[#4A56D4]">level up your business</span>
-                <svg className="absolute -bottom-1 left-0 w-full h-4 overflow-visible -z-10" viewBox="0 0 200 16" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg className="absolute -bottom-2 left-0 w-full h-4 overflow-visible -z-10" viewBox="0 0 200 16" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M0 8C20 12 40 6 65 10C90 14 110 7 135 11C160 15 180 8 200 10" stroke="url(#gradient-specialties-levelup)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
                   <defs>
                     <linearGradient id="gradient-specialties-levelup" x1="0%" y1="0%" x2="100%" y2="0%">
