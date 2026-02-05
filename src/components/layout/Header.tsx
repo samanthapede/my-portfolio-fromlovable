@@ -50,10 +50,9 @@ export const Header = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50"
     >
-      <div className="container mx-auto px-6 lg:px-12">
-        <nav className="flex items-center justify-between h-16 lg:h-20">
+      <nav className="flex items-center gap-8 px-6 py-3 bg-background/80 backdrop-blur-md border border-border rounded-full shadow-lg">
           {/* Logo */}
           <Link
             to="/"
@@ -63,7 +62,6 @@ export const Header = () => {
           </Link>
 
           {/* Navigation Links */}
-          <div className="flex items-center gap-8">
             <ul className="flex items-center gap-6 lg:gap-8">
               {navLinks.map((link) => (
                 <li key={link.path}>
@@ -101,9 +99,7 @@ export const Header = () => {
                 <Moon className="w-5 h-5 text-foreground" />
               )}
             </button>
-          </div>
-        </nav>
-      </div>
+      </nav>
     </motion.header>
   );
 };
