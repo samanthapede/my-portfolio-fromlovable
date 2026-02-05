@@ -39,7 +39,7 @@ const About = () => {
           y: 0
         }} transition={{
           duration: 0.6
-        }} className="text-center mb-16">
+        }} className="mb-16">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
               About
             </h1>
