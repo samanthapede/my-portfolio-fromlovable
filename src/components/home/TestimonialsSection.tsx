@@ -6,7 +6,6 @@ import zackImg from "@/assets/testimonials/zack.png";
 import emilyImg from "@/assets/testimonials/emily.png";
 import joshImg from "@/assets/testimonials/josh.png";
 
-import nolsLogo from "@/assets/logos/nols.png";
 import pivotalLogo from "@/assets/logos/pivotal.png";
 import shopifyLogo from "@/assets/logos/shopify.png";
 import vizientLogo from "@/assets/logos/vizient.png";
@@ -63,7 +62,6 @@ const companyLogos = [
   { name: "Pivotal", logo: pivotalLogo, size: "h-9 lg:h-11" },
   { name: "Chegg", logo: cheggLogo, size: "h-5 lg:h-7" },
   { name: "Vizient", logo: vizientLogo, size: "h-5 lg:h-7" },
-  { name: "NOLS", logo: nolsLogo, size: "h-8 lg:h-10" },
   { name: "HealthTalk AI", logo: healthtalkLogo, size: "h-5 lg:h-7" },
   { name: "Hexarad", logo: hexaradLogo, size: "h-5 lg:h-7" },
   { name: "Hipp", logo: hippLogo, size: "h-5 lg:h-7" },
