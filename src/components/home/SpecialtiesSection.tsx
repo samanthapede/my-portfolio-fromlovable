@@ -19,7 +19,7 @@ export const SpecialtiesSection = () => {
           duration: 0.6
         }} className="relative">
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] max-w-md mx-auto lg:mx-0">
-              <img src={headshot} alt="Samantha Pede" className="w-full h-full object-cover" />
+              <img src={headshot} alt="Samantha Pede" className="w-full h-full object-cover object-top" />
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
             </div>
