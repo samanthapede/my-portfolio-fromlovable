@@ -41,7 +41,7 @@ const testimonials = [{
   image: emilyImg
 }, {
   id: 5,
-  quote: "Sam is a top notch human-focused designer. Sam quickly diagnoses root problems and designs elegant, intuitive and efficient solutions. In our time working together, Sam was someone I always looked to for feedback on my designs work, knowing that her intuition and high bar for quality would elevate my work. In my time working with Sam, every project team was relieved and grateful when she was assigned to their project. When Sam is on your team, you know the end result will be amazing and the process getting there will be easy and fun.",
+  quote: <>Sam is a top notch human-focused designer. Sam quickly diagnoses root problems and designs elegant, intuitive and efficient solutions. In our time working together, Sam was someone I always looked to for feedback on my designs work, knowing that her intuition and high bar for quality would elevate my work. In my time working with Sam, <strong>every project team was relieved and grateful when she was assigned to their project.</strong> When Sam is on your team, you know the end result will be amazing and the process getting there will be easy and fun.</>,
   author: "Josh Mantooth",
   role: "Senior Staff Product Designer at Paypal",
   image: joshImg
