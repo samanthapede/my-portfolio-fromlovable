@@ -31,24 +31,24 @@ export const HeroSection = () => {
             <span className="relative inline-block pb-2">
               <span className="gradient-text">design partner</span>
               <svg
-                className="absolute -bottom-1 left-0 w-full h-3 overflow-visible"
-                viewBox="0 0 200 12"
+                className="absolute -bottom-0 left-0 w-full h-4 overflow-visible"
+                viewBox="0 0 200 16"
                 preserveAspectRatio="none"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M2 8C20 4 40 10 60 6C80 2 100 10 120 6C140 2 160 10 180 6C190 4 198 7 198 7"
+                  d="M0 10C15 8 30 12 50 9C70 6 90 13 110 10C130 7 150 14 170 10C185 7 200 11 200 11"
                   stroke="url(#gradient1)"
-                  strokeWidth="3"
+                  strokeWidth="6"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
                 <defs>
                   <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="hsl(var(--primary))" />
-                    <stop offset="50%" stopColor="hsl(var(--accent))" />
-                    <stop offset="100%" stopColor="hsl(var(--primary))" />
+                    <stop offset="0%" stopColor="#4B1B9E" />
+                    <stop offset="50%" stopColor="#4E8DD3" />
+                    <stop offset="100%" stopColor="#14E3F4" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -57,24 +57,24 @@ export const HeroSection = () => {
             <span className="relative inline-block pb-2">
               <span className="gradient-text">users love</span>
               <svg
-                className="absolute -bottom-1 left-0 w-full h-3 overflow-visible"
-                viewBox="0 0 200 12"
+                className="absolute -bottom-0 left-0 w-full h-4 overflow-visible"
+                viewBox="0 0 200 16"
                 preserveAspectRatio="none"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M2 6C25 10 45 3 70 7C95 11 115 4 140 8C165 12 185 5 198 6"
+                  d="M0 8C20 12 40 6 65 10C90 14 110 7 135 11C160 15 180 8 200 10"
                   stroke="url(#gradient2)"
-                  strokeWidth="3"
+                  strokeWidth="6"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
                 <defs>
                   <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="hsl(var(--primary))" />
-                    <stop offset="50%" stopColor="hsl(var(--accent))" />
-                    <stop offset="100%" stopColor="hsl(var(--primary))" />
+                    <stop offset="0%" stopColor="#4B1B9E" />
+                    <stop offset="50%" stopColor="#4E8DD3" />
+                    <stop offset="100%" stopColor="#14E3F4" />
                   </linearGradient>
                 </defs>
               </svg>
