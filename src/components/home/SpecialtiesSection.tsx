@@ -3,7 +3,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import headshot from "@/assets/headshot.jpg";
 const specialties = ["Web apps", "Mobile apps", "Websites", "0 → 1 projects", "Design leadership", "Strategy", "Systems thinking", "User research", "Rapid prototyping"];
 export const SpecialtiesSection = () => {
-  return <section className="py-16 lg:py-24 bg-secondary/30">
+  return <section className="py-16 lg:py-24 bg-[#eff3fb]">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image */}
