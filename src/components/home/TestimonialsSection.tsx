@@ -168,9 +168,9 @@ export const TestimonialsSection = () => {
         once: true
       }} transition={{
         delay: 0.2
-      }} className="grid grid-cols-3 sm:grid-cols-5 gap-x-8 gap-y-6 lg:gap-x-12 lg:gap-y-8 items-center justify-items-center max-w-3xl mx-auto">
+      }} className="grid grid-cols-3 sm:grid-cols-5 gap-x-10 gap-y-8 lg:gap-x-16 lg:gap-y-10 items-center justify-items-center max-w-4xl mx-auto">
           {companyLogos.map(company => <div key={company.name} className="opacity-40 hover:opacity-70 transition-opacity grayscale">
-              <img src={company.logo} alt={company.name} className={`${company.size} w-auto object-contain max-w-[120px] lg:max-w-[140px]`} />
+              <img src={company.logo} alt={company.name} className={`${company.size} w-auto object-contain max-w-[140px] lg:max-w-[180px]`} />
             </div>)}
         </motion.div>
       </div>
