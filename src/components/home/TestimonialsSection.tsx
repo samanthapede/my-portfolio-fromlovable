@@ -131,9 +131,6 @@ export const TestimonialsSection = () => {
               </Tooltip>
             </TooltipProvider>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl">
-            I've had the privilege of working with incredible teams across industries.
-          </p>
         </motion.div>
       </div>
 
