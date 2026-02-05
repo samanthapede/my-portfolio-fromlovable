@@ -45,7 +45,7 @@ export const HeroSection = () => {
                     design partner
                   </span>
                 </TooltipTrigger>
-                <TooltipContent side="bottom" className="max-w-sm bg-gradient-to-r from-[#4A56D4] to-[#262D6E] text-white border-none rounded-md px-5 py-4 text-base font-medium shadow-2xl">
+                <TooltipContent side="bottom" className="max-w-sm bg-black/90 backdrop-blur-xl text-white border border-white/10 rounded-none px-5 py-4 text-base font-medium shadow-[0_0_30px_rgba(74,86,212,0.3)]">
                   <p className="leading-relaxed">
                     ✨ You know your business intimately. I know how to learn from your users and drive quality designs at speed. We're better together. 🤝
                   </p>
@@ -60,7 +60,7 @@ export const HeroSection = () => {
                     users love
                   </span>
                 </TooltipTrigger>
-                <TooltipContent side="bottom" className="max-w-sm bg-gradient-to-r from-[#4A56D4] to-[#262D6E] text-white border-none rounded-md px-5 py-4 text-base font-medium shadow-2xl">
+                <TooltipContent side="bottom" className="max-w-sm bg-black/90 backdrop-blur-xl text-white border border-white/10 rounded-none px-5 py-4 text-base font-medium shadow-[0_0_30px_rgba(74,86,212,0.3)]">
                   <p className="leading-relaxed">
                     💜 Designing great experiences for your users is just good business. Too many businesses think they know what their users want, but miss out on valuable insights that transform products from good to great. Let's learn from your users and win faster. 🏆
                   </p>
