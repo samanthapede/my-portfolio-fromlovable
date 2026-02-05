@@ -39,7 +39,7 @@ export const HeroSection = () => {
                 <TooltipTrigger asChild>
                   <span className="relative inline-block pb-4 cursor-pointer group">
                     <span 
-                      className="text-[#4A56D4] transition-colors duration-500 ease-out group-hover:text-[#5C67D8]"
+                      className="text-[#4A56D4] transition-colors duration-500 ease-out group-hover:text-[#7680DE]"
                     >
                       design partner
                     </span>
@@ -83,7 +83,7 @@ export const HeroSection = () => {
                 <TooltipTrigger asChild>
                   <span className="relative inline-block pb-4 cursor-pointer group">
                     <span 
-                      className="text-[#4A56D4] transition-colors duration-500 ease-out group-hover:text-[#5C67D8]"
+                      className="text-[#4A56D4] transition-colors duration-500 ease-out group-hover:text-[#7680DE]"
                     >
                       users love
                     </span>
