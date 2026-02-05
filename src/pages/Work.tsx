@@ -35,13 +35,9 @@ const Work = () => {
           y: 0
         }} transition={{
           duration: 0.6
-        }} className="mb-16">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Selected Work
-            </h1>
-            <p className="text-xl lg:text-2xl text-muted-foreground max-w-2xl">
-              A selection of projects showcasing my approach to product design
-            </p>
+        }} className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Selected Work</h1>
+            <p className="text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto">My work cannot be shared publicly due to nondisclosure agreements, but I'd be happy to set up a private walkthrough to chat about the process and strategies that went into solving them.</p>
           </motion.div>
 
           {/* Project Cards */}
