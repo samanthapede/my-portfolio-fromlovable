@@ -3,7 +3,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import headshot from "@/assets/headshot.jpg";
 const specialties = ["Web apps", "Mobile apps", "Websites", "0 → 1 projects", "Design leadership", "Strategy", "Systems thinking", "User research", "Rapid prototyping"];
 export const SpecialtiesSection = () => {
-  return <section className="py-16 lg:py-24 bg-[#eff3fb]">
+  return <section className="py-16 lg:py-24 bg-[#eff3fb] dark:bg-background">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image */}
@@ -39,7 +39,7 @@ export const SpecialtiesSection = () => {
         }} transition={{
           duration: 0.6
         }}>
-            <h3 className="font-medium text-[#2E4150] mb-4 text-xl">
+            <h3 className="font-medium text-[#2E4150] dark:text-muted-foreground mb-4 text-xl">
               Specialties
             </h3>
             <h2 className="text-3xl xl:text-5xl font-bold mb-6 leading-[1.5] py-[80px] lg:text-4xl pt-[60px] pb-[40px]">
