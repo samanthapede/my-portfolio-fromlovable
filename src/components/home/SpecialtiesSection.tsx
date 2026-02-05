@@ -115,12 +115,11 @@ export const SpecialtiesSection = () => {
                   delay: index * 0.06,
                   ease: "easeOut",
                 }}
-                className="group"
               >
                 <span className="block text-sm font-medium text-muted-foreground/50 mb-2 tabular-nums">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <h4 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">
+                <h4 className="text-lg font-semibold mb-1">
                   {specialty.title}
                 </h4>
                 <p className="text-sm leading-relaxed text-muted-foreground">
