@@ -37,8 +37,13 @@ export const HeroSection = () => {
             <TooltipProvider delayDuration={200}>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <span className="relative inline-block pb-4 cursor-pointer">
-                    <span style={{ color: '#4A56D4' }}>design partner</span>
+                  <span className="relative inline-block pb-4 cursor-pointer group">
+                    <span 
+                      className="transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#4B1B9E] group-hover:via-[#4E8DD3] group-hover:to-[#14E3F4] group-hover:bg-clip-text group-hover:text-transparent"
+                      style={{ color: '#4A56D4' }}
+                    >
+                      design partner
+                    </span>
                     <svg
                       className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
                       viewBox="0 0 200 16"
@@ -77,8 +82,13 @@ export const HeroSection = () => {
             <TooltipProvider delayDuration={200}>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <span className="relative inline-block pb-4 cursor-pointer">
-                    <span style={{ color: '#4A56D4' }}>users love</span>
+                  <span className="relative inline-block pb-4 cursor-pointer group">
+                    <span 
+                      className="transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#4B1B9E] group-hover:via-[#4E8DD3] group-hover:to-[#14E3F4] group-hover:bg-clip-text group-hover:text-transparent"
+                      style={{ color: '#4A56D4' }}
+                    >
+                      users love
+                    </span>
                     <svg
                       className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
                       viewBox="0 0 200 16"
