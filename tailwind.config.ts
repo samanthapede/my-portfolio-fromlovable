@@ -85,6 +85,10 @@ export default {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        "scroll-left-slow": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
         "scroll-right": {
           "0%": { transform: "translateX(-50%)" },
           "100%": { transform: "translateX(0)" },
@@ -102,6 +106,7 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "scroll-left": "scroll-left 30s linear infinite",
+        "scroll-left-slow": "scroll-left-slow 60s linear infinite",
         "scroll-right": "scroll-right 30s linear infinite",
         "fade-in": "fade-in 0.6s ease-out forwards",
         "fade-in-up": "fade-in-up 0.8s ease-out forwards",
