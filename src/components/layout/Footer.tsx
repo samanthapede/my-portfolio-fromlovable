@@ -34,7 +34,15 @@ export const Footer = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+            <p className="text-lg leading-relaxed text-muted-foreground mb-8 max-w-lg">
+              Design, for me, is about{" "}
+              <span className="text-foreground font-medium">clarity</span>,{" "}
+              <span className="text-foreground font-medium">momentum</span>, and{" "}
+              <span className="text-foreground font-medium">impact</span>. I thrive
+              in environments where I can help shape the big picture, while sweating
+              the details that make an experience truly work.
+            </p>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-8">
               Let's build something{" "}
               <TooltipProvider delayDuration={200}>
                 <Tooltip>
@@ -51,10 +59,6 @@ export const Footer = () => {
                 </Tooltip>
               </TooltipProvider>
             </h2>
-            <p className="text-muted-foreground mb-8 max-w-md">
-              Ready to create something amazing? Book a call to discuss your project
-              or reach out via email.
-            </p>
 
             <a
               href="mailto:samanthapede@gmail.com"
