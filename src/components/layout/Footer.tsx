@@ -1,32 +1,37 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { Mail } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export const Footer = () => {
+  const footerRef = useRef(null);
   const calendlyRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(footerRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
-    // Load Calendly script
+    // Only load Calendly script when footer is in view
+    if (!isInView) return;
+
     const script = document.createElement("script");
     script.src = "https://assets.calendly.com/assets/external/widget.js";
     script.async = true;
     document.body.appendChild(script);
 
     return () => {
-      document.body.removeChild(script);
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
     };
-  }, []);
+  }, [isInView]);
 
   return (
-    <footer className="bg-[#F1F4FB] dark:!bg-background border-t border-border">
+    <footer ref={footerRef} className="bg-[#F1F4FB] dark:!bg-background border-t border-border">
       <div className="container mx-auto px-6 lg:px-12 py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left Side - Contact */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
@@ -63,22 +68,28 @@ export const Footer = () => {
           {/* Right Side - Calendly */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="bg-card rounded-xl overflow-hidden shadow-lg"
           >
-            <div
-              ref={calendlyRef}
-              className="calendly-inline-widget"
-              data-url="https://calendly.com/sam-geodedesign/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=4a56d4"
-              style={{ minWidth: "320px", height: "500px" }}
-            />
+            {isInView && (
+              <div
+                ref={calendlyRef}
+                className="calendly-inline-widget"
+                data-url="https://calendly.com/sam-geodedesign/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=4a56d4"
+                style={{ minWidth: "320px", height: "500px" }}
+              />
+            )}
           </motion.div>
         </div>
 
         {/* Bottom */}
-        <div className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Samantha Pede. All rights reserved.
           </p>
@@ -100,7 +111,7 @@ export const Footer = () => {
               Twitter
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
