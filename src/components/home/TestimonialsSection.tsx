@@ -58,9 +58,9 @@ const testimonials = [
 
 const companyLogos = [
   { name: "Shopify", logo: shopifyLogo, size: "h-5 lg:h-7" },
-  { name: "Dribbble", logo: dribbbleLogo, size: "h-7 lg:h-9" },
-  { name: "VMware", logo: vmwareLogo, size: "h-6 lg:h-8" },
-  { name: "Pivotal", logo: pivotalLogo, size: "h-6 lg:h-8" },
+  { name: "Dribbble", logo: dribbbleLogo, size: "h-9 lg:h-12" },
+  { name: "VMware", logo: vmwareLogo, size: "h-9 lg:h-11" },
+  { name: "Pivotal", logo: pivotalLogo, size: "h-9 lg:h-11" },
   { name: "Chegg", logo: cheggLogo, size: "h-5 lg:h-7" },
   { name: "Vizient", logo: vizientLogo, size: "h-5 lg:h-7" },
   { name: "NOLS", logo: nolsLogo, size: "h-8 lg:h-10" },
