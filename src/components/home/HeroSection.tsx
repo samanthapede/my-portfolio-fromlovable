@@ -39,8 +39,7 @@ export const HeroSection = () => {
                 <TooltipTrigger asChild>
                   <span className="relative inline-block pb-4 cursor-pointer group">
                     <span 
-                      className="transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#4B1B9E] group-hover:via-[#4E8DD3] group-hover:to-[#14E3F4] group-hover:bg-clip-text group-hover:text-transparent"
-                      style={{ color: '#4A56D4' }}
+                      className="text-[#4A56D4] transition-all duration-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B1B9E] group-hover:via-[#4E8DD3] group-hover:to-[#14E3F4] group-hover:bg-clip-text"
                     >
                       design partner
                     </span>
@@ -84,8 +83,7 @@ export const HeroSection = () => {
                 <TooltipTrigger asChild>
                   <span className="relative inline-block pb-4 cursor-pointer group">
                     <span 
-                      className="transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#4B1B9E] group-hover:via-[#4E8DD3] group-hover:to-[#14E3F4] group-hover:bg-clip-text group-hover:text-transparent"
-                      style={{ color: '#4A56D4' }}
+                      className="text-[#4A56D4] transition-all duration-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B1B9E] group-hover:via-[#4E8DD3] group-hover:to-[#14E3F4] group-hover:bg-clip-text"
                     >
                       users love
                     </span>
