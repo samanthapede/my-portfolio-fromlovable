@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import victorImg from "@/assets/testimonials/victor.png";
 import cassiaImg from "@/assets/testimonials/cassia.png";
@@ -15,6 +16,7 @@ import healthtalkLogo from "@/assets/logos/healthtalk-ai.png";
 import hexaradLogo from "@/assets/logos/hexarad.png";
 import hippLogo from "@/assets/logos/hipp.png";
 import augintelLogo from "@/assets/logos/augintel.png";
+
 const testimonials = [{
   id: 1,
   quote: <><strong>Sam has a rare ability to make the complex simple and the difficult seem effortless.</strong> I've had the privilege of working with her on <strong>some of the most challenging and ambiguous projects of my career,</strong> and one quality stands out above all: Sam embraces complexity and ambiguity, consistently delivering high-quality solutions at an impressive speed—all while keeping the team and stakeholders fully aligned and informed.</>,
@@ -46,6 +48,7 @@ const testimonials = [{
   role: "Senior Staff Product Designer at Paypal",
   image: joshImg
 }];
+
 const companyLogos = [{
   name: "Shopify",
   logo: shopifyLogo,
@@ -87,21 +90,26 @@ const companyLogos = [{
   logo: augintelLogo,
   size: "h-5 lg:h-7"
 }];
+
 export const TestimonialsSection = () => {
+  const sectionRef = useRef(null);
+  const logosRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const logosInView = useInView(logosRef, { once: true, margin: "-50px" });
+  
   // Duplicate testimonials for seamless infinite scroll
   const duplicatedTestimonials = [...testimonials, ...testimonials];
-  return <section className="py-16 lg:py-24 overflow-hidden pt-[90px] pb-[50px]">
+
+  return (
+    <section ref={sectionRef} className="py-16 lg:py-24 overflow-hidden pt-[90px] pb-[50px]">
       <div className="container mx-auto px-6 lg:px-12">
         {/* Section Header */}
-        <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} whileInView={{
-        opacity: 1,
-        y: 0
-      }} viewport={{
-        once: true
-      }} className="text-left mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+          className="text-left mb-12"
+        >
           <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-4">
             A trusted partner to{" "}
             <TooltipProvider delayDuration={200}>
@@ -123,44 +131,57 @@ export const TestimonialsSection = () => {
       </div>
 
       {/* Auto-scrolling Testimonial Carousel */}
-      <div className="relative w-full mb-16 group">
-        <div className="flex animate-scroll-left group-hover:[animation-play-state:paused] gap-6 w-max">
-          {duplicatedTestimonials.map((testimonial, index) => <div key={`${testimonial.id}-${index}`} className="flex-shrink-0 w-[400px] lg:w-[500px] bg-card border border-border rounded-2xl p-6 lg:p-8 hover:border-primary/30 transition-colors">
-              <div className="flex items-center gap-3 mb-6">
-                <img src={testimonial.image} alt={testimonial.author} className="w-12 h-12 rounded-full object-cover" />
-                <div>
-                  <p className="font-medium text-foreground">
-                    {testimonial.author}
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.role}
-                  </p>
+      {isInView && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="relative w-full mb-16 group"
+        >
+          <div className="flex animate-scroll-left group-hover:[animation-play-state:paused] gap-6 w-max">
+            {duplicatedTestimonials.map((testimonial, index) => (
+              <div key={`${testimonial.id}-${index}`} className="flex-shrink-0 w-[400px] lg:w-[500px] bg-card border border-border rounded-2xl p-6 lg:p-8 hover:border-primary/30 transition-colors">
+                <div className="flex items-center gap-3 mb-6">
+                  <img src={testimonial.image} alt={testimonial.author} className="w-12 h-12 rounded-full object-cover" loading="lazy" />
+                  <div>
+                    <p className="font-medium text-foreground">
+                      {testimonial.author}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {testimonial.role}
+                    </p>
+                  </div>
                 </div>
+                <p className="text-foreground leading-relaxed text-sm lg:text-base">
+                  "{testimonial.quote}"
+                </p>
               </div>
-              <p className="text-foreground leading-relaxed text-sm lg:text-base">
-                "{testimonial.quote}"
-              </p>
-            </div>)}
+            ))}
+          </div>
+        </motion.div>
+      )}
+
+      {/* Company Logos */}
+      <div ref={logosRef} className="container mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-3 sm:grid-cols-5 gap-x-10 gap-y-8 lg:gap-x-16 lg:gap-y-10 items-center justify-items-center max-w-4xl mx-auto">
+          {logosInView && companyLogos.map((company, index) => (
+            <motion.div
+              key={company.name}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 0.4, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              className="hover:opacity-70 transition-opacity grayscale"
+            >
+              <img
+                src={company.logo}
+                alt={company.name}
+                className={`${company.size} w-auto object-contain max-w-[140px] lg:max-w-[180px]`}
+                loading="lazy"
+              />
+            </motion.div>
+          ))}
         </div>
       </div>
-
-      {/* Company Logos - Two rows */}
-      <div className="container mx-auto px-6 lg:px-12">
-        <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} whileInView={{
-        opacity: 1,
-        y: 0
-      }} viewport={{
-        once: true
-      }} transition={{
-        delay: 0.2
-      }} className="grid grid-cols-3 sm:grid-cols-5 gap-x-10 gap-y-8 lg:gap-x-16 lg:gap-y-10 items-center justify-items-center max-w-4xl mx-auto">
-          {companyLogos.map(company => <div key={company.name} className="opacity-40 hover:opacity-70 transition-opacity grayscale">
-              <img src={company.logo} alt={company.name} className={`${company.size} w-auto object-contain max-w-[140px] lg:max-w-[180px]`} />
-            </div>)}
-        </motion.div>
-      </div>
-    </section>;
+    </section>
+  );
 };
