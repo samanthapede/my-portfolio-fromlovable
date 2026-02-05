@@ -28,7 +28,7 @@
     --secondary-foreground: 240 10% 10%;
 
     --muted: 240 5% 96%;
-    --muted-foreground: 240 5% 46%;
+    --muted-foreground: 240 5% 40%;
 
     --accent: 236 61% 56%;
     --accent-foreground: 0 0% 100%;
@@ -63,23 +63,23 @@
   }
 
   .dark {
-    --background: 240 10% 6%;
+    --background: 240 10% 11%;
     --foreground: 0 0% 98%;
 
-    --card: 240 10% 10%;
+    --card: 240 10% 14%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 10% 10%;
+    --popover: 240 10% 14%;
     --popover-foreground: 0 0% 98%;
 
     --primary: 236 61% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 5% 16%;
+    --secondary: 240 5% 20%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 240 5% 16%;
-    --muted-foreground: 240 5% 65%;
+    --muted: 240 5% 20%;
+    --muted-foreground: 240 5% 70%;
 
     --accent: 236 61% 60%;
     --accent-foreground: 0 0% 100%;
@@ -87,8 +87,8 @@
     --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 5% 20%;
-    --input: 240 5% 20%;
+    --border: 240 5% 24%;
+    --input: 240 5% 24%;
     --ring: 236 61% 60%;
 
     /* Section surfaces */
@@ -100,13 +100,13 @@
     --gradient-cyan: 186 91% 55%;
 
     /* Sidebar */
-    --sidebar-background: 240 6% 10%;
+    --sidebar-background: 240 6% 14%;
     --sidebar-foreground: 240 5% 96%;
     --sidebar-primary: 236 61% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent: 240 4% 20%;
     --sidebar-accent-foreground: 240 5% 96%;
-    --sidebar-border: 240 4% 16%;
+    --sidebar-border: 240 4% 24%;
     --sidebar-ring: 236 61% 60%;
   }
 }
@@ -190,4 +190,24 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Calendly widget - prevent internal scrolling */
+.calendly-inline-widget {
+  overflow: hidden !important;
+  position: relative !important;
+  height: 100% !important;
+}
+
+.calendly-inline-widget iframe {
+  height: 100% !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  border: none !important;
+  display: block !important;
+}
+
+/* Prevent any scrolling within the widget container */
+.calendly-inline-widget * {
+  overflow: hidden !important;
 }

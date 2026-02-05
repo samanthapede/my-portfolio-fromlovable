@@ -88,7 +88,7 @@ export const Header = () => {
           y: isVisible ? 0 : -100 
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed top-4 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-4 z-50"
+        className="fixed top-4 left-4 right-4 md:left-auto md:right-4 flex justify-center md:justify-end z-50"
       >
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6 px-6 py-3 bg-background/80 backdrop-blur-md border border-border rounded-full shadow-lg">
@@ -135,7 +135,7 @@ export const Header = () => {
         </nav>
 
         {/* Mobile Navigation Toggle */}
-        <div className="flex md:hidden items-center gap-3 px-4 py-3 bg-background/80 backdrop-blur-md border border-border rounded-full shadow-lg">
+        <div className="flex md:hidden items-center justify-center gap-3 px-4 py-3 bg-background/80 backdrop-blur-md border border-border rounded-full shadow-lg w-full max-w-sm mx-auto">
           <Link
             to="/"
             className="text-lg font-semibold tracking-tight text-foreground"

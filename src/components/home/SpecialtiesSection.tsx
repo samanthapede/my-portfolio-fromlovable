@@ -1,57 +1,21 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 const specialties = [
   {
-    title: "Web apps",
+    title: "Product Design & Growth",
     description:
-      "Complex, responsive web applications built for scale and usability.",
+      "Crafting high-performing digital products — from web apps to marketing sites — that scale beautifully and drive results. Every interaction is designed to delight and convert.",
   },
   {
-    title: "Mobile apps",
+    title: "Strategy & Systems",
     description:
-      "Thoughtful mobile experiences that feel native and intuitive.",
+      "Turning vision into actionable product strategy. I connect user needs with business goals, design scalable systems, and create clarity from complexity.",
   },
   {
-    title: "Websites",
+    title: "0 → 1 Leadership",
     description:
-      "Marketing sites and landing pages that convert and delight.",
-  },
-  {
-    title: "0 → 1 projects",
-    description:
-      "Taking ideas from concept to shipped product with speed and clarity.",
-  },
-  {
-    title: "Design leadership",
-    description:
-      "Guiding teams, setting direction, and raising the bar on craft.",
-  },
-  {
-    title: "Strategy",
-    description:
-      "Aligning product vision with user needs and business objectives.",
-  },
-  {
-    title: "Systems thinking",
-    description:
-      "Building scalable design systems and reusable component libraries.",
-  },
-  {
-    title: "User research",
-    description:
-      "Grounding decisions in real user insights and behavioral data.",
-  },
-  {
-    title: "Rapid prototyping",
-    description:
-      "High-fidelity prototypes to validate ideas before engineering invests.",
+      "Guiding bold ideas from concept to launch with speed, insight, and craft. Whether leading teams or shaping direction, I help organizations move fast and build right.",
   },
 ];
 
@@ -62,71 +26,60 @@ export const SpecialtiesSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-16 lg:py-24 bg-specialties dark:!bg-background"
+      className="pt-8 lg:pt-12 pb-16 lg:pb-24 bg-[#F1F4FB] dark:!bg-background"
     >
       <div className="container mx-auto px-6 lg:px-12">
         {/* Heading */}
-        <motion.div
+        <motion.h3
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
-          className="mb-14"
+          transition={{
+            duration: 0.6,
+            delay: 0.1,
+            ease: "easeOut"
+          }}
+          className="text-xl md:text-2xl font-bold leading-tight text-left mb-8"
         >
-          <h3 className="font-medium text-[#2E4150] dark:text-muted-foreground mb-4 text-xl">
-            Specialties
-          </h3>
-          <h2 className="text-3xl xl:text-5xl font-bold leading-[1.4] max-w-3xl lg:text-4xl">
-            Bringing your best ideas to&nbsp;life to{" "}
-            <TooltipProvider delayDuration={200}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <span className="text-[#4A56D4] transition-colors duration-500 ease-out cursor-pointer hover:text-[#5E69D9]">
-                    level up your business
-                  </span>
-                </TooltipTrigger>
-                <TooltipContent
-                  side="bottom"
-                  className="max-w-sm bg-black/90 backdrop-blur-xl text-white border border-white/10 rounded-none px-5 py-4 text-base font-medium shadow-[0_0_30px_rgba(74,86,212,0.3)]"
-                >
-                  <p className="leading-relaxed">
-                    🚀 I'm a Staff-level product designer with over a decade of
-                    experience leading user experience, interface design, and
-                    user research across fast-moving teams. I bring a mix of
-                    strategic thinking and hands-on execution to every
-                    engagement. I'm most effective when I'm helping product teams
-                    move fast while staying focused on what matters. 🎯
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </h2>
-        </motion.div>
+          Specialties
+        </motion.h3>
 
-        {/* Numbered Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
-          {isInView &&
-            specialties.map((specialty, index) => (
-              <motion.div
-                key={specialty.title}
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
+        {/* Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-10">
+          {specialties.map((specialty, index) => (
+            <motion.div
+              key={specialty.title}
+              initial={{ opacity: 0, y: 40, scale: 0.9, rotateX: 10 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1, rotateX: 0 } : { opacity: 0, y: 40, scale: 0.9, rotateX: 10 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.08,
+                ease: [0.34, 1.56, 0.64, 1],
+                type: "spring",
+                stiffness: 100,
+                damping: 12
+              }}
+              whileHover={{ y: -4, scale: 1.02 }}
+            >
+              <motion.span
+                initial={{ opacity: 0, scale: 0 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
                 transition={{
-                  duration: 0.5,
-                  delay: index * 0.06,
-                  ease: "easeOut",
+                  duration: 0.4,
+                  delay: index * 0.08 + 0.2,
+                  ease: [0.34, 1.56, 0.64, 1]
                 }}
+                className="block text-sm font-medium text-muted-foreground/50 mb-2 tabular-nums"
               >
-                <span className="block text-sm font-medium text-muted-foreground/50 mb-2 tabular-nums">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h4 className="text-lg font-semibold mb-1">
-                  {specialty.title}
-                </h4>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {specialty.description}
-                </p>
-              </motion.div>
-            ))}
+                {String(index + 1).padStart(2, "0")}
+              </motion.span>
+              <h4 className="text-lg font-semibold mb-1">
+                {specialty.title}
+              </h4>
+              <p className="text-base leading-relaxed text-muted-foreground">
+                {specialty.description}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

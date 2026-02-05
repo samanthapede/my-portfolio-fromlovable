@@ -17,6 +17,23 @@ export const Footer = () => {
     script.async = true;
     document.body.appendChild(script);
 
+    // Prevent scrolling within Calendly iframe after it loads
+    const preventScrolling = () => {
+      if (calendlyRef.current) {
+        const iframe = calendlyRef.current.querySelector('iframe');
+        if (iframe) {
+          iframe.setAttribute('scrolling', 'no');
+          iframe.style.overflow = 'hidden';
+          iframe.style.height = '100%';
+        }
+      }
+    };
+
+    // Try to prevent scrolling immediately and after a delay
+    setTimeout(preventScrolling, 100);
+    setTimeout(preventScrolling, 500);
+    setTimeout(preventScrolling, 1000);
+
     return () => {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
@@ -34,15 +51,7 @@ export const Footer = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-lg leading-relaxed text-muted-foreground mb-8 max-w-lg">
-              Design, for me, is about{" "}
-              <span className="text-foreground font-medium">clarity</span>,{" "}
-              <span className="text-foreground font-medium">momentum</span>, and{" "}
-              <span className="text-foreground font-medium">impact</span>. I thrive
-              in environments where I can help shape the big picture, while sweating
-              the details that make an experience truly work.
-            </p>
-            <h2 className="text-3xl lg:text-4xl font-bold mb-8">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-8">
               Let's build something{" "}
               <TooltipProvider delayDuration={200}>
                 <Tooltip>
@@ -60,6 +69,10 @@ export const Footer = () => {
               </TooltipProvider>
             </h2>
 
+            <p className="text-base leading-relaxed text-muted-foreground mb-6">
+              Need a design partner who can ensure your users and business objectives are at the heart of your product or website? Email me or book a free discovery call.
+            </p>
+
             <a
               href="mailto:samanthapede@gmail.com"
               className="inline-flex items-center gap-2 text-lg font-medium text-primary hover:underline"
@@ -74,14 +87,14 @@ export const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-card rounded-xl overflow-hidden shadow-lg"
+            className="bg-card rounded-xl overflow-hidden shadow-lg min-h-[500px] h-[70vh] max-h-[800px] sm:h-[65vh] md:h-[70vh] lg:h-[75vh]"
           >
             {isInView && (
               <div
                 ref={calendlyRef}
-                className="calendly-inline-widget"
+                className="calendly-inline-widget w-full h-full"
                 data-url="https://calendly.com/sam-geodedesign/30min?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=4a56d4"
-                style={{ minWidth: "320px", height: "500px" }}
+                style={{ minWidth: "320px", height: "100%" }}
               />
             )}
           </motion.div>
@@ -99,20 +112,12 @@ export const Footer = () => {
           </p>
           <div className="flex items-center gap-6">
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/samanthapede/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-muted-foreground hover:text-primary transition-colors"
             >
               LinkedIn
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              Twitter
             </a>
           </div>
         </motion.div>
