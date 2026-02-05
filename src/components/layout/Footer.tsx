@@ -20,9 +20,6 @@ export const Footer = () => {
   return (
     <footer className="bg-secondary/50 border-t border-border">
       <div className="container mx-auto px-6 lg:px-12 py-16 lg:py-24">
-        {/* Gradient Line */}
-        <div className="gradient-line h-1 rounded-full mb-12" />
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left Side - Contact */}
           <motion.div
