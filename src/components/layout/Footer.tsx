@@ -34,20 +34,8 @@ export const Footer = () => {
               <TooltipProvider delayDuration={200}>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <span className="relative inline-block cursor-pointer group isolate">
-                      <span className="relative z-10 text-[#4A56D4] transition-colors duration-500 ease-out group-hover:text-[#5E69D9]">
-                        great together.
-                      </span>
-                      <svg className="absolute -bottom-2 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80 z-0" viewBox="0 0 200 16" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0 10C15 8 30 12 50 9C70 6 90 13 110 10C130 7 150 14 170 10C185 7 200 11 200 11" stroke="url(#gradient-footer)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="transition-all duration-500 ease-out group-hover:[stroke-width:6]" />
-                        <defs>
-                          <linearGradient id="gradient-footer" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stopColor="#4B1B9E" />
-                            <stop offset="50%" stopColor="#4E8DD3" />
-                            <stop offset="100%" stopColor="#14E3F4" />
-                          </linearGradient>
-                        </defs>
-                      </svg>
+                    <span className="text-[#4A56D4] transition-colors duration-500 ease-out cursor-pointer hover:text-[#5E69D9]">
+                      great together.
                     </span>
                   </TooltipTrigger>
                   <TooltipContent side="top" className="max-w-sm bg-black/90 backdrop-blur-xl text-white border border-white/10 rounded-none px-5 py-4 text-base font-medium shadow-[0_0_30px_rgba(74,86,212,0.3)]">
