@@ -58,16 +58,7 @@ export const SpecialtiesSection = () => {
               </span>{" "}
               <span className="relative inline-block">
                 <span className="text-[#4A56D4]">your business</span>
-                <svg className="absolute -bottom-1 left-0 w-full h-4 overflow-visible" viewBox="0 0 200 16" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0 10C15 8 30 12 50 9C70 6 90 13 110 10C130 7 150 14 170 10C185 7 200 11 200 11" stroke="url(#gradient-specialties)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-                  <defs>
-                    <linearGradient id="gradient-specialties" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#4B1B9E" />
-                      <stop offset="50%" stopColor="#4E8DD3" />
-                      <stop offset="100%" stopColor="#14E3F4" />
-                    </linearGradient>
-                  </defs>
-                </svg>
+                
               </span>
             </h2>
 
