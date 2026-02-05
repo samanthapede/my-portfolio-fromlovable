@@ -138,10 +138,7 @@ export const TestimonialsSection = () => {
       <div className="relative w-full mb-16 group">
         <div className="flex animate-scroll-left group-hover:[animation-play-state:paused] gap-6 w-max">
           {duplicatedTestimonials.map((testimonial, index) => <div key={`${testimonial.id}-${index}`} className="flex-shrink-0 w-[400px] lg:w-[500px] bg-card border border-border rounded-2xl p-6 lg:p-8 hover:border-primary/30 transition-colors">
-              <p className="text-foreground mb-6 leading-relaxed text-sm lg:text-base">
-                "{testimonial.quote}"
-              </p>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 mb-6">
                 <img src={testimonial.image} alt={testimonial.author} className="w-12 h-12 rounded-full object-cover" />
                 <div>
                   <p className="font-medium text-foreground">
@@ -152,6 +149,9 @@ export const TestimonialsSection = () => {
                   </p>
                 </div>
               </div>
+              <p className="text-foreground leading-relaxed text-sm lg:text-base">
+                "{testimonial.quote}"
+              </p>
             </div>)}
         </div>
       </div>
