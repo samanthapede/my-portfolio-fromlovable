@@ -1,9 +1,11 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import headshot from "@/assets/headshot.jpg";
 
 export const AboutSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
     <section ref={ref} className="py-16 lg:py-24">
@@ -17,7 +19,15 @@ export const AboutSection = () => {
             className="relative"
           >
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] max-w-md mx-auto lg:mx-0">
-              <div className="w-full h-full bg-gradient-to-br from-gradient-purple via-gradient-blue to-gradient-cyan" />
+              {isInView && (
+                <img
+                  src={headshot}
+                  alt="Samantha Pede"
+                  className={`w-full h-full object-cover object-top transition-opacity duration-500 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
+                  loading="lazy"
+                  onLoad={() => setImageLoaded(true)}
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
             </div>
             <div className="absolute -bottom-4 -right-4 w-32 h-32 gradient-line rounded-full blur-2xl opacity-30" />
