@@ -44,7 +44,7 @@ export const HeroSection = () => {
                       design partner
                     </span>
                     <svg
-                      className="absolute -bottom-4 left-0 w-full h-3 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
+                      className="absolute -bottom-2 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
                       viewBox="0 0 200 16"
                       preserveAspectRatio="none"
                       fill="none"
@@ -53,10 +53,10 @@ export const HeroSection = () => {
                       <path
                         d="M0 10C15 8 30 12 50 9C70 6 90 13 110 10C130 7 150 14 170 10C185 7 200 11 200 11"
                         stroke="url(#gradient1)"
-                        strokeWidth="4"
+                        strokeWidth="5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="transition-all duration-500 ease-out group-hover:[stroke-width:5]"
+                        className="transition-all duration-500 ease-out group-hover:[stroke-width:6]"
                       />
                       <defs>
                         <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -89,7 +89,7 @@ export const HeroSection = () => {
                       users love
                     </span>
                     <svg
-                      className="absolute -bottom-4 left-0 w-full h-3 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
+                      className="absolute -bottom-2 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
                       viewBox="0 0 200 16"
                       preserveAspectRatio="none"
                       fill="none"
@@ -98,10 +98,10 @@ export const HeroSection = () => {
                       <path
                         d="M0 8C20 12 40 6 65 10C90 14 110 7 135 11C160 15 180 8 200 10"
                         stroke="url(#gradient2)"
-                        strokeWidth="4"
+                        strokeWidth="5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="transition-all duration-500 ease-out group-hover:[stroke-width:5]"
+                        className="transition-all duration-500 ease-out group-hover:[stroke-width:6]"
                       />
                       <defs>
                         <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
