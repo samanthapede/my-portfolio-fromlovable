@@ -1,4 +1,3 @@
-import { Layout } from "@/components/layout/Layout";
 import { motion } from "framer-motion";
 import { 
   Lightbulb, 
@@ -25,7 +24,7 @@ const strengths = [
 
 const About = () => {
   return (
-    <Layout>
+    <>
       {/* Hero Section */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-6 lg:px-12">
@@ -191,7 +190,7 @@ const About = () => {
           </div>
         </div>
       </section>
-    </Layout>
+    </>
   );
 };
 

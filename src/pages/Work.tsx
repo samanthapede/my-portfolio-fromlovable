@@ -1,4 +1,3 @@
-import { Layout } from "@/components/layout/Layout";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
@@ -34,7 +33,7 @@ const projects = [
 
 const Work = () => {
   return (
-    <Layout>
+    <>
       {/* Hero Section */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-6 lg:px-12">
@@ -130,7 +129,7 @@ const Work = () => {
           </motion.div>
         </div>
       </section>
-    </Layout>
+    </>
   );
 };
 
