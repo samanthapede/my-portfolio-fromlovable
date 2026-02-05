@@ -63,8 +63,13 @@ export const HeroSection = () => {
                     </svg>
                   </span>
                 </TooltipTrigger>
-                <TooltipContent side="bottom" className="max-w-xs text-sm p-4">
-                  <p>I win by helping you win. I love to collaborate with you and your team, learn from your users, while keeping business objectives at the forefront to get to the right solution...faster.</p>
+                <TooltipContent 
+                  side="bottom" 
+                  className="max-w-sm bg-black text-white border-none rounded-2xl px-5 py-4 text-base font-medium shadow-2xl"
+                >
+                  <p className="leading-relaxed">
+                    ✨ I win by helping you win. I love to collaborate with you and your team, learn from your users, while keeping business objectives at the forefront to get to the right solution...faster. 🚀
+                  </p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>{" "}
