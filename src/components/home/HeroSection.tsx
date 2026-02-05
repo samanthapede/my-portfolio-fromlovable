@@ -37,14 +37,14 @@ export const HeroSection = () => {
             <TooltipProvider delayDuration={200}>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <span className="relative inline-block pb-6 cursor-pointer group">
+                  <span className="relative inline cursor-pointer group">
                     <span 
                       className="text-[#4A56D4] transition-colors duration-500 ease-out group-hover:text-[#5E69D9]"
                     >
                       design partner
                     </span>
                     <svg
-                      className="absolute bottom-1 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
+                      className="absolute -bottom-2 left-0 w-full h-3 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
                       viewBox="0 0 200 16"
                       preserveAspectRatio="none"
                       fill="none"
@@ -82,14 +82,14 @@ export const HeroSection = () => {
             <TooltipProvider delayDuration={200}>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <span className="relative inline-block pb-6 cursor-pointer group">
+                  <span className="relative inline cursor-pointer group">
                     <span 
                       className="text-[#4A56D4] transition-colors duration-500 ease-out group-hover:text-[#5E69D9]"
                     >
                       users love
                     </span>
                     <svg
-                      className="absolute bottom-1 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
+                      className="absolute -bottom-2 left-0 w-full h-3 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
                       viewBox="0 0 200 16"
                       preserveAspectRatio="none"
                       fill="none"
