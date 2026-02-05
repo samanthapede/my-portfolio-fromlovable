@@ -122,7 +122,7 @@ export const ProjectShowcase = () => {
   const tripleProjects = [...projects, ...projects, ...projects];
 
   return (
-    <section ref={sectionRef} className="py-12 lg:py-20">
+    <section id="work" ref={sectionRef} className="py-12 lg:py-20">
       <div className="max-w-7xl mx-auto relative">
         {/* Chevron buttons - always visible for infinite scroll */}
         <motion.button
