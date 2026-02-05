@@ -74,31 +74,45 @@ export const HeroSection = () => {
               </Tooltip>
             </TooltipProvider>{" "}
             for high-impact experiences that{" "}
-            <span className="relative inline-block pb-4">
-              <span style={{ color: '#4A56D4' }}>users love</span>
-              <svg
-                className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
-                viewBox="0 0 200 16"
-                preserveAspectRatio="none"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0 8C20 12 40 6 65 10C90 14 110 7 135 11C160 15 180 8 200 10"
-                  stroke="url(#gradient2)"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <defs>
-                  <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#4B1B9E" />
-                    <stop offset="50%" stopColor="#4E8DD3" />
-                    <stop offset="100%" stopColor="#14E3F4" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </span>
+            <TooltipProvider delayDuration={200}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span className="relative inline-block pb-4 cursor-pointer">
+                    <span style={{ color: '#4A56D4' }}>users love</span>
+                    <svg
+                      className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
+                      viewBox="0 0 200 16"
+                      preserveAspectRatio="none"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0 8C20 12 40 6 65 10C90 14 110 7 135 11C160 15 180 8 200 10"
+                        stroke="url(#gradient2)"
+                        strokeWidth="6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <defs>
+                        <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#4B1B9E" />
+                          <stop offset="50%" stopColor="#4E8DD3" />
+                          <stop offset="100%" stopColor="#14E3F4" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent 
+                  side="bottom" 
+                  className="max-w-sm bg-black text-white border-none rounded-2xl px-5 py-4 text-base font-medium shadow-2xl"
+                >
+                  <p className="leading-relaxed">
+                    💜 Designing great experiences for your users is just good business. Too many businesses think they know what their users want but miss out on gaining loyalty because they don't actually build well for their users. Let me help you win. 🏆
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </motion.h1>
 
         </motion.div>
