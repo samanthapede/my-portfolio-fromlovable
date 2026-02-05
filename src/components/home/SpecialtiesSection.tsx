@@ -51,8 +51,11 @@ export const SpecialtiesSection = () => {
             </h3>
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6">
               Bringing your best ideas to life to{" "}
+              <span className="relative inline pb-4">
+                <span className="text-[#4A56D4]">level up</span>
+              </span>{" "}
               <span className="relative inline-block pb-4">
-                <span className="text-[#4A56D4]">level up your business</span>
+                <span className="text-[#4A56D4]">your business</span>
                 <svg
                   className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
                   viewBox="0 0 200 16"
