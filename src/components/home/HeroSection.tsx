@@ -28,10 +28,10 @@ export const HeroSection = () => {
             className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-8"
           >
             Fractional{" "}
-            <span className="relative inline-block pb-2">
+            <span className="relative inline-block pb-4">
               <span className="gradient-text">design partner</span>
               <svg
-                className="absolute -bottom-0 left-0 w-full h-4 overflow-visible"
+                className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
                 viewBox="0 0 200 16"
                 preserveAspectRatio="none"
                 fill="none"
@@ -54,10 +54,10 @@ export const HeroSection = () => {
               </svg>
             </span>{" "}
             for high-impact experiences that{" "}
-            <span className="relative inline-block pb-2">
+            <span className="relative inline-block pb-4">
               <span className="gradient-text">users love</span>
               <svg
-                className="absolute -bottom-0 left-0 w-full h-4 overflow-visible"
+                className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
                 viewBox="0 0 200 16"
                 preserveAspectRatio="none"
                 fill="none"
