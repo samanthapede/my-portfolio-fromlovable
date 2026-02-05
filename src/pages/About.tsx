@@ -134,7 +134,7 @@ const About = () => {
           once: true
         }} className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl lg:text-4xl font-bold mb-8">Philosophy</h2>
-            <p className="text-xl lg:text-2xl leading-relaxed text-muted-foreground">
+            <p className="text-2xl lg:text-3xl leading-relaxed text-muted-foreground">
               Design, for me, is about{" "}
               <span className="text-foreground font-medium">clarity</span>,{" "}
               <span className="text-foreground font-medium">momentum</span>, and{" "}
