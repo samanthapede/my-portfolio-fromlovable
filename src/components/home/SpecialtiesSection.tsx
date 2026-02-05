@@ -51,8 +51,30 @@ export const SpecialtiesSection = () => {
             </h3>
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6">
               Bringing your best ideas to life to{" "}
-              <span className="relative inline pb-4">
+              <span className="relative inline-block pb-4">
                 <span className="text-[#4A56D4]">level up</span>
+                <svg
+                  className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
+                  viewBox="0 0 200 16"
+                  preserveAspectRatio="none"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 8C20 12 40 6 65 10C90 14 110 7 135 11C160 15 180 8 200 10"
+                    stroke="url(#gradient-specialties-levelup)"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <defs>
+                    <linearGradient id="gradient-specialties-levelup" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#4B1B9E" />
+                      <stop offset="50%" stopColor="#4E8DD3" />
+                      <stop offset="100%" stopColor="#14E3F4" />
+                    </linearGradient>
+                  </defs>
+                </svg>
               </span>{" "}
               <span className="relative inline-block pb-4">
                 <span className="text-[#4A56D4]">your business</span>
