@@ -49,7 +49,7 @@ export const SpecialtiesSection = () => {
             <h3 className="text-2xl font-medium text-[#2E4150] mb-4">
               Specialties
             </h3>
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 leading-[1.6]">
+            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 leading-[1.8]">
               Bringing your best ideas to life to{" "}
               <span className="relative inline-block">
                 <span className="text-[#4A56D4]">level up</span>
