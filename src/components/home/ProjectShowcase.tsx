@@ -52,72 +52,101 @@ export const ProjectShowcase = () => {
   const sectionRef = useRef(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const checkScroll = useCallback(() => {
+  const getCardWidth = useCallback(() => {
     const el = scrollRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 0);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 2);
+    if (!el) return 324; // 300 + 24 gap
+    const firstCard = el.children[0] as HTMLElement | undefined;
+    if (!firstCard) return 324;
+    const gap = parseFloat(getComputedStyle(el).gap) || 24;
+    return firstCard.offsetWidth + gap;
   }, []);
 
+  const scrollToIndex = useCallback((index: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = getCardWidth();
+    el.scrollTo({ left: index * cardWidth, behavior: "smooth" });
+  }, [getCardWidth]);
+
+  const scroll = useCallback((direction: "left" | "right") => {
+    const newIndex = direction === "right"
+      ? (currentIndex + 1) % projects.length
+      : (currentIndex - 1 + projects.length) % projects.length;
+    setCurrentIndex(newIndex);
+    scrollToIndex(newIndex);
+  }, [currentIndex, scrollToIndex]);
+
+  // Sync currentIndex with manual scroll
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    checkScroll();
-    el.addEventListener("scroll", checkScroll, { passive: true });
-    window.addEventListener("resize", checkScroll);
-    return () => {
-      el.removeEventListener("scroll", checkScroll);
-      window.removeEventListener("resize", checkScroll);
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const cardWidth = getCardWidth();
+        const idx = Math.round(el.scrollLeft / cardWidth);
+        // When we've scrolled past the original set into the cloned set, jump back
+        if (idx >= projects.length) {
+          el.scrollLeft = el.scrollLeft - projects.length * cardWidth;
+          setCurrentIndex(idx - projects.length);
+        } else if (idx < 0) {
+          el.scrollLeft = el.scrollLeft + projects.length * cardWidth;
+          setCurrentIndex(idx + projects.length);
+        } else {
+          setCurrentIndex(idx);
+        }
+        ticking = false;
+      });
     };
-  }, [checkScroll, isInView]);
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [getCardWidth]);
 
-  const scroll = (direction: "left" | "right") => {
+  // After initial render, set scroll position to the start of the middle copy
+  useEffect(() => {
     const el = scrollRef.current;
-    if (!el) return;
-    const cardWidth = el.querySelector("div")?.offsetWidth ?? 300;
-    const amount = direction === "left" ? -cardWidth - 24 : cardWidth + 24;
-    el.scrollBy({ left: amount, behavior: "smooth" });
-  };
+    if (!el || !isInView) return;
+    // Small delay to let DOM render
+    const timer = setTimeout(() => {
+      const cardWidth = getCardWidth();
+      el.scrollLeft = projects.length * cardWidth;
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [isInView, getCardWidth]);
+
+  // Triple the items: [clone-set] [original-set] [clone-set] for seamless looping
+  const tripleProjects = [...projects, ...projects, ...projects];
 
   return (
     <section ref={sectionRef} className="py-12 lg:py-20">
       <div className="max-w-7xl mx-auto relative">
-        {/* Chevron buttons */}
-        {canScrollLeft && (
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => scroll("left")}
-            className="absolute left-2 lg:left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-background/90 dark:bg-background/80 shadow-lg border border-border/50 flex items-center justify-center hover:bg-background transition-colors"
-            aria-label="Scroll left"
-          >
-            <ChevronLeft className="w-5 h-5 text-foreground" />
-          </motion.button>
-        )}
-        {canScrollRight && (
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => scroll("right")}
-            className="absolute right-2 lg:right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-background/90 dark:bg-background/80 shadow-lg border border-border/50 flex items-center justify-center hover:bg-background transition-colors"
-            aria-label="Scroll right"
-          >
-            <ChevronRight className="w-5 h-5 text-foreground" />
-          </motion.button>
-        )}
+        {/* Chevron buttons - always visible for infinite scroll */}
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          onClick={() => scroll("left")}
+          className="absolute left-2 lg:left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-background/90 dark:bg-background/80 shadow-lg border border-border/50 flex items-center justify-center hover:bg-background transition-colors"
+          aria-label="Scroll left"
+        >
+          <ChevronLeft className="w-5 h-5 text-foreground" />
+        </motion.button>
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          onClick={() => scroll("right")}
+          className="absolute right-2 lg:right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-background/90 dark:bg-background/80 shadow-lg border border-border/50 flex items-center justify-center hover:bg-background transition-colors"
+          aria-label="Scroll right"
+        >
+          <ChevronRight className="w-5 h-5 text-foreground" />
+        </motion.button>
 
-        {/* Right fade overlay to hint at more content */}
-        {canScrollRight && (
-          <div className="absolute right-0 top-0 bottom-0 w-16 lg:w-24 z-10 pointer-events-none bg-gradient-to-l from-background to-transparent" />
-        )}
-        {canScrollLeft && (
-          <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-24 z-10 pointer-events-none bg-gradient-to-r from-background to-transparent" />
-        )}
+        {/* Fade overlays */}
+        <div className="absolute right-0 top-0 bottom-0 w-16 lg:w-24 z-10 pointer-events-none bg-gradient-to-l from-background to-transparent" />
+        <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-24 z-10 pointer-events-none bg-gradient-to-r from-background to-transparent" />
 
         {/* Scrollable row */}
         <motion.div
@@ -127,20 +156,20 @@ export const ProjectShowcase = () => {
         >
           <div
             ref={scrollRef}
-            className="flex gap-4 lg:gap-6 overflow-x-auto scrollbar-hide px-6 lg:px-12 snap-x snap-mandatory"
+            className="flex gap-4 lg:gap-6 overflow-x-auto scrollbar-hide px-6 lg:px-12"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
-            {projects.map((project, index) => (
+            {tripleProjects.map((project, index) => (
               <motion.div
-                key={project.id}
+                key={`${project.id}-${index}`}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{
                   duration: 0.5,
-                  delay: index * 0.1,
+                  delay: Math.min((index % projects.length) * 0.1, 0.6),
                   ease: "easeOut",
                 }}
-                className="flex-shrink-0 w-[280px] lg:w-[300px] snap-start"
+                className="flex-shrink-0 w-[280px] lg:w-[300px]"
               >
                 <Link to={project.link} className="group block">
                   <div className="bg-muted/50 dark:bg-muted/20 rounded-2xl overflow-hidden transition-all duration-300 hover:bg-muted/70 dark:hover:bg-muted/30">
