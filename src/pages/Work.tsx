@@ -99,28 +99,7 @@ const Work = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-secondary/30">
-        <div className="container mx-auto px-6 lg:px-12">
-          <motion.div initial={{
-          opacity: 0,
-          y: 20
-        }} whileInView={{
-          opacity: 1,
-          y: 0
-        }} viewport={{
-          once: true
-        }} className="text-center">
-            
-            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-              I'm always open to discussing new projects and opportunities.
-            </p>
-            <a href="mailto:sam@samanthapede.com" className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:opacity-90 transition-opacity">
-              Get in Touch
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
-          </motion.div>
-        </div>
-      </section>
+      
     </>;
 };
 export default Work;
