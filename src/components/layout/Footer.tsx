@@ -29,7 +29,7 @@ export const Footer = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Let's work together
+              Let's build something great together.
             </h2>
             <p className="text-muted-foreground mb-8 max-w-md">
               Ready to create something amazing? Book a call to discuss your project
