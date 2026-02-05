@@ -44,7 +44,7 @@ export const HeroSection = () => {
                       design partner
                     </span>
                     <svg
-                      className="absolute -bottom-2 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
+                      className="absolute -bottom-2 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80 -z-10"
                       viewBox="0 0 200 16"
                       preserveAspectRatio="none"
                       fill="none"
@@ -89,7 +89,7 @@ export const HeroSection = () => {
                       users love
                     </span>
                     <svg
-                      className="absolute -bottom-2 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
+                      className="absolute -bottom-2 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80 -z-10"
                       viewBox="0 0 200 16"
                       preserveAspectRatio="none"
                       fill="none"
