@@ -53,10 +53,10 @@ export const HeroSection = () => {
                       <path
                         d="M0 10C15 8 30 12 50 9C70 6 90 13 110 10C130 7 150 14 170 10C185 7 200 11 200 11"
                         stroke="url(#gradient1)"
-                        strokeWidth="6"
+                        strokeWidth="4"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="transition-all duration-500 ease-out group-hover:[stroke-width:7]"
+                        className="transition-all duration-500 ease-out group-hover:[stroke-width:5]"
                       />
                       <defs>
                         <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -98,10 +98,10 @@ export const HeroSection = () => {
                       <path
                         d="M0 8C20 12 40 6 65 10C90 14 110 7 135 11C160 15 180 8 200 10"
                         stroke="url(#gradient2)"
-                        strokeWidth="6"
+                        strokeWidth="4"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="transition-all duration-500 ease-out group-hover:[stroke-width:7]"
+                        className="transition-all duration-500 ease-out group-hover:[stroke-width:5]"
                       />
                       <defs>
                         <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
