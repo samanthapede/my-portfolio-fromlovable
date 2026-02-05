@@ -1,48 +1,41 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-
-const projects = [
-  {
-    id: 1,
-    title: "Batching Orders",
-    year: "2024-2025",
-    company: "Shopify",
-    description:
-      "Designed a fulfillment tool that introduced Batching, allowing merchants to group similar orders for the first time to streamline their picking, packing, and shipping workflows. Currently merchants have to fulfill orders individually or rely on third-party tools that add complexity and fragments their operations. Once launched, Batching will help merchants save time, reduce manual work, and lower fulfillment costs.",
-    gradient: "from-gradient-purple to-gradient-blue",
-  },
-  {
-    id: 2,
-    title: "Fulfillable & Sellable Quantities",
-    year: "2023-2024",
-    company: "Shopify",
-    description:
-      "Designed the concept of Sellable, giving merchants greater flexibility in how they manage and sell products. Previously, they could only sell up to their available inventory—unless they disabled tracking or enabled infinite selling, which led to inaccurate stock data. Sellable decoupled selling from physical availability, allowing merchants to sell more or less than what's on hand without losing inventory accuracy. This foundational shift enabled more advanced strategies like backorders and pre-orders, aligning with Shopify's goal of empowering merchants with greater control and scalability.",
-    gradient: "from-gradient-blue to-gradient-cyan",
-  },
-  {
-    id: 3,
-    title: "Inventory Management",
-    year: "2021-2022",
-    company: "Shopify",
-    description:
-      "Designed a foundational inventory management tool that enabled merchants of all sizes to effectively track and manage their product inventory across locations. The tool focused on delivering real-time visibility into stock levels, simplifying manual workflows, and ensuring merchants could confidently maintain accurate inventory. The system was intentionally designed with scalability in mind. This foundational work played a key role in supporting Shopify's broader vision of helping merchants sell the right amount of product to the right customers, with greater confidence and efficiency.",
-    gradient: "from-gradient-cyan to-gradient-purple",
-  },
-];
-
+const projects = [{
+  id: 1,
+  title: "Batching Orders",
+  year: "2024-2025",
+  company: "Shopify",
+  description: "Designed a fulfillment tool that introduced Batching, allowing merchants to group similar orders for the first time to streamline their picking, packing, and shipping workflows. Currently merchants have to fulfill orders individually or rely on third-party tools that add complexity and fragments their operations. Once launched, Batching will help merchants save time, reduce manual work, and lower fulfillment costs.",
+  gradient: "from-gradient-purple to-gradient-blue"
+}, {
+  id: 2,
+  title: "Fulfillable & Sellable Quantities",
+  year: "2023-2024",
+  company: "Shopify",
+  description: "Designed the concept of Sellable, giving merchants greater flexibility in how they manage and sell products. Previously, they could only sell up to their available inventory—unless they disabled tracking or enabled infinite selling, which led to inaccurate stock data. Sellable decoupled selling from physical availability, allowing merchants to sell more or less than what's on hand without losing inventory accuracy. This foundational shift enabled more advanced strategies like backorders and pre-orders, aligning with Shopify's goal of empowering merchants with greater control and scalability.",
+  gradient: "from-gradient-blue to-gradient-cyan"
+}, {
+  id: 3,
+  title: "Inventory Management",
+  year: "2021-2022",
+  company: "Shopify",
+  description: "Designed a foundational inventory management tool that enabled merchants of all sizes to effectively track and manage their product inventory across locations. The tool focused on delivering real-time visibility into stock levels, simplifying manual workflows, and ensuring merchants could confidently maintain accurate inventory. The system was intentionally designed with scalability in mind. This foundational work played a key role in supporting Shopify's broader vision of helping merchants sell the right amount of product to the right customers, with greater confidence and efficiency.",
+  gradient: "from-gradient-cyan to-gradient-purple"
+}];
 const Work = () => {
-  return (
-    <>
+  return <>
       {/* Hero Section */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} animate={{
+          opacity: 1,
+          y: 0
+        }} transition={{
+          duration: 0.6
+        }} className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
               Work
             </h1>
@@ -53,15 +46,19 @@ const Work = () => {
 
           {/* Project Cards */}
           <div className="space-y-8 lg:space-y-12">
-            {projects.map((project, index) => (
-              <motion.article
-                key={project.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300"
-              >
+            {projects.map((project, index) => <motion.article key={project.id} initial={{
+            opacity: 0,
+            y: 40
+          }} whileInView={{
+            opacity: 1,
+            y: 0
+          }} viewport={{
+            once: true,
+            margin: "-100px"
+          }} transition={{
+            duration: 0.6,
+            delay: index * 0.1
+          }} className="group bg-card border border-border rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300">
                 <div className="grid grid-cols-1 lg:grid-cols-2">
                   {/* Content */}
                   <div className="p-8 lg:p-12 flex flex-col justify-center">
@@ -90,16 +87,13 @@ const Work = () => {
                   </div>
 
                   {/* Image Placeholder */}
-                  <div
-                    className={`aspect-[4/3] lg:aspect-auto bg-gradient-to-br ${project.gradient} flex items-center justify-center`}
-                  >
+                  <div className={`aspect-[4/3] lg:aspect-auto bg-gradient-to-br ${project.gradient} flex items-center justify-center`}>
                     <span className="text-primary-foreground/80 text-lg font-medium">
                       Project Image
                     </span>
                   </div>
                 </div>
-              </motion.article>
-            ))}
+              </motion.article>)}
           </div>
         </div>
       </section>
@@ -107,30 +101,26 @@ const Work = () => {
       {/* CTA Section */}
       <section className="py-16 lg:py-24 bg-secondary/30">
         <div className="container mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Interested in working together?
-            </h2>
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} className="text-center">
+            
             <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
               I'm always open to discussing new projects and opportunities.
             </p>
-            <a
-              href="mailto:sam@samanthapede.com"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:opacity-90 transition-opacity"
-            >
+            <a href="mailto:sam@samanthapede.com" className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:opacity-90 transition-opacity">
               Get in Touch
               <ArrowUpRight className="w-4 h-4" />
             </a>
           </motion.div>
         </div>
       </section>
-    </>
-  );
+    </>;
 };
-
 export default Work;
