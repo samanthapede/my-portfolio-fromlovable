@@ -5,7 +5,7 @@ const specialties = ["Web apps", "Mobile apps", "Websites", "0 → 1 projects", 
 export const SpecialtiesSection = () => {
   return <section className="py-16 lg:py-24 bg-specialties dark:!bg-background">
       <div className="container mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
           {/* Image */}
           <motion.div initial={{
           opacity: 0,
