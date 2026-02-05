@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
-  { name: "Work", path: "/work" },
 ];
 
 export const Header = () => {
