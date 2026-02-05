@@ -2,14 +2,15 @@ import { motion } from "framer-motion";
 import headshot from "@/assets/headshot.jpg";
 
 const specialties = [
-  "UX Design",
-  "UI Design",
-  "Design Systems",
-  "User Research",
-  "Product Strategy",
-  "Rapid Prototyping",
-  "Team Leadership",
-  "Design Ops",
+  "Web apps",
+  "Mobile apps",
+  "Websites",
+  "0 → 1 projects",
+  "Design leadership",
+  "Strategy",
+  "Systems thinking",
+  "User research",
+  "Rapid prototyping",
 ];
 
 export const SpecialtiesSection = () => {
@@ -76,12 +77,6 @@ export const SpecialtiesSection = () => {
                 </svg>
               </span>
             </h2>
-            
-            <p className="text-lg text-muted-foreground mb-8">
-              I bring a mix of strategic thinking and hands-on execution to every 
-              engagement. I'm most effective when I'm helping teams move fast while 
-              staying focused on what matters.
-            </p>
 
             {/* Specialty Pills */}
             <div className="flex flex-wrap gap-3">
