@@ -73,7 +73,7 @@ export const HeroSection = () => {
                   className="max-w-sm bg-gradient-to-r from-[#4A56D4] to-[#262D6E] text-white border-none rounded-md px-5 py-4 text-base font-medium shadow-2xl"
                 >
                   <p className="leading-relaxed">
-                    ✨ I win by helping you win and collaboration is a key ingredient to success. You know everything about your business and I know how to learn from your users and drive quality designs quickly. We're truly better together. 🚀
+                    You know your business intimately. I know how to learn from your users and drive quality designs at speed. Collaboration is key – let's win together.
                   </p>
                 </TooltipContent>
               </Tooltip>
