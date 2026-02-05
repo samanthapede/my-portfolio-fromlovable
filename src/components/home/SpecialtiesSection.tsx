@@ -47,11 +47,11 @@ export const SpecialtiesSection = () => {
               <TooltipProvider delayDuration={200}>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <span className="relative inline cursor-pointer group">
-                      <span className="text-[#4A56D4] transition-colors duration-500 ease-out group-hover:text-[#5E69D9]">
+                    <span className="relative inline-block cursor-pointer group isolate">
+                      <span className="relative z-10 text-[#4A56D4] transition-colors duration-500 ease-out group-hover:text-[#5E69D9]">
                         level up your business
                       </span>
-                      <svg className="absolute -bottom-2 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80 -z-10" viewBox="0 0 200 16" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <svg className="absolute -bottom-2 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80 z-0" viewBox="0 0 200 16" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0 8C20 12 40 6 65 10C90 14 110 7 135 11C160 15 180 8 200 10" stroke="url(#gradient-specialties-levelup)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="transition-all duration-500 ease-out group-hover:[stroke-width:6]" />
                         <defs>
                           <linearGradient id="gradient-specialties-levelup" x1="0%" y1="0%" x2="100%" y2="0%">
