@@ -71,20 +71,14 @@ export const Header = () => {
                   "relative text-sm transition-colors py-1 font-semibold",
                   location.pathname === link.path
                     ? "text-[#4A56D4]"
-                    : "text-muted-foreground hover:text-foreground font-normal"
+                    : "text-muted-foreground hover:text-foreground"
                 )}
               >
-                <span className="invisible font-semibold">{link.name}</span>
-                <span className={cn(
-                  "absolute inset-0 flex items-center justify-center",
-                  location.pathname === link.path ? "font-semibold" : "font-normal"
-                )}>
-                  {link.name}
-                </span>
+                {link.name}
                 {location.pathname === link.path && (
                   <motion.div
                     layoutId="activeNav"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#4A56D4] rounded-full"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
