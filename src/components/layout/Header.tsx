@@ -50,7 +50,7 @@ export const Header = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50"
+      className="fixed top-4 right-4 z-50"
     >
       <nav className="flex items-center gap-8 px-6 py-3 bg-background/80 backdrop-blur-md border border-border rounded-full shadow-lg">
         {/* Logo */}
