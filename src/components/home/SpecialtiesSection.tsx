@@ -16,15 +16,6 @@ export const SpecialtiesSection = () => {
   return (
     <section className="py-16 lg:py-24 bg-secondary/30">
       <div className="container mx-auto px-6 lg:px-12">
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-8 lg:mb-12"
-        >
-          Specialties
-        </motion.h3>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image */}
           <motion.div
@@ -54,6 +45,9 @@ export const SpecialtiesSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
+            <h3 className="text-2xl font-medium text-[#2E4150] mb-4">
+              Specialties
+            </h3>
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-6">
               Bringing your best ideas to life to{" "}
               <span className="relative inline-block pb-4">
