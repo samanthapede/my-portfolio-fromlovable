@@ -135,8 +135,8 @@ export const TestimonialsSection = () => {
       </div>
 
       {/* Auto-scrolling Testimonial Carousel */}
-      <div className="relative w-full mb-16">
-        <div className="flex animate-scroll-left gap-6 w-max">
+      <div className="relative w-full mb-16 group">
+        <div className="flex animate-scroll-left group-hover:[animation-play-state:paused] gap-6 w-max">
           {duplicatedTestimonials.map((testimonial, index) => <div key={`${testimonial.id}-${index}`} className="flex-shrink-0 w-[400px] lg:w-[500px] bg-card border border-border rounded-2xl p-6 lg:p-8 hover:border-primary/30 transition-colors">
               <p className="text-foreground mb-6 leading-relaxed text-sm lg:text-base">
                 "{testimonial.quote}"

@@ -106,7 +106,7 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "scroll-left": "scroll-left 30s linear infinite",
+        "scroll-left": "scroll-left 90s linear infinite",
         "scroll-left-slow": "scroll-left-slow 60s linear infinite",
         "scroll-right": "scroll-right 30s linear infinite",
         "fade-in": "fade-in 0.6s ease-out forwards",
