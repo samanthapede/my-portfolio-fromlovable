@@ -37,11 +37,11 @@ export const Footer = () => {
             </p>
 
             <a
-              href="mailto:sam@samanthapede.com"
+              href="mailto:samanthapede@gmail.com"
               className="inline-flex items-center gap-2 text-lg font-medium text-primary hover:underline"
             >
               <Mail className="w-5 h-5" />
-              sam@samanthapede.com
+              samanthapede@gmail.com
             </a>
           </motion.div>
 
