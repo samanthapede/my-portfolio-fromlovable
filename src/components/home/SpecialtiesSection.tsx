@@ -65,7 +65,7 @@ export const SpecialtiesSection = () => {
                   </TooltipTrigger>
                   <TooltipContent side="bottom" className="max-w-sm bg-gradient-to-r from-[#4A56D4] to-[#262D6E] text-white border-none rounded-md px-5 py-4 text-base font-medium shadow-2xl">
                     <p className="leading-relaxed">
-                      I'm a Staff-level product designer with over a decade of experience leading user experience, interface design, and user research across fast-moving teams. I bring a mix of strategic thinking and hands-on execution to every engagement. I'm most effective when I'm helping product teams move fast while staying focused on what matters.
+                      🚀 I'm a Staff-level product designer with over a decade of experience leading user experience, interface design, and user research across fast-moving teams. I bring a mix of strategic thinking and hands-on execution to every engagement. I'm most effective when I'm helping product teams move fast while staying focused on what matters. 🎯
                     </p>
                   </TooltipContent>
                 </Tooltip>
