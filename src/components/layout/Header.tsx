@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Moon, Sun } from "lucide-react";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -13,6 +13,21 @@ const navLinks = [
 export const Header = () => {
   const location = useLocation();
   const [isDark, setIsDark] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const direction = latest > lastScrollY.current ? "down" : "up";
+    
+    if (direction === "down" && latest > 100) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+    
+    lastScrollY.current = latest;
+  });
 
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains("dark");
@@ -48,8 +63,11 @@ export const Header = () => {
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      animate={{ 
+        opacity: isVisible ? 1 : 0, 
+        y: isVisible ? 0 : -100 
+      }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
       className="fixed top-4 right-4 z-50"
     >
       <nav className="flex items-center gap-8 px-6 py-3 bg-background/80 backdrop-blur-md border border-border rounded-full shadow-lg">
