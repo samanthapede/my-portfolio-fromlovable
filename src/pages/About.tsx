@@ -157,7 +157,7 @@ const About = () => {
           y: 0
         }} viewport={{
           once: true
-        }} className="text-center mb-12">
+        }} className="mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
               Outside of Work
             </h2>
