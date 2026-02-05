@@ -125,7 +125,7 @@ export const TestimonialsSection = () => {
                 </TooltipTrigger>
                 <TooltipContent side="bottom" className="max-w-sm bg-gradient-to-r from-[#4A56D4] to-[#262D6E] text-white border-none rounded-md px-5 py-4 text-base font-medium shadow-2xl">
                   <p className="leading-relaxed">
-                    I'm a Staff-level product designer with over a decade of experience leading user experience, interface design, and user research across fast-moving teams. I now work independently with startups and enterprises as a freelance and consulting partner — helping them design intuitive, scalable products that solve real problems for real people.
+                    ✨ I'm a Staff-level product designer with over a decade of experience leading user experience, interface design, and user research across fast-moving teams. I now work independently with startups and enterprises as a freelance and consulting partner — helping them design intuitive, scalable products that solve real problems for real people. 💜
                   </p>
                 </TooltipContent>
               </Tooltip>
