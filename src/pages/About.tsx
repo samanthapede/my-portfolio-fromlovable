@@ -61,7 +61,7 @@ const About = () => {
             duration: 0.6,
             delay: 0.2
           }}>
-              <p className="text-lg leading-relaxed mb-6 lg:text-lg text-[#6f6f7b] font-sans font-normal">With over a decade of experience leading user experience, interface design, and user research across fast-moving teams. I now work independently, helping great companies design intuitive, scalable interfaces that solve real problems for real people.
+              <p className="text-lg leading-relaxed mb-6 lg:text-lg text-[#6f6f7b] font-sans font-normal">With over a decade of experience leading user experience, interface design, and user research across fast-moving teams. I now work independently, helping great companies design intuitive, scalable interfaces that solve real problems for real people. 
 
 
 Over the past 10+ years, I’ve worked with startups and enterprise organizations across a range of industries. Most recently, I spent 4+ years at Shopify as a lead designer in the logistics space, designing complex systems across Inventory, Fulfillment, and Shipping. I’m particularly proud of leading the design and execution of a CEO-sponsored initiative — collaborating directly with Shopify’s senior leadership to bring a bold new fulfillment vision to life. That work was approved for build and is expected to transform how merchants fulfill orders at scale.</p>
