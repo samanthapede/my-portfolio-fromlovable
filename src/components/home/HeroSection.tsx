@@ -38,16 +38,10 @@ export const HeroSection = () => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <span className="relative inline-block pb-4 cursor-pointer group">
-                    <span className="relative">
-                      <span className="text-[#4A56D4] transition-opacity duration-500 ease-out group-hover:opacity-0">
-                        design partner
-                      </span>
-                      <span 
-                        className="absolute inset-0 bg-gradient-to-r from-[#4B1B9E] via-[#4E8DD3] to-[#14E3F4] bg-clip-text text-transparent opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
-                        aria-hidden="true"
-                      >
-                        design partner
-                      </span>
+                    <span 
+                      className="text-[#4A56D4] transition-colors duration-500 ease-out group-hover:text-[#4E8DD3]"
+                    >
+                      design partner
                     </span>
                     <svg
                       className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
@@ -88,16 +82,10 @@ export const HeroSection = () => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <span className="relative inline-block pb-4 cursor-pointer group">
-                    <span className="relative">
-                      <span className="text-[#4A56D4] transition-opacity duration-500 ease-out group-hover:opacity-0">
-                        users love
-                      </span>
-                      <span 
-                        className="absolute inset-0 bg-gradient-to-r from-[#4B1B9E] via-[#4E8DD3] to-[#14E3F4] bg-clip-text text-transparent opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
-                        aria-hidden="true"
-                      >
-                        users love
-                      </span>
+                    <span 
+                      className="text-[#4A56D4] transition-colors duration-500 ease-out group-hover:text-[#4E8DD3]"
+                    >
+                      users love
                     </span>
                     <svg
                       className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
