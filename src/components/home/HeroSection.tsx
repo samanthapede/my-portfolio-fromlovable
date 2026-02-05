@@ -44,7 +44,7 @@ export const HeroSection = () => {
                       design partner
                     </span>
                     <svg
-                      className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
+                      className="absolute bottom-0 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
                       viewBox="0 0 200 16"
                       preserveAspectRatio="none"
                       fill="none"
@@ -56,6 +56,7 @@ export const HeroSection = () => {
                         strokeWidth="6"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        className="transition-all duration-500 ease-out group-hover:[stroke-width:7]"
                       />
                       <defs>
                         <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -88,7 +89,7 @@ export const HeroSection = () => {
                       users love
                     </span>
                     <svg
-                      className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
+                      className="absolute bottom-0 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80"
                       viewBox="0 0 200 16"
                       preserveAspectRatio="none"
                       fill="none"
@@ -100,6 +101,7 @@ export const HeroSection = () => {
                         strokeWidth="6"
                         strokeLinecap="round"
                         strokeLinejoin="round"
+                        className="transition-all duration-500 ease-out group-hover:[stroke-width:7]"
                       />
                       <defs>
                         <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
