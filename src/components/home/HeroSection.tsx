@@ -33,35 +33,7 @@ export const HeroSection = () => {
             <span className="gradient-text">users love</span>
           </motion.h1>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-col sm:flex-row items-start gap-4"
-          >
-            <a
-              href="#contact"
-              className="px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium hover:opacity-90 transition-opacity"
-            >
-              Book a Call
-            </a>
-            <a
-              href="/work"
-              className="px-8 py-4 border border-border rounded-full font-medium hover:bg-secondary transition-colors"
-            >
-              View My Work
-            </a>
-          </motion.div>
         </motion.div>
-
-        {/* Gradient accent line */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="gradient-line h-1 max-w-lg mt-16 rounded-full origin-left"
-        />
       </div>
     </section>
   );
