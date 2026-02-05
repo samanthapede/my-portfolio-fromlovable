@@ -1,43 +1,12 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Lightbulb, Users, Zap, BarChart3, Target, Handshake, Compass, Layers } from "lucide-react";
 import headshot from "@/assets/headshot.jpg";
-
-const strengths = [{
-  icon: Lightbulb,
-  label: "Strategic and system thinking"
-}, {
-  icon: Users,
-  label: "Leading teams, projects, and design cycles"
-}, {
-  icon: Zap,
-  label: "Hands-on execution & rapid iteration"
-}, {
-  icon: BarChart3,
-  label: "Translating research & data into user-centered designs"
-}, {
-  icon: Target,
-  label: "Balancing user needs with business goals"
-}, {
-  icon: Handshake,
-  label: "Collaborating to ship smart, scalable solutions"
-}, {
-  icon: Compass,
-  label: "Stakeholder alignment"
-}, {
-  icon: Layers,
-  label: "Creating greenpath visions and viable MVPs"
-}];
 
 const About = () => {
   const heroRef = useRef(null);
-  const strengthsRef = useRef(null);
-  const philosophyRef = useRef(null);
   const outsideRef = useRef(null);
 
   const heroInView = useInView(heroRef, { once: true, margin: "-50px" });
-  const strengthsInView = useInView(strengthsRef, { once: true, margin: "-100px" });
-  const philosophyInView = useInView(philosophyRef, { once: true, margin: "-100px" });
   const outsideInView = useInView(outsideRef, { once: true, margin: "-100px" });
 
   return (
@@ -101,69 +70,6 @@ const About = () => {
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Key Strengths Section */}
-      <section ref={strengthsRef} className="py-16 lg:py-24 bg-strengths dark:!bg-background">
-        <div className="container mx-auto px-6 lg:px-12">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={strengthsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6 }}
-            className="text-3xl lg:text-4xl font-bold text-center mb-12"
-          >
-            Key Strengths
-          </motion.h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {strengthsInView && strengths.map((strength, index) => (
-              <motion.div
-                key={strength.label}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
-                className="bg-card border border-border rounded-xl p-6 hover:border-primary/30 transition-colors"
-              >
-                <strength.icon className="w-8 h-8 text-primary mb-4" />
-                <p className="font-medium">{strength.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Philosophy Section */}
-      <section ref={philosophyRef} className="py-16 lg:py-24">
-        <div className="container mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={philosophyInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <motion.h2
-              initial={{ opacity: 0 }}
-              animate={philosophyInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-3xl lg:text-4xl font-bold mb-8"
-            >
-              Philosophy
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={philosophyInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-2xl lg:text-3xl leading-relaxed text-muted-foreground"
-            >
-              Design, for me, is about{" "}
-              <span className="text-foreground font-medium">clarity</span>,{" "}
-              <span className="text-foreground font-medium">momentum</span>, and{" "}
-              <span className="text-foreground font-medium">impact</span>. I thrive 
-              in environments where I can help shape the big picture, while sweating 
-              the details that make an experience truly work.
-            </motion.p>
-          </motion.div>
         </div>
       </section>
 
