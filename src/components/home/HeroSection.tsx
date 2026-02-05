@@ -29,7 +29,7 @@ export const HeroSection = () => {
           >
             Fractional{" "}
             <span className="relative inline-block pb-4">
-              <span className="gradient-text">design partner</span>
+              <span style={{ color: '#4A56D4' }}>design partner</span>
               <svg
                 className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
                 viewBox="0 0 200 16"
@@ -55,7 +55,7 @@ export const HeroSection = () => {
             </span>{" "}
             for high-impact experiences that{" "}
             <span className="relative inline-block pb-4">
-              <span className="gradient-text">users love</span>
+              <span style={{ color: '#4A56D4' }}>users love</span>
               <svg
                 className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
                 viewBox="0 0 200 16"
