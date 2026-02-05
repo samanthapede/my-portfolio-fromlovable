@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import victorImg from "@/assets/testimonials/victor.png";
 import cassiaImg from "@/assets/testimonials/cassia.png";
 import zackImg from "@/assets/testimonials/zack.png";
@@ -100,12 +101,37 @@ export const TestimonialsSection = () => {
         y: 0
       }} viewport={{
         once: true
-      }} className="text-center mb-12">
+      }} className="text-left mb-12">
           <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold mb-4">
             A trusted partner to{" "}
-            <span className="gradient-text">amazing teams</span>
+            <TooltipProvider delayDuration={200}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span className="relative inline-block cursor-pointer group isolate">
+                    <span className="relative z-10 text-[#4A56D4] transition-colors duration-500 ease-out group-hover:text-[#5E69D9]">
+                      amazing teams
+                    </span>
+                    <svg className="absolute -bottom-2 left-0 w-full h-4 overflow-visible transition-all duration-500 ease-out group-hover:scale-x-105 group-hover:opacity-80 z-0" viewBox="0 0 200 16" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0 10C15 8 30 12 50 9C70 6 90 13 110 10C130 7 150 14 170 10C185 7 200 11 200 11" stroke="url(#gradient-testimonials)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="transition-all duration-500 ease-out group-hover:[stroke-width:6]" />
+                      <defs>
+                        <linearGradient id="gradient-testimonials" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#4B1B9E" />
+                          <stop offset="50%" stopColor="#4E8DD3" />
+                          <stop offset="100%" stopColor="#14E3F4" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="max-w-sm bg-gradient-to-r from-[#4A56D4] to-[#262D6E] text-white border-none rounded-md px-5 py-4 text-base font-medium shadow-2xl">
+                  <p className="leading-relaxed">
+                    I'm a Staff-level product designer with over a decade of experience leading user experience, interface design, and user research across fast-moving teams. I now work independently with startups and enterprises as a freelance and consulting partner — helping them design intuitive, scalable products that solve real problems for real people.
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl">
             I've had the privilege of working with incredible teams across industries.
           </p>
         </motion.div>
