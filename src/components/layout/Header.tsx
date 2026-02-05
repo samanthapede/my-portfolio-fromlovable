@@ -76,7 +76,7 @@ export const Header = () => {
           y: isVisible ? 0 : -100 
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed top-4 right-4 z-50"
+        className="fixed top-4 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-4 z-50"
       >
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8 px-6 py-3 bg-background/80 backdrop-blur-md border border-border rounded-full shadow-lg">
@@ -168,7 +168,7 @@ export const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-20 right-4 z-40 md:hidden"
+            className="fixed top-20 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-4 z-40 md:hidden"
           >
             <div className="bg-background/95 backdrop-blur-md border border-border rounded-2xl shadow-lg p-4 min-w-[160px]">
               <ul className="flex flex-col gap-2">
