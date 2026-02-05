@@ -42,7 +42,7 @@ export const SpecialtiesSection = () => {
             <h3 className="font-medium text-[#2E4150] mb-4 text-xl">
               Specialties
             </h3>
-            <h2 className="text-3xl xl:text-5xl font-bold mb-6 leading-[1.9] py-[80px] lg:text-4xl pt-[60px] pb-[40px]">
+            <h2 className="text-3xl xl:text-5xl font-bold mb-6 leading-[1.5] py-[80px] lg:text-4xl pt-[60px] pb-[40px]">
               Bringing your best ideas to life to{" "}
               <TooltipProvider delayDuration={200}>
                 <Tooltip>
