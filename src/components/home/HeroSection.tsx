@@ -28,9 +28,15 @@ export const HeroSection = () => {
             className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-8"
           >
             Fractional{" "}
-            <span className="gradient-text">design partner</span>{" "}
+            <span className="relative inline-block">
+              <span className="gradient-text">design partner</span>
+              <span className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full" />
+            </span>{" "}
             for high-impact experiences that{" "}
-            <span className="gradient-text">users love</span>
+            <span className="relative inline-block">
+              <span className="gradient-text">users love</span>
+              <span className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-full" />
+            </span>
           </motion.h1>
 
         </motion.div>
