@@ -87,7 +87,7 @@ const About = () => {
       </section>
 
       {/* Key Strengths Section */}
-      <section className="py-16 lg:py-24 bg-secondary/30">
+      <section className="py-16 lg:py-24 bg-strengths dark:!bg-background">
         <div className="container mx-auto px-6 lg:px-12">
           <motion.h2 initial={{
           opacity: 0,
