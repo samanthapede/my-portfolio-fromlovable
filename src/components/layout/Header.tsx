@@ -1,11 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import { Moon, Sun, Menu, X } from "lucide-react";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-const navLinks = [
-  { name: "Home", path: "/" },
+const sectionLinks = [
+  { name: "Work", id: "work" },
+  { name: "About", id: "about" },
 ];
 
 export const Header = () => {
@@ -15,6 +16,19 @@ export const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const lastScrollY = useRef(0);
   const { scrollY } = useScroll();
+
+  const scrollToSection = useCallback((id: string) => {
+    // Navigate home first if not on homepage
+    if (location.pathname !== "/") {
+      window.location.href = `/#${id}`;
+      return;
+    }
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const direction = latest > lastScrollY.current ? "down" : "up";
@@ -77,7 +91,7 @@ export const Header = () => {
         className="fixed top-4 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-4 z-50"
       >
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8 px-6 py-3 bg-background/80 backdrop-blur-md border border-border rounded-full shadow-lg">
+        <nav className="hidden md:flex items-center gap-6 px-6 py-3 bg-background/80 backdrop-blur-md border border-border rounded-full shadow-lg">
           <Link
             to="/"
             className="text-lg font-semibold tracking-tight text-foreground hover:text-primary transition-colors"
@@ -85,27 +99,15 @@ export const Header = () => {
             Sam Pede
           </Link>
 
-          <ul className="flex items-center gap-6 lg:gap-8">
-            {navLinks.map((link) => (
-              <li key={link.path}>
-                <Link
-                  to={link.path}
-                  className={cn(
-                    "relative text-sm transition-colors py-1 font-semibold",
-                    location.pathname === link.path
-                      ? "text-[#4A56D4]"
-                      : "text-muted-foreground hover:text-foreground"
-                  )}
+          <ul className="flex items-center gap-6">
+            {sectionLinks.map((link) => (
+              <li key={link.id}>
+                <button
+                  onClick={() => scrollToSection(link.id)}
+                  className="relative text-sm transition-colors py-1 font-semibold text-muted-foreground hover:text-foreground"
                 >
                   {link.name}
-                  {location.pathname === link.path && (
-                    <motion.div
-                      layoutId="activeNav"
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#4A56D4] rounded-full"
-                      transition={{ type: "spring", stiffness: 320, damping: 40, mass: 0.6 }}
-                    />
-                  )}
-                </Link>
+                </button>
               </li>
             ))}
           </ul>
@@ -121,6 +123,15 @@ export const Header = () => {
               <Moon className="w-5 h-5 text-foreground" />
             )}
           </button>
+
+          <a
+            href="https://calendly.com/sam-geodedesign/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-1.5 bg-[#4A56D4] hover:bg-[#5E69D9] text-white text-sm font-semibold rounded-full transition-colors"
+          >
+            Book a Call
+          </a>
         </nav>
 
         {/* Mobile Navigation Toggle */}
@@ -168,24 +179,28 @@ export const Header = () => {
             transition={{ duration: 0.2 }}
             className="fixed top-20 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-4 z-40 md:hidden"
           >
-            <div className="bg-background/95 backdrop-blur-md border border-border rounded-2xl shadow-lg p-4 min-w-[160px]">
+            <div className="bg-background/95 backdrop-blur-md border border-border rounded-2xl shadow-lg p-4 min-w-[180px]">
               <ul className="flex flex-col gap-2">
-                {navLinks.map((link) => (
-                  <li key={link.path}>
-                    <Link
-                      to={link.path}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={cn(
-                        "block px-4 py-2 rounded-lg text-sm font-semibold transition-colors",
-                        location.pathname === link.path
-                          ? "text-[#4A56D4] bg-[#4A56D4]/10"
-                          : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                      )}
+                {sectionLinks.map((link) => (
+                  <li key={link.id}>
+                    <button
+                      onClick={() => scrollToSection(link.id)}
+                      className="block w-full text-left px-4 py-2 rounded-lg text-sm font-semibold text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
                     >
                       {link.name}
-                    </Link>
+                    </button>
                   </li>
                 ))}
+                <li>
+                  <a
+                    href="https://calendly.com/sam-geodedesign/30min"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-left px-4 py-2 rounded-lg text-sm font-semibold text-[#4A56D4] hover:bg-[#4A56D4]/10 transition-colors"
+                  >
+                    Book a Call
+                  </a>
+                </li>
               </ul>
             </div>
           </motion.div>
