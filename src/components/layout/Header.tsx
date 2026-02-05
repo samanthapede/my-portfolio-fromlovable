@@ -70,7 +70,7 @@ export const Header = () => {
                 className={cn(
                   "relative text-sm font-medium transition-colors py-1",
                   location.pathname === link.path
-                    ? "text-primary"
+                    ? "text-[#4A56D4] font-bold"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
