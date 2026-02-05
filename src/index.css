@@ -115,6 +115,13 @@
 
   html {
     scroll-behavior: smooth;
+    /* Prevent layout shift when pages toggle scrollbar presence (keeps centered fixed header stable) */
+    scrollbar-gutter: stable;
+  }
+
+  /* Fallback for browsers without scrollbar-gutter support */
+  body {
+    overflow-y: scroll;
   }
 }
 

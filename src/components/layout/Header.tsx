@@ -79,7 +79,7 @@ export const Header = () => {
                   <motion.div
                     layoutId="activeNav"
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#4A56D4] rounded-full"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    transition={{ type: "spring", stiffness: 320, damping: 40, mass: 0.6 }}
                   />
                 )}
               </Link>
