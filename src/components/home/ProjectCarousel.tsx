@@ -49,7 +49,7 @@ export const ProjectCarousel = () => {
         width: "fit-content"
       }}>
           {allImages.map((img, index) => <div key={`top-${index}`} className="flex-shrink-0 w-64 h-auto lg:w-80 rounded-xl overflow-hidden shadow-lg">
-              <img src={img.src} alt={img.alt} className="w-full h-full rounded shadow-none border-0 object-fill border-none" />
+              <img src={img.src} alt={img.alt} className="w-full h-full shadow-none border-0 object-fill border-none rounded-none" />
             </div>)}
         </div>
       </div>
