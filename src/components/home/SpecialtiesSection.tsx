@@ -1,25 +1,37 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import headshot from "@/assets/headshot.jpg";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+
 const specialties = ["Web apps", "Mobile apps", "Websites", "0 → 1 projects", "Design leadership", "Strategy", "Systems thinking", "User research", "Rapid prototyping"];
+
 export const SpecialtiesSection = () => {
-  return <section className="py-16 lg:py-24 bg-specialties dark:!bg-background">
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  return (
+    <section ref={sectionRef} className="py-16 lg:py-24 bg-specialties dark:!bg-background">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
           {/* Image */}
-          <motion.div initial={{
-          opacity: 0,
-          x: -30
-        }} whileInView={{
-          opacity: 1,
-          x: 0
-        }} viewport={{
-          once: true
-        }} transition={{
-          duration: 0.6
-        }} className="relative">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5] max-w-md mx-auto lg:mx-0">
-              <img src={headshot} alt="Samantha Pede" className="w-full h-full object-cover object-top" />
+              {isInView && (
+                <img
+                  src={new URL("@/assets/headshot.jpg", import.meta.url).href}
+                  alt="Samantha Pede"
+                  className={`w-full h-full object-cover object-top transition-opacity duration-500 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                  loading="lazy"
+                  onLoad={() => setImageLoaded(true)}
+                />
+              )}
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
             </div>
@@ -28,17 +40,11 @@ export const SpecialtiesSection = () => {
           </motion.div>
 
           {/* Content */}
-          <motion.div initial={{
-          opacity: 0,
-          x: 30
-        }} whileInView={{
-          opacity: 1,
-          x: 0
-        }} viewport={{
-          once: true
-        }} transition={{
-          duration: 0.6
-        }}>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+            transition={{ duration: 0.6 }}
+          >
             <h3 className="font-medium text-[#2E4150] dark:text-muted-foreground mb-4 text-xl">
               Specialties
             </h3>
@@ -62,23 +68,21 @@ export const SpecialtiesSection = () => {
 
             {/* Specialty Pills */}
             <div className="flex flex-wrap gap-[10px]">
-              {specialties.map((specialty, index) => <motion.span key={specialty} initial={{
-              opacity: 0,
-              scale: 0.9
-            }} whileInView={{
-              opacity: 1,
-              scale: 1
-            }} viewport={{
-              once: true
-            }} transition={{
-              duration: 0.3,
-              delay: index * 0.05
-            }} className="px-4 py-2 bg-card border border-border rounded-full text-sm font-medium cursor-default">
+              {isInView && specialties.map((specialty, index) => (
+                <motion.span
+                  key={specialty}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  className="px-4 py-2 bg-card border border-border rounded-full text-sm font-medium cursor-default"
+                >
                   {specialty}
-                </motion.span>)}
+                </motion.span>
+              ))}
             </div>
           </motion.div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
