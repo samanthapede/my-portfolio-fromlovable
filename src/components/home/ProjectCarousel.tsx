@@ -9,14 +9,14 @@ import uiUplift from "@/assets/projects/ui-uplift.png";
 import unavailable from "@/assets/projects/unavailable.png";
 
 const projectImages = [
-  { id: 1, src: chatbot, alt: "Chatbot" },
-  { id: 2, src: columnPicker, alt: "Column Picker" },
-  { id: 3, src: dashboardMetrics, alt: "Dashboard Metrics" },
-  { id: 4, src: fulfillableAdmin, alt: "Fulfillable Admin" },
-  { id: 5, src: fulfillableStorefront, alt: "Fulfillable Storefront" },
-  { id: 6, src: sellFromIncoming, alt: "Sell from Incoming" },
-  { id: 7, src: uiUplift, alt: "UI Uplift" },
-  { id: 8, src: unavailable, alt: "Unavailable Inventory" },
+  { id: 1, src: fulfillableStorefront, alt: "Fulfillable Storefront" },
+  { id: 2, src: dashboardMetrics, alt: "Dashboard Metrics" },
+  { id: 3, src: uiUplift, alt: "UI Uplift" },
+  { id: 4, src: chatbot, alt: "Chatbot" },
+  { id: 5, src: unavailable, alt: "Unavailable Inventory" },
+  { id: 6, src: columnPicker, alt: "Column Picker" },
+  { id: 7, src: sellFromIncoming, alt: "Sell from Incoming" },
+  { id: 8, src: fulfillableAdmin, alt: "Fulfillable Admin" },
 ];
 
 export const ProjectCarousel = () => {
