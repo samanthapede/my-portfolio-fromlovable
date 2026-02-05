@@ -38,10 +38,16 @@ export const HeroSection = () => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <span className="relative inline-block pb-4 cursor-pointer group">
-                    <span 
-                      className="text-[#4A56D4] transition-all duration-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B1B9E] group-hover:via-[#4E8DD3] group-hover:to-[#14E3F4] group-hover:bg-clip-text"
-                    >
-                      design partner
+                    <span className="relative">
+                      <span className="text-[#4A56D4] transition-opacity duration-500 ease-out group-hover:opacity-0">
+                        design partner
+                      </span>
+                      <span 
+                        className="absolute inset-0 bg-gradient-to-r from-[#4B1B9E] via-[#4E8DD3] to-[#14E3F4] bg-clip-text text-transparent opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+                        aria-hidden="true"
+                      >
+                        design partner
+                      </span>
                     </span>
                     <svg
                       className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
@@ -82,10 +88,16 @@ export const HeroSection = () => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <span className="relative inline-block pb-4 cursor-pointer group">
-                    <span 
-                      className="text-[#4A56D4] transition-all duration-300 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#4B1B9E] group-hover:via-[#4E8DD3] group-hover:to-[#14E3F4] group-hover:bg-clip-text"
-                    >
-                      users love
+                    <span className="relative">
+                      <span className="text-[#4A56D4] transition-opacity duration-500 ease-out group-hover:opacity-0">
+                        users love
+                      </span>
+                      <span 
+                        className="absolute inset-0 bg-gradient-to-r from-[#4B1B9E] via-[#4E8DD3] to-[#14E3F4] bg-clip-text text-transparent opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+                        aria-hidden="true"
+                      >
+                        users love
+                      </span>
                     </span>
                     <svg
                       className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
