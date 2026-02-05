@@ -73,7 +73,7 @@ export const HeroSection = () => {
                   className="max-w-sm bg-gradient-to-r from-[#4A56D4] to-[#262D6E] text-white border-none rounded-md px-5 py-4 text-base font-medium shadow-2xl"
                 >
                   <p className="leading-relaxed">
-                    You know your business intimately. I know how to learn from your users and drive quality designs at speed. We're better together.
+                    ✨ You know your business intimately. I know how to learn from your users and drive quality designs at speed. We're better together. 🤝
                   </p>
                 </TooltipContent>
               </Tooltip>
