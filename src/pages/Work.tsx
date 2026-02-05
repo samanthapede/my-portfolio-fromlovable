@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { Lock } from "lucide-react";
 const projects = [{
   id: 1,
   title: "Batching Orders",
@@ -80,9 +80,9 @@ const Work = () => {
                       {project.description}
                     </p>
 
-                    <button className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all">
-                      View Case Study
-                      <ArrowUpRight className="w-4 h-4" />
+                    <button className="inline-flex items-center gap-2 text-muted-foreground font-medium transition-all">
+                      <Lock className="w-4 h-4" />
+                      Request Access
                     </button>
                   </div>
 
