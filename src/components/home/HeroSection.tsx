@@ -1,4 +1,10 @@
 import { motion } from "framer-motion";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export const HeroSection = () => {
   return (
@@ -28,31 +34,40 @@ export const HeroSection = () => {
             className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-8"
           >
             Fractional{" "}
-            <span className="relative inline-block pb-4">
-              <span style={{ color: '#4A56D4' }}>design partner</span>
-              <svg
-                className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
-                viewBox="0 0 200 16"
-                preserveAspectRatio="none"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M0 10C15 8 30 12 50 9C70 6 90 13 110 10C130 7 150 14 170 10C185 7 200 11 200 11"
-                  stroke="url(#gradient1)"
-                  strokeWidth="6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <defs>
-                  <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#4B1B9E" />
-                    <stop offset="50%" stopColor="#4E8DD3" />
-                    <stop offset="100%" stopColor="#14E3F4" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </span>{" "}
+            <TooltipProvider delayDuration={200}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span className="relative inline-block pb-4 cursor-pointer">
+                    <span style={{ color: '#4A56D4' }}>design partner</span>
+                    <svg
+                      className="absolute bottom-0 left-0 w-full h-4 overflow-visible"
+                      viewBox="0 0 200 16"
+                      preserveAspectRatio="none"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0 10C15 8 30 12 50 9C70 6 90 13 110 10C130 7 150 14 170 10C185 7 200 11 200 11"
+                        stroke="url(#gradient1)"
+                        strokeWidth="6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <defs>
+                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor="#4B1B9E" />
+                          <stop offset="50%" stopColor="#4E8DD3" />
+                          <stop offset="100%" stopColor="#14E3F4" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="max-w-xs text-sm p-4">
+                  <p>I win by helping you win. I love to collaborate with you and your team, learn from your users, while keeping business objectives at the forefront to get to the right solution...faster.</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>{" "}
             for high-impact experiences that{" "}
             <span className="relative inline-block pb-4">
               <span style={{ color: '#4A56D4' }}>users love</span>
