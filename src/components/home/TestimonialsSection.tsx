@@ -130,7 +130,7 @@ export const TestimonialsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-8 gap-y-6 lg:gap-x-12 lg:gap-y-8 items-center justify-items-center max-w-4xl mx-auto"
+          className="grid grid-cols-3 sm:grid-cols-5 gap-x-8 gap-y-6 lg:gap-x-12 lg:gap-y-8 items-center justify-items-center max-w-3xl mx-auto"
         >
           {companyLogos.map((company) => (
             <div
