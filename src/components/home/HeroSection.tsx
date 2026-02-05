@@ -21,7 +21,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-xl lg:text-2xl text-muted-foreground mb-4"
+            className="text-xl lg:text-2xl text-[#2E4150] mb-4"
           >
             Hi, I'm Sam 👋
           </motion.p>
