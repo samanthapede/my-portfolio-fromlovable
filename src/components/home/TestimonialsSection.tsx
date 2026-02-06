@@ -190,7 +190,7 @@ export const TestimonialsSection = () => {
           }}
           className="text-left mb-12"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl leading-tight mb-4">
             A trusted partner to{" "}
             <TooltipProvider delayDuration={200}>
               <Tooltip>
@@ -237,7 +237,7 @@ export const TestimonialsSection = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="bg-card border border-border rounded-2xl p-6 hover:border-primary/30 transition-colors w-full max-w-lg mx-auto"
+                  className="bg-card border border-border rounded-2xl p-6 w-full max-w-lg mx-auto"
                 >
                   <div className="flex items-center gap-3 mb-6">
                     <img src={testimonials[mobileIndex].image} alt={testimonials[mobileIndex].author} className="w-12 h-12 rounded-full object-cover" loading="lazy" />
@@ -245,7 +245,7 @@ export const TestimonialsSection = () => {
                       <p className="font-medium text-foreground">
                         {testimonials[mobileIndex].author}
                       </p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-base text-muted-foreground">
                         {testimonials[mobileIndex].role}
                       </p>
                     </div>
@@ -318,8 +318,7 @@ export const TestimonialsSection = () => {
                   stiffness: 90,
                   damping: 12
                 }}
-                whileHover={{ y: -4, scale: 1.02 }}
-                className="flex-shrink-0 w-[400px] lg:w-[500px] bg-card border border-border rounded-2xl p-6 lg:p-8 hover:border-primary/30 transition-colors"
+                className="flex-shrink-0 w-[400px] lg:w-[500px] bg-card border border-border rounded-2xl p-6 lg:p-8"
               >
                 <div className="flex items-center gap-3 mb-6">
                   <img src={testimonial.image} alt={testimonial.author} className="w-12 h-12 rounded-full object-cover" loading="lazy" />
@@ -357,8 +356,7 @@ export const TestimonialsSection = () => {
                 stiffness: 120,
                 damping: 10
               }}
-              whileHover={{ scale: 1.15, opacity: 0.7, rotate: [0, -5, 5, -5, 0], transition: { duration: 0.5 } }}
-              className="hover:opacity-70 transition-opacity grayscale"
+              className="grayscale dark:grayscale-0 dark:invert dark:opacity-80"
             >
               <img
                 src={company.logo}

@@ -8,27 +8,31 @@
    - Purple: 268 70% 36%
    - Blue: 209 62% 57%
    - Cyan: 186 91% 52%
+   - Text & background inspired by goodbooks.io: navy blue text, warm off-white background
 */
 
 @layer base {
   :root {
-    --background: 200 33% 99%;
-    --foreground: 240 10% 10%;
+    /* Good Books–style: warm off-white background (#faf8f5) */
+    --background: 40 33% 98%;
+    /* Navy text darkened for readability on warm off-white (was 22% lightness) */
+    --foreground: 212 50% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 10%;
+    --card-foreground: 212 50% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 10%;
+    --popover-foreground: 212 50% 18%;
 
     --primary: 236 61% 56%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 10% 10%;
+    --secondary: 40 20% 94%;
+    --secondary-foreground: 212 50% 18%;
 
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 5% 40%;
+    --muted: 40 20% 94%;
+    /* Muted text darkened for readable contrast on warm background (was 40% lightness) */
+    --muted-foreground: 212 35% 32%;
 
     --accent: 236 61% 56%;
     --accent-foreground: 0 0% 100%;
@@ -36,15 +40,15 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
+    --border: 40 15% 88%;
+    --input: 40 15% 88%;
     --ring: 236 61% 56%;
 
     --radius: 0.75rem;
 
-    /* Section surfaces */
-    --specialties-surface: 220 60% 96%;
-    --strengths-surface: 226 47% 97%;
+    /* Section surfaces (warm, consistent with background) */
+    --specialties-surface: 40 40% 96%;
+    --strengths-surface: 40 35% 96%;
 
     /* Gradient colors */
     --gradient-purple: 268 70% 36%;
@@ -52,8 +56,8 @@
     --gradient-cyan: 186 91% 52%;
 
     /* Sidebar */
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5% 26%;
+    --sidebar-background: 40 25% 97%;
+    --sidebar-foreground: 212 50% 18%;
     --sidebar-primary: 236 61% 56%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 5% 96%;
@@ -116,14 +120,30 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground antialiased;
-  }
-
+  /* Readable base: 16px minimum for body copy (WCAG / UX best practice) */
   html {
+    font-size: 100%;
     scroll-behavior: smooth;
     /* Prevent layout shift when pages toggle scrollbar presence (keeps centered fixed header stable) */
     scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased font-sans text-base leading-relaxed;
+  }
+
+  /* Default paragraphs: readable size, line height, and comfortable line length (~65-75ch) */
+  p {
+    @apply text-base leading-relaxed;
+    max-width: 70ch;
+  }
+
+  h1, h3 {
+    font-weight: 700;
+  }
+
+  h2 {
+    font-weight: 800;
   }
 
   /* Fallback for browsers without scrollbar-gutter support */

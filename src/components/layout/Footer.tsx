@@ -42,7 +42,7 @@ export const Footer = () => {
   }, [isInView]);
 
   return (
-    <footer ref={footerRef} className="bg-[#F1F4FB] dark:!bg-background border-t border-border">
+    <footer ref={footerRef} className="bg-specialties dark:!bg-background border-t border-border">
       <div className="container mx-auto px-6 lg:px-12 py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left Side - Contact */}
@@ -51,7 +51,7 @@ export const Footer = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-8">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl leading-tight mb-8">
               Let's build something{" "}
               <TooltipProvider delayDuration={200}>
                 <Tooltip>
@@ -107,7 +107,7 @@ export const Footer = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4"
         >
-          <p className="text-sm text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             © {new Date().getFullYear()} Samantha Pede. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
@@ -115,7 +115,7 @@ export const Footer = () => {
               href="https://www.linkedin.com/in/samanthapede/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              className="text-base text-muted-foreground hover:text-primary transition-colors"
             >
               LinkedIn
             </a>

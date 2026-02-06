@@ -1,7 +1,7 @@
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -17,6 +17,27 @@ type Project = {
   overview?: string;
   role?: string;
   year?: string;
+  /** Dot-separated tags shown on card (e.g. "E-commerce · Lead Design · 2024") */
+  tags?: string[];
+  /** Optional metrics for card (e.g. "+20% adoption") */
+  metrics?: string[];
+};
+
+const LOREM = {
+  batching:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+  fulfillable:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident.",
+  inventory:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  uiSystems:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.",
+  dashboard:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+  chatbot:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
+  sellIncoming:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 };
 
 const projects: Project[] = [
@@ -25,279 +46,142 @@ const projects: Project[] = [
     title: "Batching orders",
     description: "Multi-location order fulfillment",
     link: "/work",
-    overview: "Designing tools that help merchants group and fulfill orders across multiple locations efficiently.",
+    overview: LOREM.batching,
     role: "Lead Designer",
     year: "2024–2025",
+    tags: ["E-commerce", "Lead Design", "2024–2025"],
   },
   {
     id: 2,
     title: "Fulfillable quantities",
     description: "Real-time inventory visibility",
     link: "/work",
-    overview: "Surfacing real-time fulfillable quantities so merchants can sell what they can ship.",
+    overview: LOREM.fulfillable,
     role: "Lead Designer",
     year: "2023–2024",
+    tags: ["E-commerce", "Lead Design", "2023–2024"],
   },
   {
     id: 3,
     title: "Inventory management",
     description: "Streamlined stock operations",
     link: "/work",
-    overview: "Foundational inventory tracking and operations for merchants at scale.",
+    overview: LOREM.inventory,
     role: "Lead Designer",
     year: "2021–2022",
+    tags: ["E-commerce", "Product Design", "2021–2022"],
   },
   {
     id: 4,
     title: "UI systems",
     description: "Scalable design components",
     link: "/work",
-    overview: "Design systems and components that scale across products and platforms.",
+    overview: LOREM.uiSystems,
     role: "Design",
     year: "—",
+    tags: ["Design Systems", "UI", "Components"],
   },
   {
     id: 5,
     title: "Dashboard analytics",
     description: "Data-driven merchant insights",
     link: "/work",
-    overview: "Turning data into clear, actionable insights for merchant dashboards.",
+    overview: LOREM.dashboard,
     role: "Design",
     year: "—",
+    tags: ["Analytics", "Dashboards", "Product Design"],
   },
   {
     id: 6,
     title: "Chatbot experience",
     description: "Conversational support flows",
     link: "/work",
-    overview: "Conversational interfaces that make support and discovery feel natural.",
+    overview: LOREM.chatbot,
     role: "Design",
     year: "—",
+    tags: ["Conversational UI", "Support", "Product Design"],
   },
   {
     id: 7,
     title: "Sell from incoming",
     description: "Pre-arrival inventory sales",
     link: "/work",
-    overview: "Enabling merchants to sell inventory before it arrives, with clear availability.",
+    overview: LOREM.sellIncoming,
     role: "Design",
     year: "—",
+    tags: ["E-commerce", "Inventory", "Product Design"],
   },
 ];
 
 export const ProjectShowcase = () => {
   const sectionRef = useRef(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [mobileIndex, setMobileIndex] = useState(0);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const goPrev = useCallback(() => {
-    setMobileIndex((i) => (i - 1 + projects.length) % projects.length);
-  }, []);
-  const goNext = useCallback(() => {
-    setMobileIndex((i) => (i + 1) % projects.length);
-  }, []);
+  const tagLine = (project: Project) => {
+    if (project.tags && project.tags.length > 0) {
+      return project.tags.join(" · ");
+    }
+    const parts = [project.role, project.year].filter(Boolean);
+    return parts.length ? parts.join(" · ") : "";
+  };
 
-  const getCardWidth = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return 324; // 300 + 24 gap
-    const firstCard = el.children[0] as HTMLElement | undefined;
-    if (!firstCard) return 324;
-    const gap = parseFloat(getComputedStyle(el).gap) || 24;
-    return firstCard.offsetWidth + gap;
-  }, []);
-
-  const scrollToIndex = useCallback((index: number) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const cardWidth = getCardWidth();
-    el.scrollTo({ left: index * cardWidth, behavior: "smooth" });
-  }, [getCardWidth]);
-
-  const scroll = useCallback((direction: "left" | "right") => {
-    const newIndex = direction === "right"
-      ? (currentIndex + 1) % projects.length
-      : (currentIndex - 1 + projects.length) % projects.length;
-    setCurrentIndex(newIndex);
-    scrollToIndex(newIndex);
-  }, [currentIndex, scrollToIndex]);
-
-  // Sync currentIndex with manual scroll
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    let ticking = false;
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        const cardWidth = getCardWidth();
-        const idx = Math.round(el.scrollLeft / cardWidth);
-        // When we've scrolled past the original set into the cloned set, jump back
-        if (idx >= projects.length) {
-          el.scrollLeft = el.scrollLeft - projects.length * cardWidth;
-          setCurrentIndex(idx - projects.length);
-        } else if (idx < 0) {
-          el.scrollLeft = el.scrollLeft + projects.length * cardWidth;
-          setCurrentIndex(idx + projects.length);
-        } else {
-          setCurrentIndex(idx);
-        }
-        ticking = false;
-      });
-    };
-    el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
-  }, [getCardWidth]);
-
-
-  // Triple the items: [clone-set] [original-set] [clone-set] for seamless looping
-  const tripleProjects = [...projects, ...projects, ...projects];
-
-  // After initial render, set scroll position to the start of the middle copy
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el || !isInView) return;
-    // Small delay to let DOM render
-    const timer = setTimeout(() => {
-      const cardWidth = getCardWidth();
-      el.scrollLeft = projects.length * cardWidth;
-    }, 50);
-    return () => clearTimeout(timer);
-  }, [isInView, getCardWidth]);
+  const featuredProjects = projects.slice(0, 3);
 
   const projectCard = (project: Project) => (
     <button
       type="button"
       onClick={() => setSelectedProject(project)}
-      className="group block w-full text-left"
+      className="group flex w-full flex-col lg:flex-row text-left rounded-2xl overflow-hidden border border-border bg-card transition-colors hover:border-primary/20 hover:bg-muted/20 dark:hover:bg-muted/10"
     >
-      <div className="bg-muted/50 dark:bg-muted/20 rounded-2xl overflow-hidden transition-all duration-300 hover:bg-muted/70 dark:hover:bg-muted/30">
-        <div className="aspect-square relative overflow-hidden">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-3/4 h-3/4 rounded-xl bg-gradient-to-br from-muted/60 to-muted/30 dark:from-muted/40 dark:to-muted/10 flex items-center justify-center transition-transform duration-500 group-hover:scale-105">
-              <div className="w-16 h-16 rounded-lg bg-background/50 dark:bg-background/20 shadow-sm" />
-            </div>
-          </div>
+      {/* Photo: always left, 4:3 aspect ratio */}
+      <div className="w-full lg:w-1/2 aspect-[4/3] flex-shrink-0 bg-muted/50 dark:bg-muted/20 overflow-hidden">
+        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-muted/60 to-muted/30 dark:from-muted/40 dark:to-muted/10 transition-transform duration-300 group-hover:scale-[1.02]">
+          <div className="w-24 h-24 rounded-xl bg-background/50 dark:bg-background/20 shadow-sm" />
         </div>
-        <div className="p-5">
-          <h3 className="font-semibold text-foreground text-lg mb-1 group-hover:text-primary transition-colors">
-            {project.title}
-          </h3>
-          <p className="text-muted-foreground text-base">
-            {project.description}
+      </div>
+      {/* Content: always right */}
+      <div className="w-full lg:w-1/2 flex flex-col justify-center p-6 lg:p-10">
+        <h3 className="font-extrabold text-foreground text-2xl lg:text-3xl mb-1 group-hover:text-primary transition-colors">
+          {project.title}
+        </h3>
+        <p className="text-foreground/90 text-base mb-2">
+          {project.description}
+        </p>
+        {tagLine(project) && (
+          <p className="text-sm text-muted-foreground mb-4">
+            {tagLine(project)}
           </p>
-        </div>
+        )}
+        <span className="inline-flex items-center font-medium text-primary text-sm">
+          View
+          <ChevronRight className="w-4 h-4 ml-0.5 opacity-70" />
+        </span>
       </div>
     </button>
   );
 
   return (
-    <section id="work" ref={sectionRef} className="py-12 lg:py-20">
-      {/* Mobile: single card with chevron navigation (matches Testimonials layout) */}
-      {isInView && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-          className="relative w-full lg:hidden"
-        >
-          <div className="container mx-auto px-6 lg:px-12 flex items-center gap-2 lg:gap-4">
-            <motion.button
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
-              onClick={goPrev}
-              className="flex-shrink-0 w-10 h-10 rounded-full bg-background/90 dark:bg-background/80 shadow-lg border border-border/50 flex items-center justify-center hover:bg-background transition-colors"
-              aria-label="Previous project"
+    <section id="work" ref={sectionRef} className="py-16 lg:py-24">
+      {/* Match About section: container + padding; photo left, content right */}
+      <div className="container mx-auto px-6 lg:px-12">
+        <div className="flex flex-col gap-8 lg:gap-12">
+          {featuredProjects.map((project, index) => (
+            <motion.article
+              key={project.id}
+              initial={{ opacity: 0, y: 24 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+              transition={{
+                duration: 0.5,
+                delay: 0.1 + index * 0.1,
+                ease: "easeOut",
+              }}
+              className="w-full"
             >
-              <ChevronLeft className="w-5 h-5 text-foreground" />
-            </motion.button>
-            <div className="flex-1 min-w-0">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={mobileIndex}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="w-full max-w-[280px] mx-auto"
-                >
-                  {projectCard(projects[mobileIndex])}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-            <motion.button
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
-              onClick={goNext}
-              className="flex-shrink-0 w-10 h-10 rounded-full bg-background/90 dark:bg-background/80 shadow-lg border border-border/50 flex items-center justify-center hover:bg-background transition-colors"
-              aria-label="Next project"
-            >
-              <ChevronRight className="w-5 h-5 text-foreground" />
-            </motion.button>
-          </div>
-        </motion.div>
-      )}
-
-      {/* Desktop: scrollable row with absolute chevrons */}
-      <div className="max-w-7xl mx-auto relative hidden lg:block">
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          onClick={() => scroll("left")}
-          className="absolute left-2 lg:left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-background/90 dark:bg-background/80 shadow-lg border border-border/50 flex items-center justify-center hover:bg-background transition-colors"
-          aria-label="Scroll left"
-        >
-          <ChevronLeft className="w-5 h-5 text-foreground" />
-        </motion.button>
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          onClick={() => scroll("right")}
-          className="absolute right-2 lg:right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-background/90 dark:bg-background/80 shadow-lg border border-border/50 flex items-center justify-center hover:bg-background transition-colors"
-          aria-label="Scroll right"
-        >
-          <ChevronRight className="w-5 h-5 text-foreground" />
-        </motion.button>
-
-        <div className="absolute right-0 top-0 bottom-0 w-16 lg:w-24 z-10 pointer-events-none bg-gradient-to-l from-background to-transparent" />
-        <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-24 z-10 pointer-events-none bg-gradient-to-r from-background to-transparent" />
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          <div
-            ref={scrollRef}
-            className="flex gap-4 lg:gap-6 overflow-x-auto scrollbar-hide px-6 lg:px-12"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {tripleProjects.map((project, index) => (
-              <motion.div
-                key={`${project.id}-${index}`}
-                initial={{ opacity: 0, y: 40, scale: 0.9, rotateX: 10 }}
-                animate={isInView ? { opacity: 1, y: 0, scale: 1, rotateX: 0 } : { opacity: 0, y: 40, scale: 0.9, rotateX: 10 }}
-                transition={{
-                  duration: 0.6,
-                  delay: Math.min((index % projects.length) * 0.12, 0.7),
-                  ease: [0.34, 1.56, 0.64, 1],
-                  type: "spring",
-                  stiffness: 90,
-                  damping: 12
-                }}
-                whileHover={{ y: -6, scale: 1.03 }}
-                className="flex-shrink-0 w-[280px] lg:w-[300px]"
-              >
-                {projectCard(project)}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+              {projectCard(project)}
+            </motion.article>
+          ))}
+        </div>
       </div>
 
       {/* Project detail modal (mantoothux-style structure) — Framer Motion */}
@@ -321,7 +205,7 @@ export const ProjectShowcase = () => {
                   >
                     {String(selectedProject.id).padStart(2, "0")}
                   </motion.span>
-                  <DialogTitle className="text-2xl md:text-3xl font-bold leading-tight">
+                  <DialogTitle className="text-2xl md:text-3xl leading-tight">
                     <motion.span
                       initial={{ opacity: 0, y: -8 }}
                       animate={{ opacity: 1, y: 0 }}

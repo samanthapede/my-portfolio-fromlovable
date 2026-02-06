@@ -70,7 +70,7 @@ export const HeroSection = () => {
           type: "spring",
           stiffness: 90,
           damping: 14
-        }} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight md:leading-[2.2] mb-8">
+        }} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight md:leading-[2.2] mb-8">
             Fractional{" "}
             <TooltipProvider delayDuration={200}>
               <Tooltip>

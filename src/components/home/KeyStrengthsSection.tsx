@@ -39,7 +39,7 @@ export const KeyStrengthsSection = () => {
             stiffness: 100,
             damping: 15
           }}
-          className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-center mb-12"
+          className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-6"
         >
           Key Strengths
         </motion.h2>
@@ -58,8 +58,7 @@ export const KeyStrengthsSection = () => {
                 stiffness: 90,
                 damping: 11
               }}
-              whileHover={{ y: -6, scale: 1.03, rotateY: 2 }}
-              className="bg-card border border-border rounded-xl p-6 hover:border-primary/30 transition-colors"
+              className="bg-card border border-border rounded-xl p-6"
             >
                 <strength.icon className="w-8 h-8 text-primary mb-4" />
                 <p className="font-medium">{strength.label}</p>

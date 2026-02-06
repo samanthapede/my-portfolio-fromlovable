@@ -105,7 +105,7 @@ export const AboutSection = () => {
   const tripleStrengths = [...strengths, ...strengths, ...strengths];
 
   return (
-    <section id="about" ref={ref} className="py-16 lg:py-24 bg-[#F1F4FB] dark:bg-background">
+    <section id="about" ref={ref} className="py-16 lg:py-24 bg-specialties dark:bg-background">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="flex flex-col md:flex-row lg:grid lg:grid-cols-2 gap-5 md:gap-6 lg:gap-[74px] items-start">
           {/* Image - max 400px on small screens, text wraps beside it */}
@@ -150,7 +150,7 @@ export const AboutSection = () => {
                 stiffness: 100,
                 damping: 14
               }}
-              className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-6"
+              className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-6"
             >
               Over a <span className="text-[#4A56D4]">decade of designing</span> intuitive, scalable interfaces that solve real problems
             </motion.h2>
@@ -240,7 +240,7 @@ export const AboutSection = () => {
               delay: 0.6,
               ease: "easeOut"
             }}
-            className="text-xl md:text-2xl font-bold leading-tight text-left mb-8"
+            className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-6"
           >
             Key Strengths
           </motion.h3>
@@ -267,8 +267,8 @@ export const AboutSection = () => {
             </motion.button>
 
             {/* Fade overlays */}
-            <div className="absolute right-0 top-0 bottom-0 w-16 lg:w-24 z-10 pointer-events-none bg-gradient-to-l from-[#F1F4FB] dark:from-background to-transparent" />
-            <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-24 z-10 pointer-events-none bg-gradient-to-r from-[#F1F4FB] dark:from-background to-transparent" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 lg:w-24 z-10 pointer-events-none bg-gradient-to-l from-specialties dark:from-background to-transparent" />
+            <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-24 z-10 pointer-events-none bg-gradient-to-r from-specialties dark:from-background to-transparent" />
 
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -290,7 +290,7 @@ export const AboutSection = () => {
                       delay: Math.min((index % strengths.length) * 0.1, 0.6),
                       ease: "easeOut",
                     }}
-                    className="flex-shrink-0 w-[260px] bg-card border border-border rounded-xl p-6 hover:border-primary/30 transition-colors"
+                    className="flex-shrink-0 w-[260px] bg-card border border-border rounded-xl p-6"
                   >
                     <strength.icon className="w-8 h-8 text-primary mb-4" />
                     <p className="font-medium">{strength.label}</p>

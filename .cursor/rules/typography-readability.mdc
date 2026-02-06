@@ -1,0 +1,16 @@
+---
+description: Typography and readability defaults (body copy, line length)
+alwaysApply: false
+globs: "**/*.css,**/index.css,**/tailwind.config.*"
+---
+
+# Typography & Readability Defaults
+
+## Paragraph line length
+
+Use a **max-width on paragraph containers of ~65–75ch** (e.g. `70ch`) to keep line length in a comfortable range for reading.
+
+- In base CSS: `p { max-width: 70ch; }` (along with `text-base` and `leading-relaxed`).
+- Or apply a utility/wrapper class with `max-width: 70ch` to reading-content containers.
+
+This is the preferred default for body copy readability in this project and in new projects unless overridden.

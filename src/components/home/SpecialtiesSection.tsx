@@ -26,11 +26,11 @@ export const SpecialtiesSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="pt-8 lg:pt-12 pb-16 lg:pb-24 bg-[#F1F4FB] dark:!bg-background"
+      className="pt-8 lg:pt-12 pb-16 lg:pb-24 bg-specialties dark:!bg-background"
     >
       <div className="container mx-auto px-6 lg:px-12">
         {/* Heading */}
-        <motion.h3
+        <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{
@@ -38,10 +38,10 @@ export const SpecialtiesSection = () => {
             delay: 0.1,
             ease: "easeOut"
           }}
-          className="text-xl md:text-2xl font-bold leading-tight text-left mb-8"
+          className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-6"
         >
           Specialties
-        </motion.h3>
+        </motion.h2>
 
         {/* Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-10">
@@ -58,7 +58,6 @@ export const SpecialtiesSection = () => {
                 stiffness: 100,
                 damping: 12
               }}
-              whileHover={{ y: -4, scale: 1.02 }}
             >
               <motion.span
                 initial={{ opacity: 0, scale: 0 }}
