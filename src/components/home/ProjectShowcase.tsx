@@ -186,7 +186,7 @@ export const ProjectShowcase = () => {
 
       {/* Project detail modal (mantoothux-style structure) — Framer Motion */}
       <Dialog open={!!selectedProject} onOpenChange={(open) => !open && setSelectedProject(null)}>
-        <DialogContent className="max-w-4xl w-[95vw] max-h-[90vh] overflow-y-auto p-0 gap-0 border-0 sm:rounded-2xl">
+        <DialogContent className="max-w-7xl w-[96vw] max-h-[95vh] overflow-y-auto p-0 gap-0 border-0 sm:rounded-2xl">
           <AnimatePresence mode="wait">
             {selectedProject && (
               <motion.div
