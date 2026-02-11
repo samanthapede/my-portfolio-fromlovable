@@ -1,21 +1,58 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { ChevronDown } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
 
-const specialties = [
+type PartnerWay = {
+  number: string;
+  title: string;
+  subtitle: string;
+  body: string;
+  bullets?: string[];
+  bulletsLabel?: string;
+  outcome?: string;
+};
+
+const ways: PartnerWay[] = [
   {
-    title: "Product Design & Growth",
-    description:
-      "Crafting high-performing digital products — from web apps to marketing sites — that scale beautifully and drive results. Every interaction is designed to delight and convert.",
+    number: "01",
+    title: "Product Clarity and Direction",
+    subtitle: "Product clarity for new and evolving products",
+    body: "I help teams figure out what to build, why it matters, and how it should work, before costly execution begins.",
+    bulletsLabel: "This often includes:",
+    bullets: [
+      "uncovering real user needs and assumptions",
+      "defining core flows and system behavior",
+      "shaping early product vision and design direction",
+      "translating vision into build-ready steps",
+    ],
+    outcome: "Outcome: confident decisions, aligned teams, and forward momentum.",
   },
   {
-    title: "Strategy & Systems",
-    description:
-      "Turning vision into actionable product strategy. I connect user needs with business goals, design scalable systems, and create clarity from complexity.",
+    number: "02",
+    title: "Strategy and Systems",
+    subtitle: "Turning vision into scalable product systems",
+    body: "I design systems that connect user needs, business goals, and technical realities, creating clarity where things previously felt tangled or undefined.",
+    bulletsLabel: "This work is especially valuable for products with:",
+    bullets: [
+      "complex workflows",
+      "multiple user types",
+      "interconnected features",
+    ],
   },
   {
-    title: "0 → 1 Leadership",
-    description:
-      "Guiding bold ideas from concept to launch with speed, insight, and craft. Whether leading teams or shaping direction, I help organizations move fast and build right.",
+    number: "03",
+    title: "0 to 1 Product Leadership",
+    subtitle: "From idea to launch",
+    body: "I partner with founders and early teams to guide products from concept to launch, helping them move fast without sacrificing clarity or quality.",
+    bullets: undefined,
+    outcome: "This often looks like stepping in as a strategic design and product partner during critical early phases.",
   },
 ];
 
@@ -26,60 +63,82 @@ export const SpecialtiesSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="pt-8 lg:pt-12 pb-16 lg:pb-24 bg-specialties dark:!bg-background"
+      className="pt-16 lg:pt-20 pb-20 sm:pb-24 lg:pb-32 bg-specialties dark:!bg-background"
     >
       <div className="container mx-auto px-6 lg:px-12">
-        {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.1,
-            ease: "easeOut"
-          }}
-          className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-6"
+          transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-6 sm:mb-8 text-[#004E95] dark:warm-gradient-text"
         >
-          Specialties
+          Ways I Partner
         </motion.h2>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-10">
-          {specialties.map((specialty, index) => (
-            <motion.div
-              key={specialty.title}
-              initial={{ opacity: 0, y: 40, scale: 0.9, rotateX: 10 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1, rotateX: 0 } : { opacity: 0, y: 40, scale: 0.9, rotateX: 10 }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.08,
-                ease: [0.34, 1.56, 0.64, 1],
-                type: "spring",
-                stiffness: 100,
-                damping: 12
-              }}
-            >
-              <motion.span
-                initial={{ opacity: 0, scale: 0 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-                transition={{
-                  duration: 0.4,
-                  delay: index * 0.08 + 0.2,
-                  ease: [0.34, 1.56, 0.64, 1]
-                }}
-                className="block text-sm font-medium text-muted-foreground/50 mb-2 tabular-nums"
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.5, delay: 0.15, ease: "easeOut" }}
+        >
+          <Accordion
+            type="single"
+            collapsible
+            className="space-y-3"
+          >
+            {ways.map((way, index) => (
+              <AccordionItem
+                key={way.number}
+                value={way.number}
+                className={cn(
+                  "rounded-xl border border-border bg-card overflow-hidden",
+                  "data-[state=open]:border-[#004E95]/25 data-[state=open]:shadow-sm"
+                )}
               >
-                {String(index + 1).padStart(2, "0")}
-              </motion.span>
-              <h4 className="text-lg font-semibold mb-1">
-                {specialty.title}
-              </h4>
-              <p className="text-base leading-relaxed text-muted-foreground">
-                {specialty.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+                <AccordionTrigger className="px-5 py-5 sm:px-6 sm:py-6 hover:no-underline hover:bg-muted/30 [&[data-state=open]]:bg-muted/20">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:gap-4 text-left">
+                    <span className="text-sm font-medium text-[#004E95]/70 tabular-nums mb-1 sm:mb-0 sm:w-8 shrink-0">
+                      {way.number}
+                    </span>
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-semibold text-[#004E95] leading-tight">
+                        {way.title}
+                      </h3>
+                      <p className="text-sm sm:text-base text-[#004E95]/80 font-normal mt-0.5">
+                        {way.subtitle}
+                      </p>
+                    </div>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-6 pt-4 sm:px-8 sm:pb-8 sm:pt-6">
+                  <div className="pl-0 sm:pl-10 space-y-5">
+                    <p className="text-[#004E95]/90 leading-relaxed">
+                      {way.body}
+                    </p>
+                    {way.bullets && way.bullets.length > 0 && (
+                      <div>
+                        {way.bulletsLabel && (
+                          <p className="text-sm font-medium text-[#004E95]/90 mb-2">
+                            {way.bulletsLabel}
+                          </p>
+                        )}
+                        <ul className="list-disc pl-5 space-y-1 text-[#004E95]/80 text-sm sm:text-base leading-relaxed">
+                          {way.bullets.map((bullet, i) => (
+                            <li key={i}>{bullet}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {way.outcome && (
+                      <p className="text-sm font-medium text-[#004E95] pt-1">
+                        {way.outcome}
+                      </p>
+                    )}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </motion.div>
       </div>
     </section>
   );

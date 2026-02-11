@@ -1,0 +1,20 @@
+---
+description: Preferred deployment method — use Vercel CLI, not GitHub push
+alwaysApply: true
+---
+
+# Deployment: Use Vercel CLI
+
+When the user asks to deploy, deploy to Vercel, or "push/deploy changes":
+
+1. **Do not** instruct them to use `git push origin main` or GitHub as the primary deploy step.
+2. **Preferred method:** Deploy via **Vercel CLI** from the project folder.
+
+## Steps to provide (or follow)
+
+1. Go to project: `cd /Users/samanthapede/my-portfolio-fromlovable`
+2. Run: `npx vercel --prod`
+3. First time: log in to Vercel in the browser if prompted; link to existing project (Y) or create new (N) as needed.
+4. Subsequent deploys: same command from the same folder.
+
+Optionally commit changes locally first (`git add -A && git commit -m "..."`) so the deploy is tracked, but the actual deploy step is **always** `npx vercel --prod` from the project directory.

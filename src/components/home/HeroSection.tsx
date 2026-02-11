@@ -1,6 +1,5 @@
 import { useRef, useEffect, useCallback, useState } from "react";
 import { motion, useInView, useAnimationControls } from "framer-motion";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import handIcon from "@/assets/hand-icon.png";
 export const HeroSection = () => {
   const ref = useRef(null);
@@ -36,7 +35,7 @@ export const HeroSection = () => {
     waveAnimation();
   }, [waveAnimation]);
   
-  return <section id="home" ref={ref} className="min-h-[80vh] py-12 sm:py-16 lg:py-24 border-solid border-secondary-foreground rounded-none border-0 flex items-center justify-center text-[#004E95]">
+  return <section id="home" ref={ref} className="min-h-[80vh] lg:min-h-screen py-16 sm:py-20 lg:py-28 border-solid border-secondary-foreground rounded-none border-0 flex items-center justify-center text-[#004E95]">
       <div className="container mx-auto px-6 lg:px-12">
         <motion.div initial={{
         opacity: 0,
@@ -111,25 +110,10 @@ export const HeroSection = () => {
           stiffness: 90,
           damping: 14
         }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-medium leading-tight md:leading-[2.2] mb-6 sm:mb-8">
-            Fractional{" "}
-            <TooltipProvider delayDuration={200}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <span className="warm-gradient-text opacity-[0.65] dark:opacity-100 transition-opacity duration-500 cursor-pointer hover:opacity-[0.85]">
-                    design partner
-                  </span>
-                </TooltipTrigger>
-                <TooltipContent side="bottom" className="max-w-sm bg-popover text-[#004E95] dark:text-[hsl(209_62%_60%)] border border-warm-gradient-subtle rounded-[20px] px-5 py-4 text-base font-medium shadow-md">
-                  <p className="leading-relaxed">
-                    ✨ You know your business intimately. I know how to learn from your users and drive quality designs at speed. We're better together. 🤝
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>{" "}
-            for high-impact experiences that{" "}
-            <span className="text-[#004E95] font-medium">
-              users love
-            </span>
+            <span className="warm-gradient-text opacity-[0.65] dark:opacity-100 transition-opacity duration-500 cursor-pointer hover:opacity-[0.85]">
+              Product clarity
+            </span>{" "}
+            for moments where getting it wrong is expensive.
           </motion.h1>
 
         </motion.div>

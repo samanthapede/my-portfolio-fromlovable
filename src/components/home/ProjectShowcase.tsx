@@ -132,7 +132,7 @@ export const ProjectShowcase = () => {
     <button
       type="button"
       onClick={() => setSelectedProject(project)}
-      className="group flex w-full flex-col lg:flex-row text-left rounded-2xl overflow-hidden border border-border bg-card transition-colors hover:border-primary/20 hover:bg-muted/20 dark:hover:bg-muted/10"
+      className="group flex w-full flex-col lg:flex-row text-left rounded-2xl overflow-hidden border border-border bg-card transition-colors hover:border-primary/30 hover:bg-muted/20 dark:hover:bg-muted/10 active:scale-[0.98] touch-manipulation"
     >
       {/* Photo: always left, 4:3 aspect ratio */}
       <div className="w-full lg:w-1/2 aspect-[4/3] flex-shrink-0 bg-muted/50 dark:bg-muted/20 overflow-hidden">
@@ -142,18 +142,30 @@ export const ProjectShowcase = () => {
       </div>
       {/* Content: always right */}
       <div className="w-full lg:w-1/2 flex flex-col justify-center p-6 lg:p-10">
-        <h3 className="font-extrabold text-foreground text-2xl lg:text-3xl mb-1 group-hover:text-primary transition-colors">
+        <h3 className="font-semibold text-[#004E95] text-xl sm:text-2xl lg:text-3xl mb-1 group-hover:warm-gradient-text-nav transition-all duration-300 ease-in-out">
           {project.title}
         </h3>
-        <p className="text-foreground/90 text-base mb-2">
+        <p className="text-[#004E95]/90 text-base mb-2">
           {project.description}
         </p>
         {tagLine(project) && (
-          <p className="text-sm text-muted-foreground mb-4">
+          <p className="text-sm text-[#004E95]/60 mb-4">
             {tagLine(project)}
           </p>
         )}
-        <span className="inline-flex items-center font-medium text-primary text-sm">
+        {/* Keyword pills */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          <span className="px-3 py-1 text-xs font-medium text-[#004E95] bg-[#004E95]/10 rounded-full border border-[#004E95]/20">
+            Keyword 1
+          </span>
+          <span className="px-3 py-1 text-xs font-medium text-[#004E95] bg-[#004E95]/10 rounded-full border border-[#004E95]/20">
+            Keyword 2
+          </span>
+          <span className="px-3 py-1 text-xs font-medium text-[#004E95] bg-[#004E95]/10 rounded-full border border-[#004E95]/20">
+            Keyword 3
+          </span>
+        </div>
+        <span className="inline-flex items-center font-medium text-[#004E95] text-sm group-hover:warm-gradient-text-nav transition-all duration-300 ease-in-out">
           View
           <ChevronRight className="w-4 h-4 ml-0.5 opacity-70" />
         </span>
@@ -162,9 +174,22 @@ export const ProjectShowcase = () => {
   );
 
   return (
-    <section id="work" ref={sectionRef} className="py-16 lg:py-24">
+    <section id="work" ref={sectionRef} className="py-20 sm:py-24 lg:py-32">
       {/* Match About section: container + padding; photo left, content right */}
       <div className="container mx-auto px-6 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="mb-10 sm:mb-12 lg:mb-14"
+        >
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-4 sm:mb-6 text-[#004E95] dark:warm-gradient-text">
+            Selected Work
+          </h2>
+          <p className="text-base sm:text-lg text-[#004E95]/90 max-w-[70ch] leading-relaxed">
+            A few examples of how I help teams make sense of complex product spaces, align around a clear vision, and move forward with confidence.
+          </p>
+        </motion.div>
         <div className="flex flex-col gap-8 lg:gap-12">
           {featuredProjects.map((project, index) => (
             <motion.article
@@ -205,7 +230,7 @@ export const ProjectShowcase = () => {
                   >
                     {String(selectedProject.id).padStart(2, "0")}
                   </motion.span>
-                  <DialogTitle className="text-2xl md:text-3xl leading-tight">
+                  <DialogTitle className="text-xl sm:text-2xl md:text-3xl leading-tight">
                     <motion.span
                       initial={{ opacity: 0, y: -8 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -240,7 +265,7 @@ export const ProjectShowcase = () => {
                       <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">
                         Overview
                       </h4>
-                      <p className="text-base leading-relaxed text-foreground">
+                      <p className="text-base leading-relaxed text-[#004E95]">
                         {selectedProject.overview}
                       </p>
                     </motion.div>
@@ -255,13 +280,13 @@ export const ProjectShowcase = () => {
                       {selectedProject.role && (
                         <div>
                           <span className="text-muted-foreground">Role</span>
-                          <p className="font-medium text-foreground">{selectedProject.role}</p>
+                          <p className="font-medium text-[#004E95]">{selectedProject.role}</p>
                         </div>
                       )}
                       {selectedProject.year && (
                         <div>
                           <span className="text-muted-foreground">Year</span>
-                          <p className="font-medium text-foreground">{selectedProject.year}</p>
+                          <p className="font-medium text-[#004E95]">{selectedProject.year}</p>
                         </div>
                       )}
                     </motion.div>
@@ -274,7 +299,7 @@ export const ProjectShowcase = () => {
                   >
                     <Link
                       to={selectedProject.link}
-                      className="inline-flex items-center font-medium text-primary hover:underline"
+                      className="inline-flex items-center font-medium text-[#004E95] hover:warm-gradient-text-nav hover:underline transition-all duration-300 ease-in-out"
                       onClick={() => setSelectedProject(null)}
                     >
                       View full case study →

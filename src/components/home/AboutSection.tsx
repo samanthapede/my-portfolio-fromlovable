@@ -1,37 +1,73 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import {
-  Lightbulb,
   Users,
-  Zap,
   BarChart3,
-  Target,
-  Handshake,
   Compass,
   Layers,
+  Flag,
+  Rocket,
 } from "lucide-react";
 import headshot from "@/assets/headshot.jpg";
 
 const strengths = [
-  { icon: Lightbulb, label: <><strong>Strategic</strong> and system thinking</> },
-  { icon: Users, label: <><strong>Leading teams</strong>, projects, and design cycles</> },
-  { icon: Zap, label: <><strong>Hands-on</strong> execution & rapid iteration</> },
-  { icon: BarChart3, label: <><strong>Translating research</strong> & data into user-centered designs</> },
-  { icon: Target, label: <><strong>Balancing user needs</strong> with business goals</> },
-  { icon: Handshake, label: <><strong>Collaborating</strong> to ship smart, scalable solutions</> },
-  { icon: Compass, label: <>Stakeholder <strong>alignment</strong></> },
-  { icon: Layers, label: <>Creating <strong>greenpath visions</strong> and viable MVPs</> },
+  { icon: Compass, title: "Product clarity in ambiguous spaces", description: "Helping teams quickly make sense of complex problems and focus on what matters most." },
+  { icon: Layers, title: "System and flow design", description: "Designing how products work end to end, not just how individual screens look." },
+  { icon: BarChart3, title: "User-rooted decision making", description: "Translating research, data, and real user behavior into confident product direction." },
+  { icon: Flag, title: "Vision to build-ready direction", description: "Turning long-term goals into clear, actionable next steps teams can actually ship." },
+  { icon: Users, title: "Stakeholder alignment", description: "Creating shared understanding across product, engineering, and leadership." },
+  { icon: Rocket, title: "Momentum without rework", description: "Helping teams move forward with confidence and avoid costly missteps." },
 ];
 
 export const AboutSection = () => {
   const ref = useRef(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const photoRef = useRef<HTMLDivElement>(null);
-  const strengthsScrollRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const highlightContainerRef = useRef<HTMLDivElement>(null);
+  const highlightElementRef = useRef<HTMLDivElement>(null);
+  const highlightTextRef = useRef<HTMLHeadingElement>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const [desktopStrengthIndex, setDesktopStrengthIndex] = useState(0);
+
+  // Set highlight dimensions: width matches container width, height matches text height + 40px padding
+  useEffect(() => {
+    const updateHighlightSize = () => {
+      if (highlightContainerRef.current && highlightElementRef.current && highlightTextRef.current) {
+        // Get the full container width including padding (this becomes the rotated width)
+        const containerRect = highlightContainerRef.current.getBoundingClientRect();
+        const containerWidth = containerRect.width;
+        
+        // Get the actual text height (this becomes the rotated height, but we need to add 40px padding)
+        const textRect = highlightTextRef.current.getBoundingClientRect();
+        const textHeight = textRect.height;
+        
+        // Set CSS custom properties
+        // --highlight-height: container width (becomes rotated width)
+        highlightElementRef.current.style.setProperty('--highlight-height', `${containerWidth}px`);
+        // --highlight-width: text height + 40px (20px top + 20px bottom) (becomes rotated height)
+        highlightElementRef.current.style.setProperty('--highlight-width', `${textHeight + 40}px`);
+      }
+    };
+
+    if (isInView && highlightContainerRef.current && highlightTextRef.current) {
+      // Use ResizeObserver for accurate measurements
+      const resizeObserver = new ResizeObserver(() => {
+        updateHighlightSize();
+      });
+      resizeObserver.observe(highlightContainerRef.current);
+      resizeObserver.observe(highlightTextRef.current);
+      
+      // Initial update with multiple attempts to ensure accurate measurements
+      updateHighlightSize();
+      setTimeout(updateHighlightSize, 100);
+      setTimeout(updateHighlightSize, 300);
+      setTimeout(updateHighlightSize, 600);
+      
+      return () => {
+        resizeObserver.disconnect();
+      };
+    }
+  }, [isInView]);
 
   // Match photo height to content height on desktop
   useEffect(() => {
@@ -49,64 +85,19 @@ export const AboutSection = () => {
     return () => window.removeEventListener('resize', matchHeights);
   }, [isInView, imageLoaded]);
 
-  // Strengths carousel navigation
-  const getStrengthCardWidth = useCallback(() => {
-    const el = strengthsScrollRef.current;
-    if (!el) return 280; // approximate card width + gap
-    const firstCard = el.children[0] as HTMLElement | undefined;
-    if (!firstCard) return 280;
-    const gap = parseFloat(getComputedStyle(el).gap) || 24;
-    return firstCard.offsetWidth + gap;
-  }, []);
-
-  const scrollStrengthToIndex = useCallback((index: number) => {
-    const el = strengthsScrollRef.current;
-    if (!el) return;
-    const cardWidth = getStrengthCardWidth();
-    el.scrollTo({ left: index * cardWidth, behavior: "smooth" });
-  }, [getStrengthCardWidth]);
-
-  const scrollStrengthDesktop = useCallback((direction: "left" | "right") => {
-    const newIndex = direction === "right"
-      ? (desktopStrengthIndex + 1) % strengths.length
-      : (desktopStrengthIndex - 1 + strengths.length) % strengths.length;
-    setDesktopStrengthIndex(newIndex);
-    scrollStrengthToIndex(newIndex);
-  }, [desktopStrengthIndex, scrollStrengthToIndex]);
-
-  // Sync desktopStrengthIndex with manual scroll
-  useEffect(() => {
-    const el = strengthsScrollRef.current;
-    if (!el) return;
-    let ticking = false;
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        const cardWidth = getStrengthCardWidth();
-        const idx = Math.round(el.scrollLeft / cardWidth);
-        if (idx >= strengths.length) {
-          el.scrollLeft = el.scrollLeft - strengths.length * cardWidth;
-          setDesktopStrengthIndex(idx - strengths.length);
-        } else if (idx < 0) {
-          el.scrollLeft = el.scrollLeft + strengths.length * cardWidth;
-          setDesktopStrengthIndex(idx + strengths.length);
-        } else {
-          setDesktopStrengthIndex(idx);
-        }
-        ticking = false;
-      });
-    };
-    el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
-  }, [getStrengthCardWidth]);
-
-  // Triple the items: [clone-set] [original-set] [clone-set] for seamless looping
-  const tripleStrengths = [...strengths, ...strengths, ...strengths];
-
   return (
-    <section id="about" ref={ref} className="py-16 lg:py-24 bg-specialties dark:bg-background">
+    <section id="about" ref={ref} className="py-20 sm:py-24 lg:py-32 bg-specialties dark:bg-background">
       <div className="container mx-auto px-6 lg:px-12">
+        {/* SVG gradient definition for icons - cool gradient at 24deg */}
+        <svg width="0" height="0" style={{ position: 'absolute' }}>
+          <defs>
+            <linearGradient id="cool-gradient-icons-about" x1="0%" y1="0%" x2="91.26%" y2="40.68%" gradientUnits="userSpaceOnUse">
+              <stop offset="28.92%" stopColor="rgb(111, 33, 216)" />
+              <stop offset="61.39%" stopColor="rgb(0, 97, 162)" />
+              <stop offset="88.66%" stopColor="rgb(0, 125, 134)" />
+            </linearGradient>
+          </defs>
+        </svg>
         <div className="flex flex-col md:flex-row lg:grid lg:grid-cols-2 gap-5 md:gap-6 lg:gap-[74px] items-start">
           {/* Image - max 400px on small screens, text wraps beside it */}
           <motion.div
@@ -135,7 +126,7 @@ export const AboutSection = () => {
           <motion.div
             ref={contentRef}
             initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="flex-1 min-w-0 lg:flex-none"
           >
@@ -150,9 +141,9 @@ export const AboutSection = () => {
                 stiffness: 100,
                 damping: 14
               }}
-              className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-6"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-4 sm:mb-6 text-[#004E95] dark:warm-gradient-text"
             >
-              Over a <span className="text-[#4A56D4]">decade of designing</span> intuitive, scalable interfaces that solve real problems
+              About Sam
             </motion.h2>
 
             <div className="space-y-5">
@@ -167,12 +158,25 @@ export const AboutSection = () => {
                   stiffness: 100,
                   damping: 13
                 }}
-                className="text-base leading-relaxed text-muted-foreground"
+                className="text-base leading-relaxed text-[#004E95]/70"
               >
-                With over a decade of experience leading user experience, interface
-                design, and user research across fast-moving teams. I now work
-                independently, helping great companies design intuitive, scalable
-                interfaces that solve real problems for real people.
+                I've spent over a decade helping teams design and ship complex products in fast-moving environments.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20, x: -10 }}
+                animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 20, x: -10 }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.3,
+                  ease: [0.16, 1, 0.3, 1],
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 13
+                }}
+                className="text-base leading-relaxed text-[#004E95]/70"
+              >
+                I partner with founders and product leaders at moments when clarity matters most: early product definition, major new features, or times when teams need alignment before execution.
               </motion.p>
 
               <motion.p
@@ -186,51 +190,58 @@ export const AboutSection = () => {
                   stiffness: 100,
                   damping: 13
                 }}
-                className="text-base leading-relaxed text-muted-foreground"
+                className="text-base leading-relaxed text-[#004E95]/70"
               >
-                Most recently, I spent 4+ years at Shopify as a lead designer in the
-                logistics space, designing complex systems across Inventory,
-                Fulfillment, and Shipping.
+                Most recently, I spent 4+ years at Shopify as a Lead Designer working on large-scale systems across inventory, fulfillment, and shipping, where decisions had meaningful downstream impact and complexity was the norm.
               </motion.p>
 
-              <motion.p
+              <motion.div
                 initial={{ opacity: 0, y: 20, x: -10 }}
                 animate={isInView ? { opacity: 1, y: 0, x: 0 } : { opacity: 0, y: 20, x: -10 }}
                 transition={{
                   duration: 0.6,
-                  delay: 0.45,
+                  delay: 0.4,
                   ease: [0.16, 1, 0.3, 1],
                   type: "spring",
                   stiffness: 100,
                   damping: 13
                 }}
-                className="text-base leading-relaxed text-muted-foreground"
+                className="text-base leading-relaxed text-[#004E95]/70"
               >
-                I bring a mix of strategic thinking and hands-on execution to every
-                engagement. I'm most effective when I'm helping teams move fast while
-                staying focused on what matters.
-              </motion.p>
+                <p className="mb-3">Today, I work independently, helping teams:</p>
+                <ul className="list-disc pl-5 space-y-1">
+                  <li>make sense of complex problem spaces</li>
+                  <li>deeply understand their users (often beyond initial assumptions)</li>
+                  <li>translate product vision into focused, build-ready direction</li>
+                </ul>
+              </motion.div>
             </div>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 25, scale: 0.97 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 25, scale: 0.97 }}
-              transition={{
-                duration: 0.7,
-                delay: 0.55,
-                ease: [0.16, 1, 0.3, 1],
-                type: "spring",
-                stiffness: 90,
-                damping: 12
-              }}
-              className="text-xl font-semibold text-foreground mt-8 text-left leading-normal"
-            >
-              Design, for me, is about clarity, momentum, and impact. <span className="text-[#4A56D4]">I thrive in environments where I can help shape the big picture</span>, while sweating the details that make an experience truly work.
-            </motion.h2>
+            <div className="relative mt-8 w-full">
+              <div ref={highlightContainerRef} className="relative w-full inline-block" style={{ paddingTop: '20px', paddingBottom: '20px', paddingLeft: '20px', paddingRight: '20px' }}>
+                <div ref={highlightElementRef} className="warm-gradient-highlight absolute inset-0 pointer-events-none" aria-hidden="true" style={{ opacity: 1, visibility: 'visible' }}></div>
+                <motion.h2
+                  ref={highlightTextRef}
+                  initial={{ opacity: 0, y: 25, scale: 0.97 }}
+                  animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 1, y: 0, scale: 1 }}
+                  transition={{
+                    duration: 0.7,
+                    delay: 0.55,
+                    ease: [0.16, 1, 0.3, 1],
+                    type: "spring",
+                    stiffness: 90,
+                    damping: 12
+                  }}
+                  className="text-lg md:text-xl font-medium text-[#004E95] text-left leading-normal relative z-10 w-full"
+                >
+                  I'm most effective when I can help teams focus on the most important thing, move intentionally, and align around a shared understanding of what they're building and why. For me, design is about clarity, momentum, and impact, not just execution.
+                </motion.h2>
+              </div>
+            </div>
           </motion.div>
         </div>
 
-        {/* Key Strengths Carousel */}
+        {/* What Teams Bring Me In For - grid for quick scanning */}
         <div className="mt-16 lg:mt-20 mb-0">
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
@@ -240,65 +251,39 @@ export const AboutSection = () => {
               delay: 0.6,
               ease: "easeOut"
             }}
-            className="text-2xl md:text-3xl lg:text-4xl font-extrabold leading-tight mb-6"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-6 sm:mb-8 text-[#004E95] dark:warm-gradient-text"
           >
-            Key Strengths
+            What Teams Bring Me In For
           </motion.h3>
 
-          {/* Scrollable carousel with chevrons */}
-          <div className="relative">
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              onClick={() => scrollStrengthDesktop("left")}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-background/90 dark:bg-background/80 shadow-lg border border-border/50 flex items-center justify-center hover:bg-background transition-colors"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft className="w-5 h-5 text-foreground" />
-            </motion.button>
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-              onClick={() => scrollStrengthDesktop("right")}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-background/90 dark:bg-background/80 shadow-lg border border-border/50 flex items-center justify-center hover:bg-background transition-colors"
-              aria-label="Scroll right"
-            >
-              <ChevronRight className="w-5 h-5 text-foreground" />
-            </motion.button>
-
-            {/* Fade overlays */}
-            <div className="absolute right-0 top-0 bottom-0 w-16 lg:w-24 z-10 pointer-events-none bg-gradient-to-l from-specialties dark:from-background to-transparent" />
-            <div className="absolute left-0 top-0 bottom-0 w-16 lg:w-24 z-10 pointer-events-none bg-gradient-to-r from-specialties dark:from-background to-transparent" />
-
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-              transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
-            >
-              <div
-                ref={strengthsScrollRef}
-                className="flex gap-4 lg:gap-6 overflow-x-auto scrollbar-hide px-6 lg:px-12"
-                style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            transition={{ duration: 0.5, delay: 0.65, ease: "easeOut" }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5"
+          >
+            {strengths.map((strength, index) => (
+              <motion.div
+                key={strength.title}
+                initial={{ opacity: 0, y: 16 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                transition={{
+                  duration: 0.4,
+                  delay: 0.7 + index * 0.05,
+                  ease: "easeOut",
+                }}
+                className="flex flex-col gap-3 rounded-xl p-5 lg:p-6 bg-card border border-border hover:border-[#004E95]/20 hover:bg-muted/20 dark:hover:bg-muted/10 transition-colors"
               >
-                {tripleStrengths.map((strength, index) => (
-                  <motion.div
-                    key={`${strength.label}-${index}`}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: Math.min((index % strengths.length) * 0.1, 0.6),
-                      ease: "easeOut",
-                    }}
-                    className="flex-shrink-0 w-[260px] bg-card border border-border rounded-xl p-6"
-                  >
-                    <strength.icon className="w-8 h-8 text-primary mb-4" />
-                    <p className="font-medium">{strength.label}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+                <div className="flex items-center gap-3">
+                  <span className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center bg-[#004E95]/10 dark:bg-[#004E95]/20">
+                    <strength.icon className="w-5 h-5 text-[#004E95]" strokeWidth={1.5} stroke="currentColor" fill="none" />
+                  </span>
+                  <h4 className="text-[#004E95] font-semibold leading-tight">{strength.title}</h4>
+                </div>
+                <p className="text-[#004E95]/80 text-sm leading-relaxed pl-0">{strength.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

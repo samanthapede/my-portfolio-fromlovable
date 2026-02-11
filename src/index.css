@@ -24,7 +24,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 212 50% 18%;
 
-    --primary: 236 61% 56%;
+    /* Primary/accent: first stop of warm gradient (#F94F97) */
+    --primary: 340 95% 64%; /* #F94F97 */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 40 20% 94%;
@@ -34,7 +35,7 @@
     /* Muted text darkened for readable contrast on warm background (was 40% lightness) */
     --muted-foreground: 212 35% 32%;
 
-    --accent: 236 61% 56%;
+    --accent: 340 95% 64%; /* #F94F97 */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -42,7 +43,7 @@
 
     --border: 40 15% 88%;
     --input: 40 15% 88%;
-    --ring: 236 61% 56%;
+    --ring: 340 95% 64%; /* #F94F97 */
 
     --radius: 0.75rem;
 
@@ -58,12 +59,12 @@
     /* Sidebar */
     --sidebar-background: 40 25% 97%;
     --sidebar-foreground: 212 50% 18%;
-    --sidebar-primary: 236 61% 56%;
+    --sidebar-primary: 340 95% 64%; /* #F94F97 */
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 5% 96%;
     --sidebar-accent-foreground: 240 6% 10%;
     --sidebar-border: 240 6% 90%;
-    --sidebar-ring: 236 61% 56%;
+    --sidebar-ring: 340 95% 64%; /* #F94F97 */
   }
 
   .dark {
@@ -76,7 +77,7 @@
     --popover: 240 10% 14%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 236 61% 60%;
+    --primary: 340 95% 65%; /* #F94F97 */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 240 5% 20%;
@@ -85,7 +86,7 @@
     --muted: 240 5% 20%;
     --muted-foreground: 240 5% 70%;
 
-    --accent: 236 61% 60%;
+    --accent: 340 95% 65%; /* #F94F97 */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62% 30%;
@@ -93,7 +94,7 @@
 
     --border: 240 5% 24%;
     --input: 240 5% 24%;
-    --ring: 236 61% 60%;
+    --ring: 340 95% 65%; /* #F94F97 */
 
     /* Section surfaces */
     --specialties-surface: var(--background);
@@ -106,12 +107,12 @@
     /* Sidebar */
     --sidebar-background: 240 6% 14%;
     --sidebar-foreground: 240 5% 96%;
-    --sidebar-primary: 236 61% 60%;
+    --sidebar-primary: 340 95% 65%; /* #F94F97 */
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 4% 20%;
     --sidebar-accent-foreground: 240 5% 96%;
     --sidebar-border: 240 4% 24%;
-    --sidebar-ring: 236 61% 60%;
+    --sidebar-ring: 340 95% 65%; /* #F94F97 */
   }
 }
 
@@ -119,6 +120,7 @@
   * {
     @apply border-border;
   }
+  
 
   /* Readable base: 16px minimum for body copy (WCAG / UX best practice) */
   html {
@@ -129,7 +131,8 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased font-sans text-base leading-relaxed;
+    @apply bg-background antialiased font-sans text-base leading-relaxed;
+    color: #004E95;
   }
 
   /* Default paragraphs: readable size, line height, and comfortable line length (~65-75ch) */
@@ -138,12 +141,29 @@
     max-width: 70ch;
   }
 
+  /* Mobile: ensure minimum font size for readability */
+  @media (max-width: 640px) {
+    p {
+      font-size: 16px; /* Prevent zoom on iOS */
+    }
+    
+    /* Improve touch targets */
+    button, a {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  h1, h2, h3 {
+    color: #004E95;
+  }
+
   h1, h3 {
-    font-weight: 700;
+    font-weight: 600;
   }
 
   h2 {
-    font-weight: 800;
+    font-weight: 600;
   }
 
   /* Fallback for browsers without scrollbar-gutter support */
@@ -161,6 +181,346 @@
       hsl(var(--gradient-blue)),
       hsl(var(--gradient-cyan))
     );
+  }
+
+  /* Warm gradient (Figma Website Framing) — 45deg diagonal with 4 stops */
+  .warm-gradient-text {
+    @apply bg-clip-text text-transparent;
+    /* Gradient from Figma: original 205deg, now 45deg diagonal (top-left to bottom-right) */
+    /* Stops at 11.76%, 32.54%, 54.85%, 81.78% */
+    /* Using solid colors for text gradient (opacity doesn't work with bg-clip-text) */
+    background-image: linear-gradient(45deg, #F94F97 11.76%, #EA21B4 32.54%, #FF7359 54.85%, #E69DAA 81.78%);
+  }
+
+  /* Warm gradient text at 0.65 opacity for nav items */
+  .warm-gradient-text-nav {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(45deg, rgba(249, 79, 151, 0.65) 11.76%, rgba(234, 33, 180, 0.65) 32.54%, rgba(255, 115, 89, 0.65) 54.85%, rgba(230, 157, 170, 0.65) 81.78%);
+  }
+
+  /* Warm gradient text at 0.45 opacity for dark mode */
+  .dark .warm-gradient-text {
+    background-image: linear-gradient(45deg, rgba(249, 79, 151, 0.45) 11.76%, rgba(234, 33, 180, 0.45) 32.54%, rgba(255, 115, 89, 0.45) 54.85%, rgba(230, 157, 170, 0.45) 81.78%);
+  }
+
+  /* Warm gradient text at 0.55 opacity for hover (email link) - dark mode */
+  .dark .email-link-hover:hover {
+    @apply bg-clip-text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(45deg, rgba(249, 79, 151, 0.55) 11.76%, rgba(234, 33, 180, 0.55) 32.54%, rgba(255, 115, 89, 0.55) 54.85%, rgba(230, 157, 170, 0.55) 81.78%);
+    text-decoration: underline;
+  }
+
+  /* Warm gradient text at 0.75 opacity for hover (email link) - light mode */
+  .email-link-hover:hover {
+    @apply bg-clip-text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(45deg, rgba(249, 79, 151, 0.75) 11.76%, rgba(234, 33, 180, 0.75) 32.54%, rgba(255, 115, 89, 0.75) 54.85%, rgba(230, 157, 170, 0.75) 81.78%);
+    text-decoration: underline;
+  }
+
+  /* Apply gradient to SVG icon on hover - dark mode */
+  .dark .email-link-hover:hover .email-icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .dark .email-link-hover:hover .email-icon-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: linear-gradient(45deg, rgba(249, 79, 151, 0.55) 11.76%, rgba(234, 33, 180, 0.55) 32.54%, rgba(255, 115, 89, 0.55) 54.85%, rgba(230, 157, 170, 0.55) 81.78%);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='16' x='2' y='4' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='16' x='2' y='4' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    pointer-events: none;
+  }
+
+  .dark .email-link-hover:hover .email-icon {
+    opacity: 0;
+  }
+
+  /* Apply gradient to SVG icon on hover - light mode */
+  .email-link-hover:hover .email-icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .email-link-hover:hover .email-icon-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: linear-gradient(45deg, rgba(249, 79, 151, 0.75) 11.76%, rgba(234, 33, 180, 0.75) 32.54%, rgba(255, 115, 89, 0.75) 54.85%, rgba(230, 157, 170, 0.75) 81.78%);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='16' x='2' y='4' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='16' x='2' y='4' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    pointer-events: none;
+  }
+
+  .email-link-hover:hover .email-icon {
+    opacity: 0;
+  }
+
+  /* Darker warm gradient for better readability in light mode (testimonials) */
+  .warm-gradient-text-light {
+    @apply bg-clip-text text-transparent;
+    /* Darker, more saturated versions for better contrast on light backgrounds */
+    background-image: linear-gradient(45deg, #D91A6B 11.76%, #C41A8F 32.54%, #E04A2E 54.85%, #C85A6B 81.78%);
+  }
+
+  /* Alternative: Warm gradient with text shadow for readability */
+  .warm-gradient-text-shadow {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(45deg, #F94F97 11.76%, #EA21B4 32.54%, #FF7359 54.85%, #E69DAA 81.78%);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 1px rgba(255, 255, 255, 0.8);
+  }
+
+  /* Warm gradient for testimonials with different angle (225deg - diagonal) */
+  .warm-gradient-text-testimonial {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(225deg, rgba(249, 79, 151, 0.55) 11.76%, rgba(234, 33, 180, 0.55) 32.54%, rgba(255, 115, 89, 0.55) 54.85%, rgba(230, 157, 170, 0.55) 81.78%);
+  }
+
+  /* Light mode testimonial hover - same gradient but without #E69DAA, evenly spaced, 0.75 opacity */
+  .warm-gradient-text-testimonial-light {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, rgba(249, 79, 151, 0.75) 0%, rgba(234, 33, 180, 0.75) 50%, rgba(255, 115, 89, 0.75) 100%);
+  }
+
+  /* Warm gradient background for buttons and backgrounds */
+  .bg-warm-gradient {
+    background: linear-gradient(45deg, rgba(249, 79, 151, 0.65) 11.76%, rgba(234, 33, 180, 0.65) 32.54%, rgba(255, 115, 89, 0.65) 54.85%, rgba(230, 157, 170, 0.65) 81.78%);
+  }
+
+  /* Warm gradient highlight container - responsive */
+  .warm-gradient-highlight {
+    position: absolute;
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    --highlight-height: 638px; /* Default, will be set via JS - becomes rotated width */
+    --highlight-width: 150px; /* Default, will be set via JS - becomes rotated height */
+  }
+
+  .warm-gradient-highlight::before {
+    content: '';
+    position: absolute;
+    /* Original dimensions: 150px × 638px */
+    /* After 90deg rotation: 638px × 150px */
+    /* Width becomes height after rotation - dynamically set to text height + 40px padding */
+    width: var(--highlight-width, 150px);
+    /* Height becomes width after rotation - dynamically set to match container width */
+    height: var(--highlight-height, 638px);
+    border-radius: 20px;
+    opacity: 0.15;
+    background: linear-gradient(205deg, rgba(249, 79, 151, 0.65) 11.76%, rgba(234, 33, 180, 0.65) 32.54%, rgba(255, 115, 89, 0.65) 54.85%, rgba(230, 157, 170, 0.65) 81.78%);
+    pointer-events: none;
+    z-index: -1;
+    /* After 90deg rotation: height becomes width, width becomes height */
+    /* Position centered behind the text content */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    transform-origin: center center;
+    display: block !important;
+    visibility: visible !important;
+  }
+
+
+  .bg-warm-gradient-solid {
+    background: linear-gradient(45deg, #F94F97 11.76%, #EA21B4 32.54%, #FF7359 54.85%, #E69DAA 81.78%);
+  }
+
+  /* Warm gradient border */
+  .border-warm-gradient {
+    position: relative;
+    background: rgba(251, 251, 249, 1);
+    border: 1px solid transparent;
+  }
+  
+  .border-warm-gradient::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border-radius: 20px;
+    background: linear-gradient(45deg, rgba(249, 79, 151, 0.5) 11.76%, rgba(234, 33, 180, 0.5) 32.54%, rgba(255, 115, 89, 0.5) 54.85%, rgba(230, 157, 170, 0.5) 81.78%);
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  .border-warm-gradient::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 19px;
+    background: rgba(251, 251, 249, 1);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Dark mode styles for navbar */
+  .dark .border-warm-gradient {
+    background: hsl(var(--background));
+    backdrop-filter: blur(12px);
+  }
+
+  .dark .border-warm-gradient::after {
+    background: hsl(var(--background));
+  }
+
+  /* Subtle warm gradient border for tooltips */
+  .border-warm-gradient-subtle {
+    border: 1px solid rgba(249, 79, 151, 0.25);
+  }
+
+  .dark .border-warm-gradient-subtle {
+    border-color: rgba(249, 79, 151, 0.4);
+  }
+
+  /* Warm gradient border for testimonials at 0.4 opacity */
+  .border-warm-gradient-testimonial {
+    position: relative;
+    background: hsl(var(--card));
+    border: none !important;
+  }
+  
+  .border-warm-gradient-testimonial::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg, rgba(249, 79, 151, 0.4) 11.76%, rgba(234, 33, 180, 0.4) 32.54%, rgba(255, 115, 89, 0.4) 54.85%, rgba(230, 157, 170, 0.4) 81.78%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+  .border-warm-gradient-testimonial::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: hsl(var(--card));
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Ensure content is above background layers */
+  .border-warm-gradient-testimonial > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Match border-radius - rounded-xl (12px) */
+  .border-warm-gradient-testimonial.rounded-xl::before {
+    border-radius: 13px;
+  }
+  
+  .border-warm-gradient-testimonial.rounded-xl::after {
+    border-radius: 12px;
+  }
+
+  /* Match border-radius - rounded-2xl (16px) */
+  .border-warm-gradient-testimonial.rounded-2xl::before {
+    border-radius: 17px;
+  }
+  
+  .border-warm-gradient-testimonial.rounded-2xl::after {
+    border-radius: 16px;
+  }
+
+  /* Nav hover gradient text */
+  .nav-item {
+    @apply transition-all duration-300 ease-in-out;
+    /* Prevent layout shift by maintaining consistent spacing */
+    display: inline-block;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .nav-item:hover {
+    background-image: linear-gradient(45deg, rgba(249, 79, 151, 0.65) 11.76%, rgba(234, 33, 180, 0.65) 32.54%, rgba(255, 115, 89, 0.65) 54.85%, rgba(230, 157, 170, 0.65) 81.78%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-weight: 700;
+    transform: translateZ(0);
+  }
+  
+  .nav-item.font-bold:hover {
+    font-weight: 700;
+  }
+
+  /* Cool gradient for icons */
+  .cool-gradient-icon {
+    background: linear-gradient(24deg, rgba(111, 33, 216, 1) 28.92%, rgba(0, 97, 162, 1) 61.39%, rgba(0, 125, 134, 1) 88.66%);
+    -webkit-mask: var(--icon-mask);
+    mask: var(--icon-mask);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+  }
+
+  /* Alternative: use CSS to apply gradient via stroke */
+  .cool-gradient-icon-wrapper {
+    display: inline-block;
+    position: relative;
+  }
+
+  .cool-gradient-icon-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(24deg, rgba(111, 33, 216, 1) 28.92%, rgba(0, 97, 162, 1) 61.39%, rgba(0, 125, 134, 1) 88.66%);
+    -webkit-mask-image: var(--icon-svg);
+    mask-image: var(--icon-svg);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
   }
 
   .gradient-line {
@@ -230,4 +590,32 @@
 /* Prevent any scrolling within the widget container */
 .calendly-inline-widget * {
   overflow: hidden !important;
+}
+
+/* Dark mode styling for Calendly container */
+.dark .calendly-inline-widget {
+  background-color: hsl(var(--card)) !important;
+  color-scheme: light;
+}
+
+.dark .calendly-inline-widget iframe {
+  background-color: hsl(var(--card)) !important;
+  /* More aggressive darkening to match dark theme */
+  filter: brightness(0.75) contrast(1.1) saturate(0.9);
+  /* Ensure iframe background is dark */
+  background: hsl(var(--card)) !important;
+}
+
+/* Force blue color for testimonial role text in dark mode */
+.dark .testimonial-role,
+.dark p.testimonial-role,
+.dark [class*="testimonial-role"] {
+  color: #004E95 !important;
+}
+
+/* Even more specific selectors */
+.dark .bg-card .testimonial-role,
+.dark .bg-card p.testimonial-role,
+.dark div.testimonial-role {
+  color: #004E95 !important;
 }
