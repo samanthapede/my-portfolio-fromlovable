@@ -90,11 +90,12 @@ export const SpecialtiesSection = () => {
                 key={way.number}
                 value={way.number}
                 className={cn(
-                  "rounded-xl border border-border bg-card overflow-hidden",
+                  "group rounded-xl border border-border bg-card overflow-hidden transition-colors",
+                  "hover:border-[rgba(249,79,151,0.4)] dark:hover:border-[rgba(111,33,216,0.4)]",
                   "data-[state=open]:border-[#004E95]/25 data-[state=open]:shadow-sm"
                 )}
               >
-                <AccordionTrigger className="px-5 py-5 sm:px-6 sm:py-6 hover:no-underline hover:bg-muted/30 [&[data-state=open]]:bg-muted/20">
+                <AccordionTrigger className="gradient-hover-subtle px-5 py-5 sm:px-6 sm:py-6 hover:no-underline [&[data-state=open]]:bg-muted/20">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:gap-4 text-left">
                     <span className="text-sm font-medium text-primary-text/70 tabular-nums mb-1 sm:mb-0 sm:w-8 shrink-0">
                       {way.number}

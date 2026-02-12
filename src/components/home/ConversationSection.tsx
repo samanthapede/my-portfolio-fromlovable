@@ -99,9 +99,9 @@ export const ConversationSection = () => {
             size="lg"
             variant="outline"
             onClick={() => setOpen(true)}
-            className="conversation-cta-btn rounded-lg px-8 py-6 text-lg font-medium transition-all duration-300"
+            className="conversation-cta-btn rounded-lg px-8 py-6 text-lg font-medium transition-all duration-300 hover:bg-background"
           >
-            Start a conversation
+            <span className="relative z-10">Start a conversation</span>
           </Button>
         </motion.div>
       </div>
@@ -151,9 +151,9 @@ export const ConversationSection = () => {
                   type="button"
                   variant="outline"
                   onClick={() => setOpen(false)}
-                  className="rounded-lg"
+                  className="gradient-hover-outline rounded-lg hover:bg-background"
                 >
-                  Cancel
+                  <span className="relative z-10">Cancel</span>
                 </Button>
                 <Button
                   type="submit"

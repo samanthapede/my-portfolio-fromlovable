@@ -508,14 +508,123 @@
     border-radius: 16px;
   }
 
-  /* "Start a conversation" button: cool gradient fade on hover in dark mode */
+  /* Reusable gradient hover for outline-style elements (buttons, cards) — light mode: warm gradient; dark mode: cool gradient */
+  .gradient-hover-outline,
+  .conversation-cta-btn {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gradient-hover-outline::before,
+  .conversation-cta-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(45deg, rgba(249, 79, 151, 0.2) 11.76%, rgba(234, 33, 180, 0.2) 32.54%, rgba(255, 115, 89, 0.2) 54.85%, rgba(230, 157, 170, 0.2) 81.78%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .gradient-hover-outline:hover,
+  .conversation-cta-btn:hover {
+    border-color: rgba(249, 79, 151, 0.4);
+    color: hsl(var(--primary-text)) !important;
+  }
+
+  .gradient-hover-outline:hover::before,
+  .conversation-cta-btn:hover::before {
+    opacity: 0.5;
+  }
+
+  .gradient-hover-outline > *,
+  .conversation-cta-btn > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .dark .gradient-hover-outline:hover::before,
+  .dark .conversation-cta-btn:hover::before {
+    opacity: 0;
+  }
+
+  .dark .gradient-hover-outline:hover,
   .dark .conversation-cta-btn:hover {
     background: linear-gradient(45deg, rgba(111, 33, 216, 0.2) 28.92%, rgba(0, 97, 162, 0.2) 61.39%, rgba(0, 125, 134, 0.2) 88.66%);
     border-color: rgba(111, 33, 216, 0.4);
     color: hsl(var(--primary-text));
   }
 
+  /* Project card: warm gradient overlay on hover in light mode */
+  .project-card-hover {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card-hover::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(45deg, rgba(249, 79, 151, 0.2) 11.76%, rgba(234, 33, 180, 0.2) 32.54%, rgba(255, 115, 89, 0.2) 54.85%, rgba(230, 157, 170, 0.2) 81.78%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .project-card-hover:hover::before {
+    opacity: 0.4;
+  }
+
+  .project-card-hover > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-card-hover:hover {
+    border-color: rgba(249, 79, 151, 0.4);
+  }
+
+  /* Subtle gradient hover for accordion triggers (Ways I partner) and similar block elements */
+  .gradient-hover-subtle {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gradient-hover-subtle::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(45deg, rgba(249, 79, 151, 0.08) 11.76%, rgba(234, 33, 180, 0.08) 32.54%, rgba(255, 115, 89, 0.08) 54.85%, rgba(230, 157, 170, 0.08) 81.78%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .gradient-hover-subtle:hover::before {
+    opacity: 0.7;
+  }
+
+  .gradient-hover-subtle > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .gradient-hover-subtle[data-state=open]::before {
+    opacity: 0;
+  }
+
+  .dark .gradient-hover-subtle::before {
+    background: linear-gradient(45deg, rgba(111, 33, 216, 0.06) 28.92%, rgba(0, 97, 162, 0.06) 61.39%, rgba(0, 125, 134, 0.06) 88.66%);
+  }
+
   /* Project card: cool gradient border on hover in dark mode (border stays 2px to prevent layout shift) */
+  .dark .project-card-hover:hover::before {
+    opacity: 0;
+  }
+
   .dark .project-card-hover:hover {
     border-width: 2px;
     border-color: transparent;

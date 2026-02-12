@@ -132,7 +132,7 @@ export const ProjectShowcase = () => {
     <button
       type="button"
       onClick={() => setSelectedProject(project)}
-      className="project-card-hover group flex w-full flex-col lg:flex-row text-left rounded-2xl overflow-hidden border-2 border-border bg-card transition-colors hover:border-primary/30 hover:bg-muted/20 dark:hover:bg-muted/10 active:scale-[0.98] touch-manipulation"
+      className="project-card-hover group flex w-full flex-col lg:flex-row text-left rounded-2xl overflow-hidden border-2 border-border bg-card transition-colors active:scale-[0.98] touch-manipulation"
     >
       {/* Photo: always left, 4:3 aspect ratio */}
       <div className="w-full lg:w-1/2 aspect-[4/3] flex-shrink-0 bg-muted/50 dark:bg-muted/20 overflow-hidden">
