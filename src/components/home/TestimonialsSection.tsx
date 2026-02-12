@@ -261,10 +261,10 @@ export const TestimonialsSection = () => {
           }}
           className="text-left mb-12"
         >
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-4 sm:mb-6 text-[#004E95] dark:warm-gradient-text">
-            A Trusted Partner to Ambitious Teams
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-4 sm:mb-6 text-primary-text dark:text-section-heading">
+            A trusted partner to ambitious teams
           </h2>
-          <p className="text-base sm:text-lg text-[#004E95]/80 leading-relaxed max-w-[70ch]">
+          <p className="text-base sm:text-lg text-primary-text/80 leading-relaxed max-w-[70ch]">
             I have partnered with startups and scale-ups building complex, high-impact products, helping them move forward with clarity and confidence.
           </p>
         </motion.div>
@@ -305,22 +305,19 @@ export const TestimonialsSection = () => {
                     <img src={testimonials[mobileIndex].image} alt={testimonials[mobileIndex].author} className="w-12 h-12 rounded-full object-cover" loading="lazy" />
                     <div>
                       <p 
-                        className="font-medium text-[#004E95]"
-                        style={isDark ? { color: '#004E95' } : undefined}
+                        className="font-medium text-primary-text"
                       >
                         {testimonials[mobileIndex].author}
                       </p>
                       <p 
-                        className="text-base text-muted-foreground dark:text-[#004E95] testimonial-role"
-                        style={isDark ? { color: '#004E95' } : undefined}
+                        className="text-base text-muted-foreground testimonial-role"
                       >
                         {testimonials[mobileIndex].role}
                       </p>
                     </div>
                   </div>
                   <p 
-                    className="text-[#004E95] leading-relaxed text-base"
-                    style={isDark ? { color: '#004E95' } : undefined}
+                    className="text-primary-text leading-relaxed text-base"
                   >
                     "{renderQuote(testimonials[mobileIndex], hoveredCardId === testimonials[mobileIndex].id)}"
                   </p>
@@ -397,22 +394,19 @@ export const TestimonialsSection = () => {
                   <img src={testimonial.image} alt={testimonial.author} className="w-12 h-12 rounded-full object-cover" loading="lazy" />
                   <div>
                     <p 
-                      className="font-medium text-foreground"
-                      style={isDark ? { color: '#004E95' } : undefined}
+                      className="font-medium text-primary-text"
                     >
                       {testimonial.author}
                     </p>
                     <p 
-                      className="text-base text-muted-foreground dark:text-[#004E95] testimonial-role"
-                      style={isDark ? { color: '#004E95' } : undefined}
+                      className="text-base text-muted-foreground testimonial-role"
                     >
                       {testimonial.role}
                     </p>
                   </div>
                 </div>
                 <p 
-                  className="text-foreground leading-relaxed text-base"
-                  style={isDark ? { color: '#004E95' } : undefined}
+                  className="text-primary-text leading-relaxed text-base"
                 >
                   "{renderQuote(testimonial, hoveredCardId === testimonial.id)}"
                 </p>

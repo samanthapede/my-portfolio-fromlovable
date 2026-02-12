@@ -86,7 +86,7 @@ export const AboutSection = () => {
   }, [isInView, imageLoaded]);
 
   return (
-    <section id="about" ref={ref} className="py-20 sm:py-24 lg:py-32 bg-specialties dark:bg-background">
+    <section id="about" ref={ref} className="pt-20 sm:pt-24 lg:pt-32 pb-12 sm:pb-16 lg:pb-20 bg-specialties">
       <div className="container mx-auto px-6 lg:px-12">
         {/* SVG gradient definition for icons - cool gradient at 24deg */}
         <svg width="0" height="0" style={{ position: 'absolute' }}>
@@ -141,7 +141,7 @@ export const AboutSection = () => {
                 stiffness: 100,
                 damping: 14
               }}
-              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-4 sm:mb-6 text-[#004E95] dark:warm-gradient-text"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-4 sm:mb-6 text-primary-text dark:text-section-heading"
             >
               About Sam
             </motion.h2>
@@ -158,7 +158,7 @@ export const AboutSection = () => {
                   stiffness: 100,
                   damping: 13
                 }}
-                className="text-base leading-relaxed text-[#004E95]/70"
+                className="text-base leading-relaxed text-primary-text/70"
               >
                 I've spent over a decade helping teams design and ship complex products in fast-moving environments.
               </motion.p>
@@ -174,7 +174,7 @@ export const AboutSection = () => {
                   stiffness: 100,
                   damping: 13
                 }}
-                className="text-base leading-relaxed text-[#004E95]/70"
+                className="text-base leading-relaxed text-primary-text/70"
               >
                 I partner with founders and product leaders at moments when clarity matters most: early product definition, major new features, or times when teams need alignment before execution.
               </motion.p>
@@ -190,7 +190,7 @@ export const AboutSection = () => {
                   stiffness: 100,
                   damping: 13
                 }}
-                className="text-base leading-relaxed text-[#004E95]/70"
+                className="text-base leading-relaxed text-primary-text/70"
               >
                 Most recently, I spent 4+ years at Shopify as a Lead Designer working on large-scale systems across inventory, fulfillment, and shipping, where decisions had meaningful downstream impact and complexity was the norm.
               </motion.p>
@@ -206,7 +206,7 @@ export const AboutSection = () => {
                   stiffness: 100,
                   damping: 13
                 }}
-                className="text-base leading-relaxed text-[#004E95]/70"
+                className="text-base leading-relaxed text-primary-text/70"
               >
                 <p className="mb-3">Today, I work independently, helping teams:</p>
                 <ul className="list-disc pl-5 space-y-1">
@@ -232,7 +232,7 @@ export const AboutSection = () => {
                     stiffness: 90,
                     damping: 12
                   }}
-                  className="text-lg md:text-xl font-medium text-[#004E95] text-left leading-normal relative z-10 w-full"
+                  className="text-lg md:text-xl font-medium text-primary-text text-left leading-normal relative z-10 w-full"
                 >
                   I'm most effective when I can help teams focus on the most important thing, move intentionally, and align around a shared understanding of what they're building and why. For me, design is about clarity, momentum, and impact, not just execution.
                 </motion.h2>
@@ -241,7 +241,7 @@ export const AboutSection = () => {
           </motion.div>
         </div>
 
-        {/* What Teams Bring Me In For - grid for quick scanning */}
+        {/* What teams bring me in for - grid for quick scanning */}
         <div className="mt-16 lg:mt-20 mb-0">
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
@@ -251,9 +251,9 @@ export const AboutSection = () => {
               delay: 0.6,
               ease: "easeOut"
             }}
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-6 sm:mb-8 text-[#004E95] dark:warm-gradient-text"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-6 sm:mb-8 text-primary-text dark:text-section-heading"
           >
-            What Teams Bring Me In For
+            What teams bring me in for
           </motion.h3>
 
           <motion.div
@@ -272,15 +272,15 @@ export const AboutSection = () => {
                   delay: 0.7 + index * 0.05,
                   ease: "easeOut",
                 }}
-                className="flex flex-col gap-3 rounded-xl p-5 lg:p-6 bg-card border border-border hover:border-[#004E95]/20 hover:bg-muted/20 dark:hover:bg-muted/10 transition-colors"
+                className="flex flex-col gap-3 rounded-xl p-5 lg:p-6 bg-card border border-border"
               >
                 <div className="flex items-center gap-3">
                   <span className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center bg-[#004E95]/10 dark:bg-[#004E95]/20">
-                    <strength.icon className="w-5 h-5 text-[#004E95]" strokeWidth={1.5} stroke="currentColor" fill="none" />
+                    <strength.icon className="w-5 h-5 text-primary-text" strokeWidth={1.5} stroke="currentColor" fill="none" />
                   </span>
-                  <h4 className="text-[#004E95] font-semibold leading-tight">{strength.title}</h4>
+                  <h4 className="text-primary-text font-semibold leading-tight">{strength.title}</h4>
                 </div>
-                <p className="text-[#004E95]/80 text-sm leading-relaxed pl-0">{strength.description}</p>
+                <p className="text-primary-text/80 text-sm leading-relaxed pl-0">{strength.description}</p>
               </motion.div>
             ))}
           </motion.div>

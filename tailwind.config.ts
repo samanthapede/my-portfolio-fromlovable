@@ -18,6 +18,8 @@ export default {
         display: ['Lato', 'system-ui', 'sans-serif'],
       },
       colors: {
+        "primary-text": "hsl(var(--primary-text))",
+        "section-heading": "hsl(var(--section-heading))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

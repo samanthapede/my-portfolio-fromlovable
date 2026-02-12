@@ -13,6 +13,10 @@
 
 @layer base {
   :root {
+    /* Primary text: navy for light mode */
+    --primary-text: 212 100% 29%; /* #004E95 */
+    /* Section heading (used in dark mode only) */
+    --section-heading: 212 100% 29%; /* same as primary in light - not used */
     /* Good Books–style: warm off-white background (#faf8f5) */
     --background: 40 33% 98%;
     /* Navy text darkened for readability on warm off-white (was 22% lightness) */
@@ -68,6 +72,10 @@
   }
 
   .dark {
+    /* Primary text: lighter blue for readability on dark background */
+    --primary-text: 213 94% 68%; /* #60A5FA - good contrast on dark */
+    /* Warm white for section headings - complements cool gradient palette */
+    --section-heading: 35 25% 88%; /* slightly darker warm cream */
     --background: 240 10% 11%;
     --foreground: 0 0% 98%;
 
@@ -96,8 +104,8 @@
     --input: 240 5% 24%;
     --ring: 340 95% 65%; /* #F94F97 */
 
-    /* Section surfaces */
-    --specialties-surface: var(--background);
+    /* Section surfaces - slightly lighter than background for visual distinction */
+    --specialties-surface: 240 8% 15%;
 
     /* Gradient colors */
     --gradient-purple: 268 70% 45%;
@@ -132,7 +140,7 @@
 
   body {
     @apply bg-background antialiased font-sans text-base leading-relaxed;
-    color: #004E95;
+    color: hsl(var(--primary-text));
   }
 
   /* Default paragraphs: readable size, line height, and comfortable line length (~65-75ch) */
@@ -155,7 +163,7 @@
   }
 
   h1, h2, h3 {
-    color: #004E95;
+    color: hsl(var(--primary-text));
   }
 
   h1, h3 {
@@ -198,16 +206,21 @@
     background-image: linear-gradient(45deg, rgba(249, 79, 151, 0.65) 11.76%, rgba(234, 33, 180, 0.65) 32.54%, rgba(255, 115, 89, 0.65) 54.85%, rgba(230, 157, 170, 0.65) 81.78%);
   }
 
-  /* Warm gradient text at 0.45 opacity for dark mode */
+  /* Dark mode: cool gradient for text (purple → blue → cyan) */
   .dark .warm-gradient-text {
-    background-image: linear-gradient(45deg, rgba(249, 79, 151, 0.45) 11.76%, rgba(234, 33, 180, 0.45) 32.54%, rgba(255, 115, 89, 0.45) 54.85%, rgba(230, 157, 170, 0.45) 81.78%);
+    background-image: linear-gradient(45deg, rgba(111, 33, 216, 0.85) 28.92%, rgba(0, 97, 162, 0.85) 61.39%, rgba(0, 125, 134, 0.85) 88.66%);
   }
 
-  /* Warm gradient text at 0.55 opacity for hover (email link) - dark mode */
+  /* Dark mode: cool gradient for nav items */
+  .dark .warm-gradient-text-nav {
+    background-image: linear-gradient(45deg, rgba(111, 33, 216, 0.85) 28.92%, rgba(0, 97, 162, 0.85) 61.39%, rgba(0, 125, 134, 0.85) 88.66%);
+  }
+
+  /* Dark mode: cool gradient for email link hover */
   .dark .email-link-hover:hover {
     @apply bg-clip-text;
     -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(45deg, rgba(249, 79, 151, 0.55) 11.76%, rgba(234, 33, 180, 0.55) 32.54%, rgba(255, 115, 89, 0.55) 54.85%, rgba(230, 157, 170, 0.55) 81.78%);
+    background-image: linear-gradient(45deg, rgba(111, 33, 216, 0.9) 28.92%, rgba(0, 97, 162, 0.9) 61.39%, rgba(0, 125, 134, 0.9) 88.66%);
     text-decoration: underline;
   }
 
@@ -234,7 +247,7 @@
     position: absolute;
     width: 1.25rem;
     height: 1.25rem;
-    background: linear-gradient(45deg, rgba(249, 79, 151, 0.55) 11.76%, rgba(234, 33, 180, 0.55) 32.54%, rgba(255, 115, 89, 0.55) 54.85%, rgba(230, 157, 170, 0.55) 81.78%);
+    background: linear-gradient(45deg, rgba(111, 33, 216, 0.9) 28.92%, rgba(0, 97, 162, 0.9) 61.39%, rgba(0, 125, 134, 0.9) 88.66%);
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='16' x='2' y='4' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='16' x='2' y='4' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E");
     -webkit-mask-size: 100% 100%;
@@ -301,6 +314,11 @@
     background-image: linear-gradient(225deg, rgba(249, 79, 151, 0.55) 11.76%, rgba(234, 33, 180, 0.55) 32.54%, rgba(255, 115, 89, 0.55) 54.85%, rgba(230, 157, 170, 0.55) 81.78%);
   }
 
+  /* Dark mode: cool gradient for testimonials */
+  .dark .warm-gradient-text-testimonial {
+    background-image: linear-gradient(225deg, rgba(111, 33, 216, 0.85) 28.92%, rgba(0, 97, 162, 0.85) 61.39%, rgba(0, 125, 134, 0.85) 88.66%);
+  }
+
   /* Light mode testimonial hover - same gradient but without #E69DAA, evenly spaced, 0.75 opacity */
   .warm-gradient-text-testimonial-light {
     @apply bg-clip-text text-transparent;
@@ -310,6 +328,16 @@
   /* Warm gradient background for buttons and backgrounds */
   .bg-warm-gradient {
     background: linear-gradient(45deg, rgba(249, 79, 151, 0.65) 11.76%, rgba(234, 33, 180, 0.65) 32.54%, rgba(255, 115, 89, 0.65) 54.85%, rgba(230, 157, 170, 0.65) 81.78%);
+  }
+
+  /* Very subtle warm gradient background for sections (readable text) */
+  .bg-warm-gradient-subtle {
+    background: linear-gradient(45deg, rgba(249, 79, 151, 0.06) 11.76%, rgba(234, 33, 180, 0.06) 32.54%, rgba(255, 115, 89, 0.06) 54.85%, rgba(230, 157, 170, 0.06) 81.78%), #F7F6F2;
+  }
+
+  /* Dark mode: subtle cool gradient (purple → blue → cyan) instead of warm */
+  .dark .bg-warm-gradient-subtle {
+    background: linear-gradient(45deg, rgba(111, 33, 216, 0.06) 28.92%, rgba(0, 97, 162, 0.06) 61.39%, rgba(0, 125, 134, 0.06) 88.66%), hsl(var(--specialties-surface));
   }
 
   /* Warm gradient highlight container - responsive */
@@ -354,6 +382,10 @@
     visibility: visible !important;
   }
 
+  /* Dark mode: cool gradient for highlight */
+  .dark .warm-gradient-highlight::before {
+    background: linear-gradient(205deg, rgba(111, 33, 216, 0.4) 28.92%, rgba(0, 97, 162, 0.4) 61.39%, rgba(0, 125, 134, 0.4) 88.66%);
+  }
 
   .bg-warm-gradient-solid {
     background: linear-gradient(45deg, #F94F97 11.76%, #EA21B4 32.54%, #FF7359 54.85%, #E69DAA 81.78%);
@@ -392,10 +424,14 @@
     pointer-events: none;
   }
 
-  /* Dark mode styles for navbar */
+  /* Dark mode styles for navbar - cool gradient border */
   .dark .border-warm-gradient {
     background: hsl(var(--background));
     backdrop-filter: blur(12px);
+  }
+
+  .dark .border-warm-gradient::before {
+    background: linear-gradient(45deg, rgba(111, 33, 216, 0.5) 28.92%, rgba(0, 97, 162, 0.5) 61.39%, rgba(0, 125, 134, 0.5) 88.66%);
   }
 
   .dark .border-warm-gradient::after {
@@ -407,8 +443,9 @@
     border: 1px solid rgba(249, 79, 151, 0.25);
   }
 
+  /* Dark mode: cool gradient border */
   .dark .border-warm-gradient-subtle {
-    border-color: rgba(249, 79, 151, 0.4);
+    border-color: rgba(111, 33, 216, 0.4);
   }
 
   /* Warm gradient border for testimonials at 0.4 opacity */
@@ -448,6 +485,11 @@
     z-index: 2;
   }
 
+  /* Dark mode: cool gradient border for testimonials */
+  .dark .border-warm-gradient-testimonial::before {
+    background: linear-gradient(45deg, rgba(111, 33, 216, 0.45) 28.92%, rgba(0, 97, 162, 0.45) 61.39%, rgba(0, 125, 134, 0.45) 88.66%);
+  }
+
   /* Match border-radius - rounded-xl (12px) */
   .border-warm-gradient-testimonial.rounded-xl::before {
     border-radius: 13px;
@@ -466,6 +508,26 @@
     border-radius: 16px;
   }
 
+  /* "Start a conversation" button: cool gradient fade on hover in dark mode */
+  .dark .conversation-cta-btn:hover {
+    background: linear-gradient(45deg, rgba(111, 33, 216, 0.2) 28.92%, rgba(0, 97, 162, 0.2) 61.39%, rgba(0, 125, 134, 0.2) 88.66%);
+    border-color: rgba(111, 33, 216, 0.4);
+    color: hsl(var(--primary-text));
+  }
+
+  /* Project card: cool gradient border on hover in dark mode (border stays 2px to prevent layout shift) */
+  .dark .project-card-hover:hover {
+    border-width: 2px;
+    border-color: transparent;
+    background: linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
+      linear-gradient(45deg, rgba(111, 33, 216, 0.6) 28.92%, rgba(0, 97, 162, 0.6) 61.39%, rgba(0, 125, 134, 0.6) 88.66%) border-box;
+  }
+
+  /* Hand icon in dark mode: invert + warm cream tint to match section headings */
+  .dark .hand-icon-dark {
+    filter: invert(1) sepia(0.4) saturate(0.4) hue-rotate(25deg);
+  }
+
   /* Nav hover gradient text */
   .nav-item {
     @apply transition-all duration-300 ease-in-out;
@@ -474,17 +536,40 @@
     backface-visibility: hidden;
     -webkit-font-smoothing: antialiased;
   }
+
+  /* Reserve space for bold on hover - hidden bold duplicate prevents layout shift */
+  .nav-item-inner {
+    display: inline-block;
+  }
+
+  .nav-item-visible {
+    display: block;
+  }
+
+  .nav-item-bold {
+    display: block;
+    font-weight: 700;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    font-size: inherit;
+    font-family: inherit;
+  }
   
   .nav-item:hover {
-    background-image: linear-gradient(45deg, rgba(249, 79, 151, 0.65) 11.76%, rgba(234, 33, 180, 0.65) 32.54%, rgba(255, 115, 89, 0.65) 54.85%, rgba(230, 157, 170, 0.65) 81.78%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+    color: #003d76;
     font-weight: 700;
     transform: translateZ(0);
   }
-  
+
+  .dark .nav-item:hover {
+    color: #4a9fff;
+  }
+
+  /* Warm gradient reserved for active/selected state only */
   .nav-item.font-bold:hover {
     font-weight: 700;
   }
@@ -606,16 +691,16 @@
   background: hsl(var(--card)) !important;
 }
 
-/* Force blue color for testimonial role text in dark mode */
+/* Testimonial role uses primary text (readable in dark mode) */
 .dark .testimonial-role,
 .dark p.testimonial-role,
 .dark [class*="testimonial-role"] {
-  color: #004E95 !important;
+  color: hsl(var(--primary-text)) !important;
 }
 
 /* Even more specific selectors */
 .dark .bg-card .testimonial-role,
 .dark .bg-card p.testimonial-role,
 .dark div.testimonial-role {
-  color: #004E95 !important;
+  color: hsl(var(--primary-text)) !important;
 }

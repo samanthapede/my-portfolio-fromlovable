@@ -27,7 +27,7 @@ export const KeyStrengthsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-12 sm:py-16 lg:py-24 bg-specialties dark:!bg-background">
+    <section ref={ref} className="py-12 sm:py-16 lg:py-24 bg-specialties">
       <div className="container mx-auto px-6 lg:px-12">
         {/* SVG gradient definition - cool gradient at 24deg */}
         <svg width="0" height="0" style={{ position: 'absolute' }}>
@@ -50,7 +50,7 @@ export const KeyStrengthsSection = () => {
             stiffness: 100,
             damping: 15
           }}
-          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-4 sm:mb-6 text-[#004E95]"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-4 sm:mb-6 text-primary-text"
         >
           Key Strengths
         </motion.h2>
@@ -72,7 +72,7 @@ export const KeyStrengthsSection = () => {
               className="bg-card border border-border rounded-xl p-6"
             >
                 <strength.icon className="w-8 h-8 mb-4" stroke="url(#cool-gradient-icons)" fill="none" strokeWidth={1.5} />
-                <p className="font-medium text-[#004E95]">{strength.label}</p>
+                <p className="font-medium text-primary-text">{strength.label}</p>
               </motion.div>
             ))}
         </div>

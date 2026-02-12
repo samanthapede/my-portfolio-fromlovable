@@ -3,9 +3,9 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Switch } from "@/components/ui/switch";
 
 const sectionLinks = [
-  { name: "Home", id: "home" },
   { name: "Work", id: "work" },
   { name: "About", id: "about" },
   { name: "Contact", id: "contact" },
@@ -136,13 +136,19 @@ export const Header = () => {
           y: isVisible ? 0 : -100 
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="fixed top-4 left-4 right-4 md:left-auto md:right-4 flex justify-center md:justify-end z-50"
+        className="fixed top-4 left-6 right-6 md:left-auto md:right-4 flex justify-center md:justify-end z-50"
       >
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6 px-6 py-3 backdrop-blur-md border-warm-gradient rounded-[20px] relative z-0">
           <Link
             to="/"
-            className="text-lg font-semibold tracking-tight text-[#004E95] dark:text-[#60A5FA]"
+            onClick={(e) => {
+              if (location.pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+            className="text-lg font-semibold tracking-tight text-primary-text hover:opacity-90 transition-opacity"
           >
             Sam Pede
           </Link>
@@ -159,7 +165,10 @@ export const Header = () => {
                       isActive && "font-bold warm-gradient-text-nav"
                     )}
                   >
-                    {link.name}
+                    <span className="nav-item-inner">
+                      <span className="nav-item-visible">{link.name}</span>
+                      <span className="nav-item-bold" aria-hidden="true">{link.name}</span>
+                    </span>
                   </button>
                 </li>
               );
@@ -179,52 +188,51 @@ export const Header = () => {
           </button>
         </nav>
 
-        {/* Mobile Navigation Toggle */}
-        <div className="flex md:hidden items-center justify-center gap-3 px-4 py-3 backdrop-blur-md border-warm-gradient rounded-[20px] w-full max-w-sm mx-auto relative z-0 min-h-[56px]">
-          <Link
-            to="/"
-            className="text-lg font-semibold tracking-tight text-[#004E95] dark:text-[#60A5FA]"
-          >
-            Sam Pede
-          </Link>
-          
-          <button
-            onClick={toggleDarkMode}
-            className="p-2.5 rounded-full bg-secondary hover:bg-secondary/80 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
-            aria-label="Toggle dark mode"
-          >
-            {isDark ? (
-              <Sun className="w-5 h-5 text-foreground" />
-            ) : (
-              <Moon className="w-5 h-5 text-foreground" />
+        {/* Mobile Navigation */}
+        <div className="flex flex-col gap-0 md:hidden w-full">
+          <div
+            className={cn(
+              "flex items-center justify-between gap-3 px-4 py-3 backdrop-blur-md border-warm-gradient w-full min-h-[56px]",
+              isMobileMenuOpen ? "rounded-t-[20px] border-b-0" : "rounded-[20px]"
             )}
-          </button>
-
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-2.5 rounded-full bg-secondary hover:bg-secondary/80 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
-            aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? (
-              <X className="w-5 h-5 text-foreground" />
-            ) : (
-              <Menu className="w-5 h-5 text-foreground" />
-            )}
-          </button>
-        </div>
-      </motion.header>
+            <Link
+              to="/"
+              onClick={(e) => {
+                if (location.pathname === "/") {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  setIsMobileMenuOpen(false);
+                }
+              }}
+              className="text-lg font-semibold tracking-tight text-primary-text hover:opacity-90 transition-opacity"
+            >
+              Sam Pede
+            </Link>
 
-      {/* Mobile Menu Dropdown */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="fixed top-20 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-4 z-40 md:hidden"
-          >
-            <div className="backdrop-blur-md border-warm-gradient rounded-[20px] p-4 min-w-[180px] relative z-0">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2.5 rounded-full bg-secondary hover:bg-secondary/80 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-5 h-5 text-foreground" />
+              ) : (
+                <Menu className="w-5 h-5 text-foreground" />
+              )}
+            </button>
+          </div>
+
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.2 }}
+                className="overflow-hidden"
+              >
+                <div className="backdrop-blur-md border-warm-gradient border-t-0 rounded-b-[20px] p-4 min-w-[200px]">
               <ul className="flex flex-col gap-2">
                 {sectionLinks.map((link) => {
                   const isActive = activeSection === link.id;
@@ -233,8 +241,8 @@ export const Header = () => {
                       <button
                         onClick={() => scrollToSection(link.id)}
                         className={cn(
-                          "nav-item block w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground transition-all duration-300 ease-in-out min-h-[44px] flex items-center",
-                          isActive && "font-bold warm-gradient-text-nav"
+                          "block w-full text-left px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground transition-all duration-300 ease-in-out min-h-[44px] flex items-center hover:bg-muted/50 hover:font-semibold",
+                          isActive && "font-bold warm-gradient-text-nav hover:font-bold"
                         )}
                       >
                         {link.name}
@@ -242,11 +250,39 @@ export const Header = () => {
                     </li>
                   );
                 })}
+                <li className="border-t border-border mt-2 pt-2">
+                  <div className="flex w-full items-center justify-between gap-3 px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground min-h-[44px] hover:bg-muted/50 hover:font-semibold transition-all duration-300 cursor-pointer">
+                    <label
+                      htmlFor="mobile-theme-toggle"
+                      className="inline-flex cursor-pointer items-center gap-3 min-w-0 flex-1"
+                    >
+                      {isDark ? (
+                        <>
+                          <Moon className="w-5 h-5 shrink-0" />
+                          <span className="whitespace-nowrap">Dark mode</span>
+                        </>
+                      ) : (
+                        <>
+                          <Sun className="w-5 h-5 shrink-0" />
+                          <span className="whitespace-nowrap">Light mode</span>
+                        </>
+                      )}
+                    </label>
+                    <Switch
+                      id="mobile-theme-toggle"
+                      checked={isDark}
+                      onCheckedChange={toggleDarkMode}
+                      aria-label="Toggle dark mode"
+                    />
+                  </div>
+                </li>
               </ul>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </motion.header>
     </>
   );
 };

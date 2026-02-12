@@ -81,7 +81,7 @@ export const ConversationSection = () => {
   };
 
   return (
-    <section className="py-20 sm:py-24 lg:py-32 border-solid border-0 bg-[#F4F2EB] dark:bg-[#2d2822]">
+    <section className="py-20 sm:py-24 lg:py-32 border-solid border-0 bg-warm-gradient-subtle">
       <div className="container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -90,7 +90,7 @@ export const ConversationSection = () => {
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-4xl"
         >
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal leading-tight mb-10 sm:mb-12 text-[#004E95]">
+          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal leading-tight mb-10 sm:mb-12 text-primary-text">
             I help teams make{" "}
             <span className="warm-gradient-text opacity-[0.65] dark:opacity-100">the right product decisions early</span>
             , so they can move forward with confidence.
@@ -99,7 +99,7 @@ export const ConversationSection = () => {
             size="lg"
             variant="outline"
             onClick={() => setOpen(true)}
-            className="rounded-lg px-8 py-6 text-lg font-medium"
+            className="conversation-cta-btn rounded-lg px-8 py-6 text-lg font-medium transition-all duration-300"
           >
             Start a conversation
           </Button>
@@ -109,7 +109,7 @@ export const ConversationSection = () => {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="sm:max-w-md border border-warm-gradient-subtle rounded-2xl">
           <DialogHeader>
-            <DialogTitle className="text-[#004E95]">Start a conversation</DialogTitle>
+            <DialogTitle className="text-primary-text">Start a conversation</DialogTitle>
             <DialogDescription>
               Share your name and a bit about your project. I’ll get back to you soon.
             </DialogDescription>
@@ -121,7 +121,7 @@ export const ConversationSection = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-[#004E95]">Name</FormLabel>
+                    <FormLabel className="text-primary-text">Name</FormLabel>
                     <FormControl>
                       <Input placeholder="Your name" className="rounded-lg" {...field} />
                     </FormControl>
@@ -134,7 +134,7 @@ export const ConversationSection = () => {
                 name="projectDetails"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-[#004E95]">Project details</FormLabel>
+                    <FormLabel className="text-primary-text">Project details</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="What are you working on? What do you need help with?"

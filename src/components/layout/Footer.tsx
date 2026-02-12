@@ -57,7 +57,7 @@ export const Footer = () => {
   }, []);
 
   return (
-    <footer id="contact" ref={footerRef} className="bg-specialties dark:!bg-background border-t border-border">
+    <footer id="contact" ref={footerRef} className="bg-warm-gradient-subtle border-t border-border">
       <div className="container mx-auto px-6 lg:px-12 py-12 sm:py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {/* Left Side - Contact */}
@@ -66,20 +66,20 @@ export const Footer = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-6 sm:mb-8 text-[#004E95] dark:warm-gradient-text">
-              Let's Clarify Your Next Critical Product Decision
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-6 sm:mb-8 text-primary-text dark:text-section-heading">
+              Let's clarify your next critical product decision
             </h2>
 
-            <p className="text-base leading-relaxed text-[#004E95]/70 mb-6">
+            <p className="text-base leading-relaxed text-primary-text/70 mb-6">
               If you are building something new or navigating a major product shift and want clear direction before execution, let's talk.
             </p>
 
             <a
               href="mailto:samanthapede@gmail.com"
-              className="email-link-hover inline-flex items-center gap-2 text-base sm:text-lg font-medium text-[#004E95] underline transition-all duration-300 ease-in-out py-2 min-h-[44px]"
+              className="email-link-hover inline-flex items-center gap-2 text-base sm:text-lg font-medium text-primary-text underline transition-all duration-300 ease-in-out py-2 min-h-[44px]"
             >
               <span className="email-icon-wrapper">
-                <Mail className="w-5 h-5 text-[#004E95] email-icon" />
+                <Mail className="w-5 h-5 text-primary-text email-icon" />
               </span>
               samanthapede@gmail.com
             </a>
@@ -113,7 +113,7 @@ export const Footer = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4"
         >
-          <p className="text-base text-[#004E95]/70">
+          <p className="text-base text-primary-text/70">
             © {new Date().getFullYear()} Samantha Pede. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
