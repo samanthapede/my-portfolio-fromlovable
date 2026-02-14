@@ -134,6 +134,7 @@
   html {
     font-size: 100%;
     scroll-behavior: smooth;
+    overflow-x: hidden;
     /* Prevent layout shift when pages toggle scrollbar presence (keeps centered fixed header stable) */
     scrollbar-gutter: stable;
   }
@@ -141,6 +142,7 @@
   body {
     @apply bg-background antialiased font-sans text-base leading-relaxed;
     color: hsl(var(--primary-text));
+    overflow-x: hidden;
   }
 
   /* Default paragraphs: readable size, line height, and comfortable line length (~65-75ch) */
@@ -198,6 +200,43 @@
     /* Stops at 11.76%, 32.54%, 54.85%, 81.78% */
     /* Using solid colors for text gradient (opacity doesn't work with bg-clip-text) */
     background-image: linear-gradient(45deg, #F94F97 11.76%, #EA21B4 32.54%, #FF7359 54.85%, #E69DAA 81.78%);
+    /* Prevent clipping of descenders/ascenders with bg-clip-text */
+    padding: 0.04em 0.05em;
+    margin: -0.04em -0.05em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  /* Conversation section: more gradient stops for smoother blend, #E69DAA de-emphasized */
+  .warm-gradient-text-conversation {
+    @apply bg-clip-text text-transparent;
+    /* 7 stops for smoother blend; E69DAA at end with reduced opacity */
+    background-image: linear-gradient(45deg,
+      #F94F97 0%,
+      #F16BA3 14%,
+      #EA21B4 30%,
+      #ED4A7F 48%,
+      #FF7359 65%,
+      #FF8A6B 82%,
+      rgba(230, 157, 170, 0.55) 100%
+    );
+    padding: 0.04em 0.05em;
+    margin: -0.04em -0.05em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  .dark .warm-gradient-text-conversation {
+    /* Dark mode: warm gradient, same as light */
+    background-image: linear-gradient(45deg,
+      #F94F97 0%,
+      #F16BA3 14%,
+      #EA21B4 30%,
+      #ED4A7F 48%,
+      #FF7359 65%,
+      #FF8A6B 82%,
+      rgba(230, 157, 170, 0.85) 100%
+    );
   }
 
   /* Warm gradient text at 0.65 opacity for nav items */
@@ -206,21 +245,21 @@
     background-image: linear-gradient(45deg, rgba(249, 79, 151, 0.65) 11.76%, rgba(234, 33, 180, 0.65) 32.54%, rgba(255, 115, 89, 0.65) 54.85%, rgba(230, 157, 170, 0.65) 81.78%);
   }
 
-  /* Dark mode: cool gradient for text (purple → blue → cyan) */
+  /* Dark mode: warm gradient for text (same as light, good visibility on dark) */
   .dark .warm-gradient-text {
-    background-image: linear-gradient(45deg, rgba(111, 33, 216, 0.85) 28.92%, rgba(0, 97, 162, 0.85) 61.39%, rgba(0, 125, 134, 0.85) 88.66%);
+    background-image: linear-gradient(45deg, #F94F97 11.76%, #EA21B4 32.54%, #FF7359 54.85%, #E69DAA 81.78%);
   }
 
-  /* Dark mode: cool gradient for nav items */
+  /* Dark mode: warm gradient for nav items */
   .dark .warm-gradient-text-nav {
-    background-image: linear-gradient(45deg, rgba(111, 33, 216, 0.85) 28.92%, rgba(0, 97, 162, 0.85) 61.39%, rgba(0, 125, 134, 0.85) 88.66%);
+    background-image: linear-gradient(45deg, rgba(249, 79, 151, 0.9) 11.76%, rgba(234, 33, 180, 0.9) 32.54%, rgba(255, 115, 89, 0.9) 54.85%, rgba(230, 157, 170, 0.9) 81.78%);
   }
 
-  /* Dark mode: cool gradient for email link hover */
+  /* Dark mode: warm gradient for email link hover */
   .dark .email-link-hover:hover {
     @apply bg-clip-text;
     -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(45deg, rgba(111, 33, 216, 0.9) 28.92%, rgba(0, 97, 162, 0.9) 61.39%, rgba(0, 125, 134, 0.9) 88.66%);
+    background-image: linear-gradient(45deg, #F94F97 11.76%, #EA21B4 32.54%, #FF7359 54.85%, #E69DAA 81.78%);
     text-decoration: underline;
   }
 
@@ -247,7 +286,7 @@
     position: absolute;
     width: 1.25rem;
     height: 1.25rem;
-    background: linear-gradient(45deg, rgba(111, 33, 216, 0.9) 28.92%, rgba(0, 97, 162, 0.9) 61.39%, rgba(0, 125, 134, 0.9) 88.66%);
+    background: linear-gradient(45deg, #F94F97 11.76%, #EA21B4 32.54%, #FF7359 54.85%, #E69DAA 81.78%);
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='16' x='2' y='4' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E");
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='20' height='16' x='2' y='4' rx='2'/%3E%3Cpath d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'/%3E%3C/svg%3E");
     -webkit-mask-size: 100% 100%;
@@ -316,7 +355,7 @@
 
   /* Dark mode: cool gradient for testimonials */
   .dark .warm-gradient-text-testimonial {
-    background-image: linear-gradient(225deg, rgba(111, 33, 216, 0.85) 28.92%, rgba(0, 97, 162, 0.85) 61.39%, rgba(0, 125, 134, 0.85) 88.66%);
+    background-image: linear-gradient(225deg, #F94F97 11.76%, #EA21B4 32.54%, #FF7359 54.85%, #E69DAA 81.78%);
   }
 
   /* Light mode testimonial hover - same gradient but without #E69DAA, evenly spaced, 0.75 opacity */
@@ -325,19 +364,103 @@
     background-image: linear-gradient(135deg, rgba(249, 79, 151, 0.75) 0%, rgba(234, 33, 180, 0.75) 50%, rgba(255, 115, 89, 0.75) 100%);
   }
 
+  /* Highlight text wrapper - text visible, background sweeps in separately */
+  .highlight-text-wrapper {
+    @apply relative inline-block;
+    padding: 0.05em 0.15em;
+    border-radius: 3px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .highlight-text-bg {
+    @apply absolute inset-0 rounded-[3px] pointer-events-none;
+    border-radius: 3px;
+  }
+
+  .highlight-text-inner {
+    @apply relative z-10;
+  }
+
+  /* Sweep-in background gradients by variant */
+  .highlight-bg-hero {
+    background: linear-gradient(135deg, rgba(249, 79, 151, 0.22) 11.76%, rgba(234, 33, 180, 0.22) 32.54%, rgba(255, 115, 89, 0.22) 54.85%, rgba(230, 157, 170, 0.22) 81.78%);
+  }
+  .dark .highlight-bg-hero {
+    background: linear-gradient(135deg, rgba(249, 79, 151, 0.38) 11.76%, rgba(234, 33, 180, 0.38) 32.54%, rgba(255, 115, 89, 0.38) 54.85%, rgba(230, 157, 170, 0.38) 81.78%);
+  }
+
+  .highlight-bg-about {
+    background: linear-gradient(135deg, rgba(249, 79, 151, 0.12) 11.76%, rgba(234, 33, 180, 0.12) 32.54%, rgba(255, 115, 89, 0.12) 54.85%, rgba(230, 157, 170, 0.12) 81.78%);
+  }
+  .dark .highlight-bg-about {
+    background: linear-gradient(135deg, rgba(249, 79, 151, 0.32) 11.76%, rgba(234, 33, 180, 0.32) 32.54%, rgba(255, 115, 89, 0.32) 54.85%, rgba(230, 157, 170, 0.32) 81.78%);
+  }
+
+  .highlight-bg-testimonial {
+    background: linear-gradient(135deg, rgba(249, 79, 151, 0.16) 11.76%, rgba(234, 33, 180, 0.16) 32.54%, rgba(255, 115, 89, 0.16) 54.85%, rgba(230, 157, 170, 0.16) 81.78%);
+  }
+  .dark .highlight-bg-testimonial {
+    background: linear-gradient(135deg, rgba(249, 79, 151, 0.32) 11.76%, rgba(234, 33, 180, 0.32) 32.54%, rgba(255, 115, 89, 0.32) 54.85%, rgba(230, 157, 170, 0.32) 81.78%);
+  }
+
+  .highlight-bg-footer {
+    background: linear-gradient(135deg, rgba(249, 79, 151, 0.2) 11.76%, rgba(234, 33, 180, 0.2) 32.54%, rgba(255, 115, 89, 0.2) 54.85%, rgba(230, 157, 170, 0.2) 81.78%);
+  }
+  .dark .highlight-bg-footer {
+    background: linear-gradient(135deg, rgba(249, 79, 151, 0.42) 11.76%, rgba(234, 33, 180, 0.42) 32.54%, rgba(255, 115, 89, 0.42) 54.85%, rgba(230, 157, 170, 0.42) 81.78%);
+  }
+
+  /* Legacy classes - kept for reduced-motion fallback in HighlightText */
+  .testimonial-highlight,
+  .about-highlight,
+  .footer-highlight,
+  .hero-highlight {
+    padding: 0.05em 0.15em;
+    border-radius: 3px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .testimonial-highlight { background: linear-gradient(135deg, rgba(249, 79, 151, 0.16) 11.76%, rgba(234, 33, 180, 0.16) 32.54%, rgba(255, 115, 89, 0.16) 54.85%, rgba(230, 157, 170, 0.16) 81.78%); }
+  .dark .testimonial-highlight { background: linear-gradient(135deg, rgba(249, 79, 151, 0.32) 11.76%, rgba(234, 33, 180, 0.32) 32.54%, rgba(255, 115, 89, 0.32) 54.85%, rgba(230, 157, 170, 0.32) 81.78%); }
+  .about-highlight { background: linear-gradient(135deg, rgba(249, 79, 151, 0.12) 11.76%, rgba(234, 33, 180, 0.12) 32.54%, rgba(255, 115, 89, 0.12) 54.85%, rgba(230, 157, 170, 0.12) 81.78%); }
+  .dark .about-highlight { background: linear-gradient(135deg, rgba(249, 79, 151, 0.32) 11.76%, rgba(234, 33, 180, 0.32) 32.54%, rgba(255, 115, 89, 0.32) 54.85%, rgba(230, 157, 170, 0.32) 81.78%); }
+  .footer-highlight { background: linear-gradient(135deg, rgba(249, 79, 151, 0.2) 11.76%, rgba(234, 33, 180, 0.2) 32.54%, rgba(255, 115, 89, 0.2) 54.85%, rgba(230, 157, 170, 0.2) 81.78%); }
+  .dark .footer-highlight { background: linear-gradient(135deg, rgba(249, 79, 151, 0.42) 11.76%, rgba(234, 33, 180, 0.42) 32.54%, rgba(255, 115, 89, 0.42) 54.85%, rgba(230, 157, 170, 0.42) 81.78%); }
+  .hero-highlight { background: linear-gradient(135deg, rgba(249, 79, 151, 0.22) 11.76%, rgba(234, 33, 180, 0.22) 32.54%, rgba(255, 115, 89, 0.22) 54.85%, rgba(230, 157, 170, 0.22) 81.78%); }
+  .dark .hero-highlight { background: linear-gradient(135deg, rgba(249, 79, 151, 0.38) 11.76%, rgba(234, 33, 180, 0.38) 32.54%, rgba(255, 115, 89, 0.38) 54.85%, rgba(230, 157, 170, 0.38) 81.78%); }
+
   /* Warm gradient background for buttons and backgrounds */
   .bg-warm-gradient {
     background: linear-gradient(45deg, rgba(249, 79, 151, 0.65) 11.76%, rgba(234, 33, 180, 0.65) 32.54%, rgba(255, 115, 89, 0.65) 54.85%, rgba(230, 157, 170, 0.65) 81.78%);
   }
 
-  /* Very subtle warm gradient background for sections (readable text) */
+  /* Very subtle warm gradient background for footer */
   .bg-warm-gradient-subtle {
-    background: linear-gradient(45deg, rgba(249, 79, 151, 0.06) 11.76%, rgba(234, 33, 180, 0.06) 32.54%, rgba(255, 115, 89, 0.06) 54.85%, rgba(230, 157, 170, 0.06) 81.78%), #F7F6F2;
+    background: linear-gradient(45deg, rgba(249, 79, 151, 0.03) 11.76%, rgba(234, 33, 180, 0.03) 32.54%, rgba(255, 115, 89, 0.03) 54.85%, rgba(230, 157, 170, 0.03) 81.78%), #F7F6F2;
+  }
+
+  /* Lighter variant for ConversationSection - better text readability */
+  .bg-warm-gradient-subtle-conversation {
+    background: linear-gradient(45deg, rgba(249, 79, 151, 0.04) 11.76%, rgba(234, 33, 180, 0.04) 32.54%, rgba(255, 115, 89, 0.04) 54.85%, rgba(230, 157, 170, 0.04) 81.78%), #F7F6F2;
+  }
+
+  .dark .bg-warm-gradient-subtle-conversation {
+    background: linear-gradient(45deg, rgba(111, 33, 216, 0.04) 28.92%, rgba(0, 97, 162, 0.04) 61.39%, rgba(0, 125, 134, 0.04) 88.66%), hsl(var(--specialties-surface));
+  }
+
+  /* Warm gradient for About section - light mode only; dark mode keeps solid specialties-surface */
+  .bg-warm-gradient-about {
+    background: #F7F6F2;
+  }
+
+  .dark .bg-warm-gradient-about {
+    background: hsl(var(--specialties-surface));
   }
 
   /* Dark mode: subtle cool gradient (purple → blue → cyan) instead of warm */
   .dark .bg-warm-gradient-subtle {
-    background: linear-gradient(45deg, rgba(111, 33, 216, 0.06) 28.92%, rgba(0, 97, 162, 0.06) 61.39%, rgba(0, 125, 134, 0.06) 88.66%), hsl(var(--specialties-surface));
+    background: linear-gradient(45deg, rgba(111, 33, 216, 0.03) 28.92%, rgba(0, 97, 162, 0.03) 61.39%, rgba(0, 125, 134, 0.03) 88.66%), hsl(var(--specialties-surface));
   }
 
   /* Warm gradient highlight container - responsive */
@@ -556,6 +679,52 @@
     color: hsl(var(--primary-text));
   }
 
+  /* Project card: wrapper for rotating gradient border on hover */
+  .project-card-border-wrapper {
+    position: relative;
+    padding: 1px;
+    border-radius: 17px;
+    overflow: hidden;
+    background: hsl(var(--border));
+  }
+
+  .project-card-border-wrapper::before {
+    content: "";
+    position: absolute;
+    left: -100%;
+    top: -100%;
+    width: 300%;
+    height: 300%;
+    background: conic-gradient(
+      from 0deg,
+      rgba(249, 79, 151, 0.9),
+      rgba(234, 33, 180, 0.9) 25%,
+      rgba(255, 115, 89, 0.9) 50%,
+      rgba(230, 157, 170, 0.9) 75%,
+      rgba(249, 79, 151, 0.9)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .project-card-border-wrapper:hover::before {
+    opacity: 1;
+    animation: project-card-border-spin 2.5s linear infinite;
+  }
+
+  /* Hide spinning border on click to avoid freeze/glitch during navigation */
+  .project-card-border-wrapper:active::before {
+    opacity: 0;
+    animation: none;
+  }
+
+  @keyframes project-card-border-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
   /* Project card: warm gradient overlay on hover in light mode */
   .project-card-hover {
     position: relative;
@@ -574,7 +743,7 @@
   }
 
   .project-card-hover:hover::before {
-    opacity: 0.4;
+    opacity: 0.2;
   }
 
   .project-card-hover > * {
@@ -582,8 +751,8 @@
     z-index: 1;
   }
 
-  .project-card-hover:hover {
-    border-color: rgba(249, 79, 151, 0.4);
+  .project-card-border-wrapper:hover .project-card-hover {
+    border-color: transparent;
   }
 
   /* Subtle gradient hover for accordion triggers (Ways I partner) and similar block elements */
@@ -620,16 +789,24 @@
     background: linear-gradient(45deg, rgba(111, 33, 216, 0.06) 28.92%, rgba(0, 97, 162, 0.06) 61.39%, rgba(0, 125, 134, 0.06) 88.66%);
   }
 
-  /* Project card: cool gradient border on hover in dark mode (border stays 2px to prevent layout shift) */
+  /* Project card: cool gradient border on hover in dark mode */
   .dark .project-card-hover:hover::before {
     opacity: 0;
   }
 
-  .dark .project-card-hover:hover {
-    border-width: 2px;
+  .dark .project-card-border-wrapper::before {
+    background: conic-gradient(
+      from 0deg,
+      rgba(111, 33, 216, 0.9),
+      rgba(0, 97, 162, 0.9) 25%,
+      rgba(0, 125, 134, 0.9) 50%,
+      rgba(111, 33, 216, 0.9) 75%,
+      rgba(111, 33, 216, 0.9)
+    );
+  }
+
+  .dark .project-card-border-wrapper:hover .project-card-hover {
     border-color: transparent;
-    background: linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
-      linear-gradient(45deg, rgba(111, 33, 216, 0.6) 28.92%, rgba(0, 97, 162, 0.6) 61.39%, rgba(0, 125, 134, 0.6) 88.66%) border-box;
   }
 
   /* Hand icon in dark mode: invert + warm cream tint to match section headings */
