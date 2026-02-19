@@ -21,12 +21,16 @@ export type Project = {
   >;
   /** Image URLs for project gallery carousel (placeholder URLs used until real assets added) */
   images?: string[];
-  /** Carousel items: image URLs, video embed URLs, or self-hosted video files (for autoplay+loop) */
+  /** Homepage cover: overrides first carousel item for the project card on homepage. For videoFile, poster shows by default; video plays on hover. */
+  homepageCover?: { type: "image" | "video" | "videoFile"; url: string; poster?: string };
+  /** Carousel items: image URLs, video embed URLs, or self-hosted video files (for project detail page) */
   carouselItems?: Array<{ type: "image" | "video" | "videoFile"; url: string }>;
   /** Additional project work images for layout grid below carousel */
   galleryImages?: string[];
   /** Optional image display overrides for thumbnails/carousel (object-fit, object-position) */
   imageCrop?: { objectFit?: "cover" | "contain"; objectPosition?: string };
+  /** Optional video scale on project detail page (default 1.34 for black frame removal) */
+  videoScale?: number;
 };
 
 const LOREM = {
@@ -55,9 +59,34 @@ export const projects: Project[] = [
     locked: true,
     tags: ["Healthcare", "AI", "Compliance"],
     carouselItems: [
-      { type: "image", url: "https://cdn.prod.website-files.com/67143cba61f89173b7edff6b/68c95192c1c0ef6cab86deb9_Image%20-%20Compliance%20Agent.avif" },
+      { type: "image", url: "/assets/projects/clinical-compliance/clinical-compliance-reports-side-drawer.png" },
     ],
-    imageCrop: { objectFit: "contain", objectPosition: "center" },
+    imageCrop: { objectFit: "cover", objectPosition: "center" },
+  },
+  {
+    id: 8,
+    title: "Simplifying and elevating merchant workflows",
+    description: "E-commerce order management and merchant workflows",
+    link: "/work/8",
+    role: "Lead Design",
+    year: "2026",
+    tags: ["E-commerce", "Lead Design", "2026"],
+    homepageCover: {
+      type: "videoFile",
+      url: "/assets/projects/order-fulfillment/order-fulfillment-short-2.mp4",
+      poster: "/assets/projects/order-fulfillment/order-fulfillment-page-image-blue-cropped.png",
+    },
+    carouselItems: [
+      { type: "videoFile", url: "/assets/projects/order-fulfillment/order-fulfillment-workflows.mp4" },
+    ],
+    galleryImages: [
+      "/assets/projects/order-fulfillment/order-fulfillment-page-image.png",
+    ],
+    videoScale: 1,
+    overview: "Simplifying and elevating merchant workflows in e-commerce order management.",
+    challenges: [],
+    solution: "",
+    outcomes: [],
   },
   {
     id: 1,
@@ -86,21 +115,16 @@ export const projects: Project[] = [
         ],
       },
     ],
+    homepageCover: {
+      type: "videoFile",
+      url: "/assets/projects/inventory/inventory-states-smaller.mp4",
+      poster: "/assets/projects/inventory/inventory-states-preview.png",
+    },
     carouselItems: [
-      { type: "videoFile", url: "/assets/projects/inventory/inventory-video-1.mp4" },
-      { type: "videoFile", url: "/assets/projects/inventory/inventory-video-2.mp4" },
-      { type: "videoFile", url: "/assets/projects/inventory/inventory-video-3.mp4" },
-      { type: "videoFile", url: "/assets/projects/inventory/inventory-video-5.mp4" },
-      { type: "videoFile", url: "/assets/projects/inventory/inventory-video-6.mp4" },
+      { type: "videoFile", url: "/assets/projects/inventory/inventory-states-smaller.mp4" },
     ],
     galleryImages: [
-      "/assets/projects/inventory/on-hand-popover.png",
-      "/assets/projects/inventory/on-hand-popover-2.png",
-      "/assets/projects/inventory/bulk-editor.png",
-      "/assets/projects/inventory/inventory-card.png",
-      "/assets/projects/inventory/adjustment-history.png",
-      "/assets/projects/inventory/column-picker.png",
-      "/assets/projects/inventory/unavailable.png",
+      "/assets/projects/inventory/inventory-states-overview.png",
     ],
   },
   {

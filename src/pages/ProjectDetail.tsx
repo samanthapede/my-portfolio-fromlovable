@@ -147,16 +147,13 @@ export default function ProjectDetail() {
           </Link>
         </motion.div>
 
-        {/* Header: number, title, metadata */}
+        {/* Header: title, metadata */}
         <motion.header
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.2, delay: 0.03 }}
           className="mb-8 sm:mb-12"
         >
-          <span className="text-sm font-medium text-muted-foreground tabular-nums block mb-2">
-            {String(project.id).padStart(2, "0")}
-          </span>
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-primary-text dark:text-section-heading mb-4">
             {project.title}
           </h1>
@@ -182,26 +179,24 @@ export default function ProjectDetail() {
             <CarouselContent className="-ml-0">
               {slides.map((item, index) => (
                 <CarouselItem key={index} className="pl-0">
-                  <div className="w-full aspect-video rounded-2xl overflow-hidden bg-muted/50 dark:bg-muted/20">
+                  <div className="w-full aspect-video rounded-2xl overflow-hidden bg-black relative border border-neutral-200 dark:border-neutral-600">
                     {item.type === "videoFile" && item.url ? (
-                      <div className="w-full h-full [clip-path:inset(0_0.25%_0_0)]">
-                        <video
-                          src={item.url}
-                          className="w-full h-full object-cover"
+                      <video
+                        src={item.url}
+                        className="absolute inset-0 w-full h-full object-cover object-center origin-top"
+                        style={{
+                          objectFit: project.imageCrop?.objectFit ?? "cover",
+                          objectPosition: project.imageCrop?.objectPosition ?? "center top",
+                          transform: `scale(${project.videoScale ?? 1.34})`,
+                          transformOrigin: "top center",
+                        }}
                         autoPlay
                         muted
                         playsInline
+                        loop
                         preload="auto"
                         title={`${project.title} - video ${index + 1}`}
-                        onEnded={(e) => {
-                          const v = e.currentTarget;
-                          setTimeout(() => {
-                            v.currentTime = 0;
-                            v.play();
-                          }, 1500);
-                        }}
                       />
-                      </div>
                     ) : item.type === "video" && item.url ? (
                       <iframe
                         src={`${item.url}${item.url.includes("?") ? "&" : "?"}autoplay=1&mute=1&loop=1`}
@@ -261,6 +256,29 @@ export default function ProjectDetail() {
             )}
           </Carousel>
         </motion.div>
+
+        {/* Gallery images (layout below carousel) */}
+        {project.galleryImages && project.galleryImages.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2, delay: 0.055 }}
+            className="w-full mb-10 sm:mb-14"
+          >
+            <div className="grid gap-6 sm:gap-8">
+              {project.galleryImages.map((url, index) => (
+                <img
+                  key={index}
+                  src={url}
+                  alt={`${project.title} - detail ${index + 1}`}
+                  className="w-full rounded-2xl overflow-hidden object-contain bg-muted/30 dark:bg-muted/10"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ))}
+            </div>
+          </motion.section>
+        )}
 
         {/* Challenges */}
         {project.challenges && project.challenges.length > 0 && (

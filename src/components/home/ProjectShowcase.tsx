@@ -34,7 +34,7 @@ export const ProjectShowcase = () => {
   };
 
   const getProjectThumbnail = (project: (typeof projects)[0]) => {
-    const first = project.carouselItems?.[0] ?? project.images?.[0];
+    const first = project.homepageCover ?? project.carouselItems?.[0] ?? project.images?.[0];
     if (!first) return null;
     if (typeof first === "string") return { type: "image" as const, url: first };
     return first;
@@ -56,46 +56,55 @@ export const ProjectShowcase = () => {
       <a
         href={project.link}
         className="project-card-hover group group/view flex w-full flex-col lg:flex-row text-left rounded-2xl overflow-hidden border border-border bg-card transition-colors touch-manipulation block"
+        onMouseEnter={(e) => e.currentTarget.querySelector("video")?.play()}
+        onMouseLeave={(e) => {
+          const video = e.currentTarget.querySelector("video");
+          if (video) {
+            video.pause();
+            video.currentTime = 0;
+          }
+        }}
       >
-        {/* Photo: always left — 16:9 mobile, 2:1 tablet, 4:3 desktop */}
-        <div className="w-full lg:w-1/2 aspect-[16/9] sm:aspect-[2/1] lg:aspect-[4/3] flex-shrink-0 bg-muted/50 dark:bg-muted/20 overflow-hidden">
+        {/* Photo: always left — 4:3 ratio fits most project images across breakpoints */}
+        <div className="w-full lg:w-1/2 aspect-[4/3] flex-shrink-0 bg-muted/50 dark:bg-muted/20 overflow-hidden relative">
           {thumbnail?.type === "videoFile" && thumbnail.url ? (
-            <video
-              src={thumbnail.url}
-              className="w-full h-full object-cover object-[55%_0%] scale-110 origin-top"
-              autoPlay
-              muted
-              playsInline
-              preload="metadata"
-              aria-hidden
-              onEnded={(e) => {
-                const v = e.currentTarget;
-                setTimeout(() => {
-                  v.currentTime = 0;
-                  v.play();
-                }, 1500);
-              }}
-            />
+            <>
+              {"poster" in thumbnail && thumbnail.poster ? (
+                <img
+                  src={thumbnail.poster}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover object-center scale-[1.35] sm:scale-[1.25] md:scale-[1.15] lg:scale-100 origin-center"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
+                />
+              ) : null}
+              <video
+                src={thumbnail.url}
+                className="absolute inset-0 w-full h-full object-cover object-center scale-[1.35] sm:scale-[1.25] md:scale-[1.15] lg:scale-100 origin-center opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
+                style={{
+                  objectFit: project.imageCrop?.objectFit ?? "cover",
+                  objectPosition: project.imageCrop?.objectPosition ?? "center",
+                }}
+                muted
+                playsInline
+                loop
+                preload="metadata"
+                aria-hidden
+              />
+            </>
           ) : thumbnail?.type === "image" && thumbnail.url ? (
             <img
               src={thumbnail.url}
               alt=""
-              className={cn(
-                "w-full h-full",
-                project.imageCrop?.objectFit === "contain"
-                  ? "object-contain"
-                  : "object-cover object-center"
-              )}
-              style={
-                project.imageCrop
-                  ? {
-                      objectFit: project.imageCrop.objectFit ?? "cover",
-                      objectPosition: project.imageCrop.objectPosition ?? "center",
-                    }
-                  : undefined
-              }
-              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover object-center scale-[1.35] sm:scale-[1.25] md:scale-[1.15] lg:scale-100 origin-center"
+              style={{
+                objectFit: project.imageCrop?.objectFit ?? "cover",
+                objectPosition: project.imageCrop?.objectPosition ?? "center",
+              }}
+              loading="eager"
               decoding="async"
+              fetchPriority="high"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-muted/60 to-muted/30 dark:from-muted/40 dark:to-muted/10">
