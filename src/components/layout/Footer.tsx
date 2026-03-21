@@ -1,15 +1,14 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { useConversationModal } from "@/contexts/ConversationModalContext";
 import { HighlightText } from "@/components/HighlightText";
+import { ConversationCTA } from "@/components/ConversationCTA";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { EASING_SMOOTH, VIEWPORT_LAZY } from "@/lib/constants";
 
-export const Footer = () => {
-  const footerRef = useRef(null);
-  const isInView = useInView(footerRef, { once: true, margin: "-100px", amount: 0.2 });
+export function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+  const isInView = useInView(footerRef, VIEWPORT_LAZY);
   const reducedMotion = useReducedMotion();
-  const { openDialog } = useConversationModal();
 
   return (
     <footer id="contact" ref={footerRef} className="bg-warm-gradient-subtle border-t border-border">
@@ -18,7 +17,7 @@ export const Footer = () => {
           <motion.h2
             initial={reducedMotion ? false : { opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.55, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.55, delay: 0.05, ease: EASING_SMOOTH }}
             className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold leading-tight mb-0 text-primary-text dark:text-section-heading"
           >
             <HighlightText variant="footer" trigger="animate" isInView={isInView} delay={0.4} duration={0.5} className="font-semibold">
@@ -30,8 +29,8 @@ export const Footer = () => {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-            transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="text-base leading-relaxed text-primary-text/70 mb-0"
+            transition={{ duration: 0.5, delay: 0.15, ease: EASING_SMOOTH }}
+            className="text-base leading-relaxed text-primary-text/70 dark:text-primary-text/85 mb-0"
           >
             If you are building something new or navigating a major product shift and want clear direction before execution, let's talk.
           </motion.p>
@@ -39,16 +38,9 @@ export const Footer = () => {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-            transition={{ duration: 0.5, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, delay: 0.25, ease: EASING_SMOOTH }}
           >
-          <Button
-            size="lg"
-            variant="outline"
-            onClick={openDialog}
-            className="conversation-cta-btn rounded-lg px-8 py-6 text-lg font-medium transition-all duration-300 hover:bg-background"
-          >
-            <span className="relative z-10">Start a conversation</span>
-          </Button>
+            <ConversationCTA />
           </motion.div>
         </div>
 
@@ -57,10 +49,13 @@ export const Footer = () => {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.5, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-16 pt-8 border-t border-border"
+          className="mt-16 pt-8 border-t border-border space-y-2"
         >
-          <p className="text-base text-primary-text/70">
+          <p className="text-base text-primary-text/70 dark:text-primary-text/80">
             © {new Date().getFullYear()} Samantha Pede. All rights reserved.
+          </p>
+          <p className="text-sm text-primary-text/50 dark:text-primary-text/65">
+            ♥ Custom made by Samantha Pede
           </p>
         </motion.div>
       </div>

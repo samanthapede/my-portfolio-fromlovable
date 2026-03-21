@@ -32,9 +32,17 @@ export const Header = () => {
       return;
     }
     
+    // Update URL to reflect the section
+    if (id === "home") {
+      window.history.pushState(null, "", "/");
+    } else {
+      window.history.pushState(null, "", `/#${id}`);
+    }
+    
     // Handle "home" - scroll to top
     if (id === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
+      setActiveSection("home");
       setIsMobileMenuOpen(false);
       return;
     }
@@ -42,11 +50,20 @@ export const Header = () => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(id);
     }
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
-  // Track active section based on scroll position
+  // Sync activeSection with URL hash on initial load
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash && ["work", "about", "contact"].includes(hash)) {
+      setActiveSection(hash);
+    }
+  }, []);
+
+  // Track active section based on scroll position and sync URL hash
   useEffect(() => {
     const handleScroll = () => {
       const sections = sectionLinks.map(link => {
@@ -61,22 +78,28 @@ export const Header = () => {
       }).filter(Boolean) as Array<{ id: string; top: number; bottom: number }>;
 
       // Find the section currently in view
-      const currentSection = sections.find(section => 
+      const currentSection = sections.find(section =>
         section.top <= 150 && section.bottom >= 150
       ) || sections.find(section => section.top > 0 && section.top < window.innerHeight);
 
-      // If at top, set to home
-      if (window.scrollY < 100) {
-        setActiveSection("home");
-      } else if (currentSection) {
-        setActiveSection(currentSection.id);
+      // If at top (home), use "home"; otherwise use the section id
+      const newSection = window.scrollY < 100 ? "home" : (currentSection?.id ?? "home");
+      setActiveSection(newSection);
+
+      // Sync URL: home = no hash, other sections = #section
+      if (location.pathname === "/") {
+        const desiredHash = newSection === "home" ? "" : newSection;
+        const currentHash = window.location.hash.slice(1);
+        if ((desiredHash === "" && currentHash !== "") || (desiredHash !== "" && currentHash !== desiredHash)) {
+          window.history.replaceState(null, "", desiredHash ? `/#${desiredHash}` : "/");
+        }
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // Initial check
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [location.pathname]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const direction = latest > lastScrollY.current ? "down" : "up";
@@ -90,6 +113,25 @@ export const Header = () => {
     
     lastScrollY.current = latest;
   });
+
+  // Sync URL hash with scroll on popstate (browser back/forward)
+  useEffect(() => {
+    const handlePopState = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash && ["work", "about", "contact"].includes(hash)) {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+          setActiveSection(hash);
+        }
+      } else if (!hash && location.pathname === "/") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        setActiveSection("home");
+      }
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [location.pathname]);
 
   // Close mobile menu on route change
   useEffect(() => {
@@ -118,12 +160,10 @@ export const Header = () => {
     if (savedTheme === "dark") {
       document.documentElement.classList.add("dark");
       setIsDark(true);
-    } else if (savedTheme === "light") {
+    } else {
+      // Default to light mode for new visitors and when user chose light
       document.documentElement.classList.remove("dark");
       setIsDark(false);
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      document.documentElement.classList.add("dark");
-      setIsDark(true);
     }
   }, []);
 
@@ -139,7 +179,7 @@ export const Header = () => {
         className="fixed top-4 left-6 right-6 md:left-auto md:right-4 flex justify-center md:justify-end z-50"
       >
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6 px-6 py-3 backdrop-blur-md border-warm-gradient rounded-[20px] relative z-0">
+        <nav className="hidden md:flex items-center gap-6 px-6 py-3 backdrop-blur-md border-warm-gradient rounded-lg relative z-0">
           <Link
             to="/"
             onClick={(e) => {
@@ -193,7 +233,7 @@ export const Header = () => {
           <div
             className={cn(
               "flex items-center justify-between gap-3 px-4 py-3 backdrop-blur-md border-warm-gradient w-full min-h-[56px]",
-              isMobileMenuOpen ? "rounded-t-[20px] border-b-0" : "rounded-[20px]"
+              isMobileMenuOpen ? "rounded-t-lg border-b-0" : "rounded-lg"
             )}
           >
             <Link
@@ -232,7 +272,7 @@ export const Header = () => {
                 transition={{ duration: 0.2 }}
                 className="overflow-hidden"
               >
-                <div className="backdrop-blur-md border-warm-gradient border-t-0 rounded-b-[20px] p-4 min-w-[200px]">
+                <div className="backdrop-blur-md border-warm-gradient border-t-0 rounded-b-lg p-4 min-w-[200px]">
               <ul className="flex flex-col gap-2">
                 {sectionLinks.map((link) => {
                   const isActive = activeSection === link.id;

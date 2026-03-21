@@ -20,7 +20,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
-import headshot from "@/assets/headshot.jpg";
+import headshot from "@/assets/Headshot.jpg";
+import { imageUrl } from "@/lib/cloudflare-images";
 
 type PartnerWay = {
   number: string;
@@ -127,9 +128,9 @@ export const AboutSection = () => {
             transition={{ duration: 0.7, ease }}
             className="relative w-full max-w-[320px] sm:max-w-[360px] lg:max-w-none min-w-0 lg:w-full lg:flex-shrink-0"
           >
-            <div className="relative rounded-2xl overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-full w-full lg:w-full">
+            <div className="relative rounded-lg overflow-hidden aspect-[4/5] lg:aspect-auto lg:h-full w-full lg:w-full">
               <img
-                  src={headshot}
+                  src={imageUrl("headshot", "public", headshot)}
                   alt="Samantha Pede"
                   className={`w-full h-full object-cover object-top transition-opacity duration-500 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
                   loading="lazy"
@@ -180,19 +181,19 @@ export const AboutSection = () => {
                 <p className="mb-3">I <span className="font-semibold">partner with founders and product leaders</span> at moments when clarity matters most:</p>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-3 min-w-0">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-[#004E95]/25 dark:border-[#004E95]/35">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-primary-text/25 dark:border-primary-text/35">
                       <Lightbulb className="w-4 h-4 text-primary-text" strokeWidth={1.5} />
                     </span>
                     <span className="font-semibold break-words">early product definition</span>
                   </li>
                   <li className="flex items-start gap-3 min-w-0">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-[#004E95]/25 dark:border-[#004E95]/35">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-primary-text/25 dark:border-primary-text/35">
                       <Zap className="w-4 h-4 text-primary-text" strokeWidth={1.5} />
                     </span>
                     <span className="font-semibold break-words">major new features</span>
                   </li>
                   <li className="flex items-start gap-3 min-w-0">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-[#004E95]/25 dark:border-[#004E95]/35">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-primary-text/25 dark:border-primary-text/35">
                       <GitMerge className="w-4 h-4 text-primary-text" strokeWidth={1.5} />
                     </span>
                     <span className="break-words">or times when teams need alignment before execution</span>
@@ -220,19 +221,19 @@ export const AboutSection = () => {
                 <p className="mb-3">Today, I work independently, helping teams:</p>
                 <ul className="space-y-2">
                   <li className="flex items-start gap-3 min-w-0">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-[#004E95]/25 dark:border-[#004E95]/35">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-primary-text/25 dark:border-primary-text/35">
                       <Puzzle className="w-4 h-4 text-primary-text" strokeWidth={1.5} />
                     </span>
                     <span className="font-semibold break-words">make sense of complex problem spaces</span>
                   </li>
                   <li className="flex items-start gap-3 min-w-0">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-[#004E95]/25 dark:border-[#004E95]/35">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-primary-text/25 dark:border-primary-text/35">
                       <Users className="w-4 h-4 text-primary-text" strokeWidth={1.5} />
                     </span>
                     <span className="break-words">deeply <span className="font-semibold">understand their users</span> (often beyond initial assumptions)</span>
                   </li>
                   <li className="flex items-start gap-3 min-w-0">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-[#004E95]/25 dark:border-[#004E95]/35">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-primary-text/25 dark:border-primary-text/35">
                       <Flag className="w-4 h-4 text-primary-text" strokeWidth={1.5} />
                     </span>
                     <span className="break-words"><span className="font-semibold">create product vision</span> and translate into focused, build-ready direction</span>
@@ -282,10 +283,10 @@ export const AboutSection = () => {
                 key={strength.title}
                 variants={reducedMotion ? undefined : { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                 transition={{ duration: 0.5, ease }}
-                className="flex flex-col gap-3 rounded-xl p-4 sm:p-5 lg:p-6 bg-card border border-border min-w-0"
+                className="flex flex-col gap-3 rounded-lg p-4 sm:p-5 lg:p-6 bg-card border border-border min-w-0"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <span className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center border border-[#004E95]/25 dark:border-[#004E95]/35">
+                  <span className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center border border-primary-text/25 dark:border-primary-text/35">
                     <strength.icon className="w-5 h-5 text-primary-text" strokeWidth={1.5} stroke="currentColor" fill="none" />
                   </span>
                   <h4 className="text-primary-text font-semibold leading-tight break-words min-w-0">{strength.title}</h4>
@@ -324,9 +325,9 @@ export const AboutSection = () => {
                   key={way.number}
                   value={way.number}
                   className={cn(
-                    "group rounded-xl border border-border bg-card overflow-hidden transition-colors",
+                    "group rounded-lg border border-border bg-card overflow-hidden transition-colors",
                     "hover:border-[rgba(249,79,151,0.4)] dark:hover:border-[rgba(111,33,216,0.4)]",
-                    "data-[state=open]:border-[#004E95]/25 data-[state=open]:shadow-sm"
+                    "data-[state=open]:border-primary-text/25 dark:data-[state=open]:border-primary-text/35 data-[state=open]:shadow-sm"
                   )}
                 >
                   <AccordionTrigger className="gradient-hover-subtle px-4 py-4 sm:px-6 sm:py-6 hover:no-underline [&[data-state=open]]:bg-muted/20">

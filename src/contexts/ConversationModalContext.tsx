@@ -20,7 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
+import { useToast } from "@/hooks/use-toast";
 
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -97,7 +97,7 @@ export const ConversationModalProvider = ({ children }: { children: ReactNode })
     <ConversationModalContext.Provider value={{ openDialog }}>
       {children}
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-md border border-warm-gradient-subtle rounded-2xl">
+        <DialogContent className="sm:max-w-md border border-warm-gradient-subtle rounded-lg">
           <DialogHeader>
             <DialogTitle className="text-primary-text">Start a conversation</DialogTitle>
             <DialogDescription>
@@ -113,7 +113,7 @@ export const ConversationModalProvider = ({ children }: { children: ReactNode })
                   <FormItem>
                     <FormLabel className="text-primary-text">Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Your name" className="rounded-lg" {...field} />
+                      <Input placeholder="Your name" className="rounded-lg" autoFocus {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -148,7 +148,7 @@ export const ConversationModalProvider = ({ children }: { children: ReactNode })
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-[#004E95] hover:bg-[#004E95]/90 rounded-lg"
+                  className="bg-primary-text hover:bg-primary-text/90 dark:bg-[#2563EB] dark:hover:bg-[#1d4ed8] rounded-lg text-white"
                 >
                   {isSubmitting ? "Sending…" : "Send"}
                 </Button>

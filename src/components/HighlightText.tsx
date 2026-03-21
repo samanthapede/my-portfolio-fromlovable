@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
+import { EASING_SMOOTH, VIEWPORT_DEFAULT } from "@/lib/constants";
 
 type HighlightVariant = "hero" | "about" | "testimonial" | "footer";
+
+type ViewportOptions = { once?: boolean; amount?: number | "some" | "all"; margin?: string };
 
 type HighlightTextProps = {
   children: React.ReactNode;
@@ -14,6 +17,8 @@ type HighlightTextProps = {
   /** Trigger: 'animate' for parent-driven (pass isInView), 'whileInView' for self-triggered */
   trigger?: "animate" | "whileInView";
   isInView?: boolean;
+  /** Override viewport options for whileInView (e.g. amount: "some" for more lenient trigger) */
+  viewport?: ViewportOptions;
   className?: string;
 };
 
@@ -38,6 +43,7 @@ export const HighlightText = ({
   duration = 0.55,
   trigger = "whileInView",
   isInView,
+  viewport,
   className,
 }: HighlightTextProps) => {
   const reducedMotion = useReducedMotion();
@@ -62,12 +68,8 @@ export const HighlightText = ({
         initial={{ scaleX: 0 }}
         animate={sweepAnimate}
         whileInView={sweepWhileInView}
-        viewport={trigger === "whileInView" ? { once: true, margin: "-80px", amount: 0.2 } : undefined}
-        transition={{
-          duration,
-          delay,
-          ease: [0.16, 1, 0.3, 1],
-        }}
+        viewport={trigger === "whileInView" ? (viewport ?? VIEWPORT_DEFAULT) : undefined}
+        transition={{ duration, delay, ease: EASING_SMOOTH }}
         style={{ transformOrigin: "left" }}
         aria-hidden
       />

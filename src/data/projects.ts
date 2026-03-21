@@ -1,3 +1,6 @@
+import { imageUrl } from "@/lib/cloudflare-images";
+import { videoUrl } from "@/lib/cloudflare-stream";
+
 export type Project = {
   id: number;
   title: string;
@@ -9,6 +12,8 @@ export type Project = {
   role?: string;
   year?: string;
   tags?: string[];
+  /** Homepage card keywords (displayed as pills) */
+  keywords?: string[];
   metrics?: string[];
   /** Challenges faced (bullet list) */
   challenges?: string[];
@@ -52,32 +57,21 @@ const LOREM = {
 
 export const projects: Project[] = [
   {
-    id: 0,
-    title: "Leveraging AI to transform clinical compliance in healthcare",
-    description: "AI-powered clinical compliance",
-    link: "/work/0",
-    locked: true,
-    tags: ["Healthcare", "AI", "Compliance"],
-    carouselItems: [
-      { type: "image", url: "/assets/projects/clinical-compliance/clinical-compliance-reports-side-drawer.png" },
-    ],
-    imageCrop: { objectFit: "cover", objectPosition: "center" },
-  },
-  {
     id: 8,
-    title: "Simplifying and elevating merchant workflows",
+    title: "Redesigning merchant workflows for speed and clarity",
     description: "E-commerce order management and merchant workflows",
     link: "/work/8",
     role: "Lead Design",
-    year: "2026",
-    tags: ["E-commerce", "Lead Design", "2026"],
+    year: "2025",
+    tags: ["E-commerce", "2025"],
+    keywords: ["Workflow Simplification", "Usability at Scale", "Interaction Design"],
     homepageCover: {
       type: "videoFile",
-      url: "/assets/projects/order-fulfillment/order-fulfillment-short-2.mp4",
-      poster: "/assets/projects/order-fulfillment/order-fulfillment-page-image-blue-cropped.png",
+      url: videoUrl("order-fulfillment-short-2", "/assets/projects/order-fulfillment/order-fulfillment-short-2.mp4"),
+      poster: imageUrl("order-fulfillment-page-image-blue-cropped", "Full", "/assets/projects/order-fulfillment/order-fulfillment-page-image-blue-cropped.png"),
     },
     carouselItems: [
-      { type: "videoFile", url: "/assets/projects/order-fulfillment/order-fulfillment-workflows.mp4" },
+      { type: "videoFile", url: videoUrl("order-fulfillment-workflows", "/assets/projects/order-fulfillment/order-fulfillment-workflows.mp4") },
     ],
     galleryImages: [
       "/assets/projects/order-fulfillment/order-fulfillment-page-image.png",
@@ -90,17 +84,18 @@ export const projects: Project[] = [
   },
   {
     id: 1,
-    title: "Establishing an inventory management system for Shopify",
+    title: "Building Shopify's inventory management foundation",
     description: "Multi-location order fulfillment",
     link: "/work/1",
     overview: LOREM.batching,
     role: "Lead Designer",
     year: "2021–2022",
-    tags: ["E-commerce", "Lead Design", "2021–2022"],
+    tags: ["E-commerce", "2021–2022"],
+    keywords: ["Systems Architecture", "Inventory Logic", "Platform Scale"],
     challenges: [
-      "Placeholder challenge: Complex stakeholder alignment across multiple teams",
-      "Placeholder challenge: Legacy system constraints and technical debt",
-      "Placeholder challenge: Balancing speed of delivery with quality of experience",
+      "Supporting a wide spectrum of operational complexity without fragmenting the product experience.",
+      "Designing infrastructure-level inventory logic that could scale reliably across millions of merchants.",
+      "Driving alignment across product, engineering, and merchant insights within a highly distributed team.",
     ],
     solution:
       "The tool focused on delivering real-time visibility into stock levels, simplifying manual workflows, and ensuring merchants could confidently maintain accurate inventory.",
@@ -117,15 +112,31 @@ export const projects: Project[] = [
     ],
     homepageCover: {
       type: "videoFile",
-      url: "/assets/projects/inventory/inventory-states-smaller.mp4",
-      poster: "/assets/projects/inventory/inventory-states-preview.png",
+      url: videoUrl("inventory-states-smaller", "/assets/projects/inventory/inventory-states-smaller.mp4"),
+      poster: imageUrl("inventory-states-preview", "Full", "/assets/projects/inventory/inventory-states-preview.png"),
     },
     carouselItems: [
-      { type: "videoFile", url: "/assets/projects/inventory/inventory-states-smaller.mp4" },
+      { type: "videoFile", url: videoUrl("inventory-states-smaller", "/assets/projects/inventory/inventory-states-smaller.mp4") },
     ],
     galleryImages: [
       "/assets/projects/inventory/inventory-states-overview.png",
     ],
+  },
+  {
+    id: 0,
+    title: "Making clinical compliance simpler with AI",
+    description: "AI-powered clinical compliance",
+    link: "/work/0",
+    locked: true,
+    tags: ["Healthcare", "AI", "2025"],
+    keywords: ["AI-Driven Workflows", "Regulatory Complexity", "Risk Reduction"],
+    carouselItems: [
+      {
+        type: "image",
+        url: imageUrl("clinical-compliance-reports-side-drawer", "Full", "/assets/projects/clinical-compliance/clinical-compliance-reports-side-drawer.png"),
+      },
+    ],
+    imageCrop: { objectFit: "cover", objectPosition: "center" },
   },
   {
     id: 2,
@@ -136,11 +147,7 @@ export const projects: Project[] = [
     role: "Lead Designer",
     year: "2022",
     tags: ["E-commerce", "Lead Design", "2022"],
-    challenges: [
-      "Placeholder challenge: Complex stakeholder alignment across multiple teams",
-      "Placeholder challenge: Legacy system constraints and technical debt",
-      "Placeholder challenge: Balancing speed of delivery with quality of experience",
-    ],
+    challenges: [],
     solution:
       "Placeholder solution: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     outcomes: [
@@ -149,11 +156,10 @@ export const projects: Project[] = [
       "Placeholder outcome: Positive feedback from merchant and internal teams",
     ],
     carouselItems: [
-      { type: "videoFile", url: "/assets/projects/inventory-enhancement/column-picker-video.mp4" },
-      { type: "videoFile", url: "/assets/projects/inventory-enhancement/add-to-unavailable-video.mp4" },
-      { type: "videoFile", url: "/assets/projects/inventory-enhancement/safety-stock-video.mp4" },
-      { type: "videoFile", url: "/assets/projects/inventory-enhancement/move-back-to-avail-video.mp4" },
+      { type: "videoFile", url: videoUrl("inventory-states-smaller", "/assets/projects/inventory/inventory-states-smaller.mp4") },
     ],
+    imageCrop: { objectFit: "contain", objectPosition: "center" },
+    videoScale: 1,
   },
   {
     id: 3,
@@ -164,11 +170,7 @@ export const projects: Project[] = [
     role: "Lead Designer",
     year: "2021–2022",
     tags: ["E-commerce", "Product Design", "2021–2022"],
-    challenges: [
-      "Placeholder challenge: Complex stakeholder alignment across multiple teams",
-      "Placeholder challenge: Legacy system constraints and technical debt",
-      "Placeholder challenge: Balancing speed of delivery with quality of experience",
-    ],
+    challenges: [],
     solution:
       "Placeholder solution: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     outcomes: [
@@ -191,11 +193,7 @@ export const projects: Project[] = [
     role: "Design",
     year: "—",
     tags: ["Design Systems", "UI", "Components"],
-    challenges: [
-      "Placeholder challenge: Complex stakeholder alignment across multiple teams",
-      "Placeholder challenge: Legacy system constraints and technical debt",
-      "Placeholder challenge: Balancing speed of delivery with quality of experience",
-    ],
+    challenges: [],
     solution:
       "Placeholder solution: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     outcomes: [
@@ -217,11 +215,7 @@ export const projects: Project[] = [
     role: "Design",
     year: "—",
     tags: ["Analytics", "Dashboards", "Product Design"],
-    challenges: [
-      "Placeholder challenge: Complex stakeholder alignment across multiple teams",
-      "Placeholder challenge: Legacy system constraints and technical debt",
-      "Placeholder challenge: Balancing speed of delivery with quality of experience",
-    ],
+    challenges: [],
     solution:
       "Placeholder solution: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     outcomes: [
@@ -244,11 +238,7 @@ export const projects: Project[] = [
     role: "Design",
     year: "—",
     tags: ["Conversational UI", "Support", "Product Design"],
-    challenges: [
-      "Placeholder challenge: Complex stakeholder alignment across multiple teams",
-      "Placeholder challenge: Legacy system constraints and technical debt",
-      "Placeholder challenge: Balancing speed of delivery with quality of experience",
-    ],
+    challenges: [],
     solution:
       "Placeholder solution: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     outcomes: [
@@ -270,11 +260,7 @@ export const projects: Project[] = [
     role: "Design",
     year: "—",
     tags: ["E-commerce", "Inventory", "Product Design"],
-    challenges: [
-      "Placeholder challenge: Complex stakeholder alignment across multiple teams",
-      "Placeholder challenge: Legacy system constraints and technical debt",
-      "Placeholder challenge: Balancing speed of delivery with quality of experience",
-    ],
+    challenges: [],
     solution:
       "Placeholder solution: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     outcomes: [

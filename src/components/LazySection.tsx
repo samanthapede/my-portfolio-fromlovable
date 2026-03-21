@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import { useInView } from "framer-motion";
-import { motion } from "framer-motion";
+import { useInView, motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { EASING_SMOOTH } from "@/lib/constants";
 
 type LazySectionProps = {
   children: React.ReactNode;
@@ -12,8 +12,6 @@ type LazySectionProps = {
   /** Optional className for wrapper */
   className?: string;
 };
-
-const EASING = [0.16, 1, 0.3, 1] as const;
 
 /**
  * Defers rendering children until the section scrolls into view.
@@ -37,7 +35,7 @@ export const LazySection = ({
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: reducedMotion ? 0 : 0.55,
-            ease: EASING,
+            ease: EASING_SMOOTH,
           }}
         >
           {children}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <!-- Warm gradient: pink � magenta � coral � blush (45deg, matches ConversationSection) -->
+    <linearGradient id="warm" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="11.76%" stop-color="#F94F97" stop-opacity="0.04"/>
+      <stop offset="32.54%" stop-color="#EA21B4" stop-opacity="0.04"/>
+      <stop offset="54.85%" stop-color="#FF7359" stop-opacity="0.04"/>
+      <stop offset="81.78%" stop-color="#E69DAA" stop-opacity="0.04"/>
+    </linearGradient>
+  </defs>
+  <!-- Base warm off-white -->
+  <rect width="1920" height="1080" fill="#F7F6F2"/>
+  <!-- Gradient overlay -->
+  <rect width="1920" height="1080" fill="url(#warm)"/>
+</svg>

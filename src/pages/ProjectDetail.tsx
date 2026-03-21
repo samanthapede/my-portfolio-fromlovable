@@ -1,16 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { ArrowLeft, Lock } from "lucide-react";
+import { Lock } from "lucide-react";
+import { BackToWorkLink } from "@/components/BackToWorkLink";
 import { getProjectById } from "@/data/projects";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "@/components/ui/carousel";
+import { getProjectTagLine, getProjectPrimaryMedia } from "@/lib/project-utils";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -55,20 +50,14 @@ export default function ProjectDetail() {
       <article className="min-h-screen flex items-center justify-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-12">
           <div className="max-w-md mx-auto">
-            <Link
-              to="/#work"
-              className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary-text dark:hover:text-section-heading transition-colors mb-8"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to work
-            </Link>
+            <BackToWorkLink className="mb-8" />
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="rounded-2xl border border-border bg-card p-8 sm:p-10"
+              className="rounded-lg border border-border bg-card p-8 sm:p-10"
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-muted">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted">
                   <Lock className="w-6 h-6 text-muted-foreground" />
                 </div>
                 <div>
@@ -109,26 +98,14 @@ export default function ProjectDetail() {
     );
   }
 
-  const tagLine = project.tags?.length
-    ? project.tags.join(" · ")
-    : [project.role, project.year].filter(Boolean).join(" · ");
-
-  const slides = project.carouselItems?.length
-    ? project.carouselItems
-    : project.images?.length
-      ? project.images.map((url) => ({ type: "image" as const, url }))
-      : [{ type: "image" as const, url: "" }];
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    if (!api) return;
-    setCurrent(api.selectedScrollSnap());
-    api.on("select", () => setCurrent(api.selectedScrollSnap()));
-  }, [api]);
+  const tagLine = getProjectTagLine(project);
+  const primaryMedia = getProjectPrimaryMedia(project);
 
   return (
     <article className="min-h-screen">
+      <Helmet>
+        <title>{project.title} | Sam's portfolio</title>
+      </Helmet>
       <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         <div className="max-w-5xl">
         {/* Back link */}
@@ -138,13 +115,7 @@ export default function ProjectDetail() {
           transition={{ duration: 0.2 }}
           className="pt-8 sm:pt-12 pb-6"
         >
-          <Link
-            to="/#work"
-            className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary-text dark:hover:text-section-heading transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to work
-          </Link>
+          <BackToWorkLink />
         </motion.div>
 
         {/* Header: title, metadata */}
@@ -158,104 +129,75 @@ export default function ProjectDetail() {
             {project.title}
           </h1>
           {tagLine && (
-            <p className="text-base sm:text-lg text-primary-text/70">
+            <p className="text-base sm:text-lg text-primary-text/70 dark:text-primary-text/85">
               {tagLine}
             </p>
           )}
         </motion.header>
 
-        {/* Project image carousel */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2, delay: 0.05 }}
-          className="w-full mb-10 sm:mb-14"
-        >
-          <Carousel
-            opts={{ align: "start", loop: true }}
-            setApi={setApi}
-            className="w-full"
+        {/* Project header media (single video or image) */}
+        {primaryMedia && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.2, delay: 0.05 }}
+            className="w-full mb-10 sm:mb-14"
           >
-            <CarouselContent className="-ml-0">
-              {slides.map((item, index) => (
-                <CarouselItem key={index} className="pl-0">
-                  <div className="w-full aspect-video rounded-2xl overflow-hidden bg-black relative border border-neutral-200 dark:border-neutral-600">
-                    {item.type === "videoFile" && item.url ? (
-                      <video
-                        src={item.url}
-                        className="absolute inset-0 w-full h-full object-cover object-center origin-top"
-                        style={{
-                          objectFit: project.imageCrop?.objectFit ?? "cover",
-                          objectPosition: project.imageCrop?.objectPosition ?? "center top",
-                          transform: `scale(${project.videoScale ?? 1.34})`,
-                          transformOrigin: "top center",
-                        }}
-                        autoPlay
-                        muted
-                        playsInline
-                        loop
-                        preload="auto"
-                        title={`${project.title} - video ${index + 1}`}
-                      />
-                    ) : item.type === "video" && item.url ? (
-                      <iframe
-                        src={`${item.url}${item.url.includes("?") ? "&" : "?"}autoplay=1&mute=1&loop=1`}
-                        title={`${project.title} - video ${index + 1}`}
-                        className="w-full h-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    ) : item.type === "image" && item.url ? (
-                      <img
-                        src={item.url}
-                        alt={`${project.title} - image ${index + 1}`}
-                        className={
-                          project.imageCrop?.objectFit === "contain"
-                            ? "w-full h-full object-contain"
-                            : "w-full h-full object-cover object-center"
+            <div className="w-full aspect-video rounded-lg overflow-hidden bg-black relative border border-border">
+              {primaryMedia.type === "videoFile" && primaryMedia.url ? (
+                <video
+                  src={primaryMedia.url}
+                  className="absolute inset-0 w-full h-full object-cover object-center origin-top"
+                  style={{
+                    objectFit: project.imageCrop?.objectFit ?? "cover",
+                    objectPosition: project.imageCrop?.objectPosition ?? "center top",
+                    transform: `scale(${project.videoScale ?? 1.34})`,
+                    transformOrigin: "top center",
+                  }}
+                  autoPlay
+                  muted
+                  playsInline
+                  loop
+                  preload="auto"
+                  controls
+                  title={`${project.title} - video`}
+                />
+              ) : primaryMedia.type === "video" && primaryMedia.url ? (
+                <iframe
+                  src={`${primaryMedia.url}${primaryMedia.url.includes("?") ? "&" : "?"}autoplay=1&mute=1&loop=1`}
+                  title={`${project.title} - video`}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : primaryMedia.type === "image" && primaryMedia.url ? (
+                <img
+                  src={primaryMedia.url}
+                  alt={`${project.title} - detail`}
+                  className={
+                    project.imageCrop?.objectFit === "contain"
+                      ? "w-full h-full object-contain"
+                      : "w-full h-full object-cover object-center"
+                  }
+                  style={
+                    project.imageCrop
+                      ? {
+                          objectFit: project.imageCrop.objectFit ?? "cover",
+                          objectPosition: project.imageCrop.objectPosition ?? "center",
                         }
-                        style={
-                          project.imageCrop
-                            ? {
-                                objectFit: project.imageCrop.objectFit ?? "cover",
-                                objectPosition: project.imageCrop.objectPosition ?? "center",
-                              }
-                            : undefined
-                        }
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-muted/60 to-muted/30 dark:from-muted/40 dark:to-muted/10">
-                        <div className="w-32 h-32 rounded-2xl bg-background/50 dark:bg-background/20 shadow-lg" />
-                      </div>
-                    )}
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            {slides.length > 1 && (
-              <>
-                <CarouselPrevious className="left-4 border-border bg-background/80 hover:bg-background" />
-                <CarouselNext className="right-4 border-border bg-background/80 hover:bg-background" />
-                <div className="flex justify-center gap-2 mt-4">
-                  {slides.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => api?.scrollTo(index)}
-                      className={`h-2 rounded-full transition-all ${
-                        index === current
-                          ? "w-6 bg-primary"
-                          : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50"
-                      }`}
-                      aria-label={`Go to image ${index + 1}`}
-                    />
-                  ))}
+                      : undefined
+                  }
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-muted/60 to-muted/30 dark:from-muted/40 dark:to-muted/10">
+                  <div className="w-32 h-32 rounded-lg bg-background/50 dark:bg-background/20 shadow-lg" />
                 </div>
-              </>
-            )}
-          </Carousel>
-        </motion.div>
+              )}
+            </div>
+          </motion.div>
+        )}
 
         {/* Gallery images (layout below carousel) */}
         {project.galleryImages && project.galleryImages.length > 0 && (
@@ -271,7 +213,7 @@ export default function ProjectDetail() {
                   key={index}
                   src={url}
                   alt={`${project.title} - detail ${index + 1}`}
-                  className="w-full rounded-2xl overflow-hidden object-contain bg-muted/30 dark:bg-muted/10"
+                  className="w-full rounded-lg overflow-hidden object-contain bg-muted/30 dark:bg-muted/10"
                   loading="lazy"
                   decoding="async"
                 />
@@ -345,7 +287,7 @@ export default function ProjectDetail() {
                             href={link.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-primary hover:underline"
+                            className="text-primary-text underline underline-offset-2 hover:opacity-90"
                           >
                             {link.label}
                           </a>

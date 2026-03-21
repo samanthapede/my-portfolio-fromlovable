@@ -50,7 +50,7 @@ export const KeyStrengthsSection = () => {
             stiffness: 100,
             damping: 15
           }}
-          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-4 sm:mb-6 text-primary-text"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-4 sm:mb-6 text-primary-text dark:text-section-heading"
         >
           Key Strengths
         </motion.h2>
@@ -69,10 +69,10 @@ export const KeyStrengthsSection = () => {
                 stiffness: 90,
                 damping: 11
               }}
-              className="bg-card border border-border rounded-xl p-6"
+              className="bg-card border border-border rounded-lg p-6"
             >
                 <strength.icon className="w-8 h-8 mb-4" stroke="url(#cool-gradient-icons)" fill="none" strokeWidth={1.5} />
-                <p className="font-medium text-primary-text">{strength.label}</p>
+                <p className="font-medium text-primary-text dark:text-card-foreground">{strength.label}</p>
               </motion.div>
             ))}
         </div>
