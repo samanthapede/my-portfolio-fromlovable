@@ -1,7 +1,7 @@
 import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const TYPEFORM_URL = "https://sampededesigns.typeform.com/to/Jq0m9fFT";
+const TYPEFORM_URL = "https://form.typeform.com/to/Jq0m9fFT";
 
 /**
  * Shared CTA button that opens the Typeform in a new tab.
